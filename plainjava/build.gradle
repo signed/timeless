@@ -1,0 +1,16 @@
+apply plugin: 'java'
+
+dependencies {
+    compile(
+            'joda-time:joda-time:2.7'
+            , 'com.google.code.gson:gson:2.3.1'
+    )
+
+    testCompile(
+            'junit:junit:4.12'
+            , 'org.mockito:mockito-core:2.0.7-beta'
+            , 'info.cukes:cucumber-java:1.2.2'
+            , 'info.cukes:cucumber-junit:1.2.2'
+            , 'com.jayway.jsonpath:json-path-assert:2.0.0'
+    )
+}
