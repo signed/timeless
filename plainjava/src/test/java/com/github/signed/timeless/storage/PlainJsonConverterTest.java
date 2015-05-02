@@ -7,18 +7,16 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-import com.github.signed.timeless.Punch;
 import com.jayway.jsonassert.JsonAssert;
 import com.jayway.jsonassert.JsonAsserter;
 
 public class PlainJsonConverterTest {
-    private final Collection<Punch> punches = new ArrayList<Punch>();
+
+    private final PunchesBuilder punches = new PunchesBuilder();
+
     private PlainJsonConverter converter = new PlainJsonConverter();
 
     @Test
@@ -51,12 +49,12 @@ public class PlainJsonConverterTest {
         assertThat(converter.deSerialize(punchesToJson()), hasItems(PunchIn().at(dateTime), PunchOut().at(dateTime)));
     }
 
-    private void punchInAt(DateTimeBuilder dateTime) {
-        punches.add(Punch.PunchIn(dateTime.buildUtc()));
+    private void punchOutAt(DateTimeBuilder am) {
+        punches.punchOutAt(am);
     }
 
-    private void punchOutAt(DateTimeBuilder dateTime) {
-        punches.add(Punch.PunchOut(dateTime.buildUtc()));
+    private void punchInAt(DateTimeBuilder pm) {
+        punches.punchInAt(pm);
     }
 
     private JsonAsserter serializedJson() {
@@ -65,7 +63,7 @@ public class PlainJsonConverterTest {
     }
 
     private String punchesToJson() {
-        return converter.serialize(punches);
+        return converter.serialize(punches.punches());
     }
 
 }
