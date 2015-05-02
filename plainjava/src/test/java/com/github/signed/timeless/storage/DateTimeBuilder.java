@@ -13,6 +13,7 @@ public class DateTimeBuilder {
         return Year(1976).december(2).at("15:30");
     }
 
+    private DateTimeZone inputTimeZone = DateTimeZone.UTC;
     private int year;
     private int month;
     private int dayOfMonth;
@@ -20,57 +21,75 @@ public class DateTimeBuilder {
     private int hourAdjust = 0;
     private int minutes;
 
+    public DateTimeBuilder withInputTimeZone(DateTimeZone inputTimeZone) {
+        this.inputTimeZone = inputTimeZone;
+        return this;
+    }
+
     public DateTimeBuilder year(int year) {
         this.year = year;
         return this;
     }
 
     public DateTimeBuilder january(int day) {
-        return month(1).dayOfMonth(day);
+        return month(1).the(day);
     }
 
     public DateTimeBuilder february(int day) {
-        return month(2).dayOfMonth(day);
+        return month(2).the(day);
     }
 
     public DateTimeBuilder march(int day) {
-        return month(3).dayOfMonth(day);
+        return month(3).the(day);
     }
 
     public DateTimeBuilder april(int day) {
-        return month(4).dayOfMonth(day);
+        return april().the(day);
+    }
+
+    public DateTimeBuilder april() {
+        return month(4);
     }
 
     public DateTimeBuilder may(int day) {
-        return month(5).dayOfMonth(day);
+        return may().the(day);
+    }
+
+    public DateTimeBuilder may() {
+        return month(5);
     }
 
     public DateTimeBuilder june(int day) {
-        return month(6).dayOfMonth(day);
+        return month(6).the(day);
     }
 
     public DateTimeBuilder july(int day) {
-        return month(7).dayOfMonth(day);
+        return month(7).the(day);
     }
 
     public DateTimeBuilder august(int day) {
-        return month(8).dayOfMonth(day);
+        return month(8).the(day);
     }
 
     public DateTimeBuilder september(int day) {
-        return month(9).dayOfMonth(day);
+        return month(9).the(day);
     }
 
     public DateTimeBuilder october(int day) {
-        return month(10).dayOfMonth(day);
+        return month(10).the(day);
     }
 
     public DateTimeBuilder november(int day) {
-        return month(11).dayOfMonth(day);
+        return month(11).the(day);
     }
 
     public DateTimeBuilder december(int day) {
-        return month(12).dayOfMonth(day);
+        return month(12).the(day);
+    }
+
+    public DateTimeBuilder the(int oneBasedDayOfTheMonth) {
+        this.dayOfMonth = oneBasedDayOfTheMonth;
+        return this;
     }
 
     public DateTimeBuilder at(String timeString) {
@@ -90,17 +109,23 @@ public class DateTimeBuilder {
         return this;
     }
 
+    public DateTimeBuilder copy() {
+        DateTimeBuilder that = new DateTimeBuilder();
+        that.year = this.year;
+        that.month = this.month;
+        that.dayOfMonth = this.dayOfMonth;
+        that.hour = this.hour;
+        that.hourAdjust = this.hourAdjust;
+        that.minutes = this.minutes;
+        return that;
+    }
+
     public DateTime buildUtc() {
-        return new DateTime(year, month, dayOfMonth, hour + hourAdjust, minutes, DateTimeZone.UTC);
+        return new DateTime(year, month, dayOfMonth, hour + hourAdjust, minutes, inputTimeZone).withZone(DateTimeZone.UTC);
     }
 
     private DateTimeBuilder month(int oneBasedMonth) {
         this.month = oneBasedMonth;
-        return this;
-    }
-
-    private DateTimeBuilder dayOfMonth(int oneBasedDayOfTheMonth) {
-        this.dayOfMonth = oneBasedDayOfTheMonth;
         return this;
     }
 

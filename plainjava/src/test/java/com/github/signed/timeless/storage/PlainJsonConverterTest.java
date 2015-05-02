@@ -24,7 +24,6 @@ public class PlainJsonConverterTest {
         serializedJson().assertThat("$.version", is(1));
     }
 
-
     @Test
     public void serializePunchIn() throws Exception {
         punchInAt(Year(2015).january(7).at("9:30").pm());
