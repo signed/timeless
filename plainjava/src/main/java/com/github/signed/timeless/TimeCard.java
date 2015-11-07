@@ -9,7 +9,7 @@ public class TimeCard implements Iterable<Punch>{
     private final Collection<Punch> punches;
 
     public TimeCard(Collection<Punch> punches) {
-        this.punches = new ArrayList<>(punches);
+        this.punches = new ArrayList<Punch>(punches);
     }
 
     @Override
