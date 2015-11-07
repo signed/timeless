@@ -32,9 +32,13 @@ public class DailyWorkLog {
     public Duration timeWorked() {
         Duration beforeLunch = new Interval(value.get(0).dateTime(), value.get(1).dateTime()).toDuration();
         Duration afterLunch = Duration.ZERO;
-        if (value.size() == 4) {
+        Duration inTheEvening = Duration.ZERO;
+        if (value.size() >= 4) {
             afterLunch = new Interval(value.get(2).dateTime(), value.get(3).dateTime()).toDuration();
         }
-        return beforeLunch.plus(afterLunch);
+        if(value.size() >= 6){
+            inTheEvening = new Interval(value.get(4).dateTime(), value.get(5).dateTime()).toDuration();
+        }
+        return beforeLunch.plus(afterLunch).plus(inTheEvening);
     }
 }
