@@ -21,7 +21,7 @@ public class BasicTimeLog implements TimeLog, CheckClock {
     }
 
     @Override
-    public TimeCard time_card_for(Interval interval) {
+    public TimeCardInterface time_card_for(Interval interval) {
         return null;
     }
 

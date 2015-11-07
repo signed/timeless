@@ -60,27 +60,52 @@ public class DateTimeBuilder {
     }
 
     public DateTimeBuilder june(int day) {
-        return month(6).the(day);
+        return june().the(day);
+    }
+
+    public DateTimeBuilder june() {
+        return month(6);
     }
 
     public DateTimeBuilder july(int day) {
         return month(7).the(day);
     }
 
+    public DateTimeBuilder july() {
+        return month(7);
+    }
+
     public DateTimeBuilder august(int day) {
         return month(8).the(day);
+    }
+
+    public DateTimeBuilder august() {
+        return month(8);
     }
 
     public DateTimeBuilder september(int day) {
         return month(9).the(day);
     }
 
+    public DateTimeBuilder september() {
+        return month(9);
+    }
+
     public DateTimeBuilder october(int day) {
         return month(10).the(day);
     }
 
+    public DateTimeBuilder october() {
+        return month(10);
+    }
+
+
     public DateTimeBuilder november(int day) {
         return month(11).the(day);
+    }
+
+    public DateTimeBuilder november() {
+        return month(11);
     }
 
     public DateTimeBuilder december(int day) {

@@ -4,7 +4,7 @@ import org.joda.time.Interval;
 
 public interface TimeLog {
 
-    TimeCard time_card_for(Interval interval);
+    TimeCardInterface time_card_for(Interval interval);
 
     Punch last_punch();
 }
