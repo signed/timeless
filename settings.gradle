@@ -1,1 +1,1 @@
-include ':timeless', ':plainjava'
+include ':plainjava', ':desktop'
