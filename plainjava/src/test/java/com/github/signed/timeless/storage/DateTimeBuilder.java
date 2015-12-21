@@ -2,6 +2,7 @@ package com.github.signed.timeless.storage;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.LocalDate;
 
 public class DateTimeBuilder {
 
@@ -143,6 +144,10 @@ public class DateTimeBuilder {
         that.hourAdjust = this.hourAdjust;
         that.minutes = this.minutes;
         return that;
+    }
+
+    public LocalDate buildDay(){
+        return buildUtc().toLocalDate();
     }
 
     public DateTime buildUtc() {

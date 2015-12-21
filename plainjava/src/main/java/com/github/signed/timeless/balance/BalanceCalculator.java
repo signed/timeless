@@ -16,6 +16,12 @@ import com.github.signed.timeless.TimeCard;
 
 public class BalanceCalculator {
 
+    private final HoursRequired hoursRequired;
+
+    public BalanceCalculator(HoursRequired hoursRequired) {
+        this.hoursRequired = hoursRequired;
+    }
+
     public BalanceSheet balanceFor(TimeCard timeCard) {
         Map<LocalDate, List<Punch>> punchesPerDay = new HashMap<LocalDate, List<Punch>>();
 
@@ -38,7 +44,19 @@ public class BalanceCalculator {
             workLogs.add(workLog);
         }
 
+        printToSystemOut(workLogs);
 
+        Duration requiredToWork = Duration.ZERO;
+        for (Map.Entry<LocalDate, List<Punch>> punch : punchesPerDay.entrySet()) {
+            requiredToWork = requiredToWork.plus(this.hoursRequired.hoursRequiredAt(punch.getKey()));
+        }
+
+        Duration balance = timeWorked.minus(requiredToWork);
+
+        return new BalanceSheet(requiredToWork, timeWorked, balance);
+    }
+
+    private void printToSystemOut(List<DailyWorkLog> workLogs) {
         Collections.sort(workLogs, new Comparator<DailyWorkLog>() {
             @Override
             public int compare(DailyWorkLog o1, DailyWorkLog o2) {
@@ -53,11 +71,5 @@ public class BalanceCalculator {
             String dayAsString = workLog.day.toString("E yyyy.MM.dd");
             System.out.println(dayAsString +": "+ workLog.timeWorked().minus(Duration.standardHours(8)).toPeriod().toString());
         }
-
-
-        Duration requiredToWork = Duration.standardHours(8).multipliedBy(punchesPerDay.size());
-        Duration balance = timeWorked.minus(requiredToWork);
-
-        return new BalanceSheet(requiredToWork, timeWorked, balance);
     }
 }
