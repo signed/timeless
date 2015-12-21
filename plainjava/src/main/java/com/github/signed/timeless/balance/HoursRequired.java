@@ -5,5 +5,5 @@ import org.joda.time.LocalDate;
 
 public interface HoursRequired {
 
-    Duration hoursRequiredAt(LocalDate day);
+    Duration hoursToWorkAt(LocalDate day);
 }

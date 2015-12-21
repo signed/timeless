@@ -20,6 +20,7 @@ public class DateTimeBuilder {
     private int dayOfMonth;
     private int hour;
     private int hourAdjust = 0;
+
     private int minutes;
 
     public DateTimeBuilder withInputTimeZone(DateTimeZone inputTimeZone) {
@@ -96,10 +97,10 @@ public class DateTimeBuilder {
         return month(10).the(day);
     }
 
+
     public DateTimeBuilder october() {
         return month(10);
     }
-
 
     public DateTimeBuilder november(int day) {
         return month(11).the(day);
@@ -158,5 +159,4 @@ public class DateTimeBuilder {
         this.month = oneBasedMonth;
         return this;
     }
-
 }

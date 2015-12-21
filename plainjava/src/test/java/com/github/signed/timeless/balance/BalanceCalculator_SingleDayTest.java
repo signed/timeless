@@ -30,8 +30,7 @@ public class BalanceCalculator_SingleDayTest {
     }
 
     @Test
-    public void supportHalfDaysOff() throws Exception {
-
+    public void supportOtherWorkHoursBesides8HoursADay() throws Exception {
         workLogBuilder.on(day).workedFrom("10:00-14:00");
         haveToWorkHours(4);
 
@@ -39,7 +38,7 @@ public class BalanceCalculator_SingleDayTest {
     }
 
     private void haveToWorkHours(int hours) {
-        when(hoursRequired.hoursRequiredAt(day.buildDay())).thenReturn(Duration.standardHours(hours));
+        when(hoursRequired.hoursToWorkAt(day.buildDay())).thenReturn(Duration.standardHours(hours));
     }
 
     private BalanceSheet balanceSheet() {

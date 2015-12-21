@@ -48,7 +48,7 @@ public class BalanceCalculator {
 
         Duration requiredToWork = Duration.ZERO;
         for (Map.Entry<LocalDate, List<Punch>> punch : punchesPerDay.entrySet()) {
-            requiredToWork = requiredToWork.plus(this.hoursRequired.hoursRequiredAt(punch.getKey()));
+            requiredToWork = requiredToWork.plus(this.hoursRequired.hoursToWorkAt(punch.getKey()));
         }
 
         Duration balance = timeWorked.minus(requiredToWork);
