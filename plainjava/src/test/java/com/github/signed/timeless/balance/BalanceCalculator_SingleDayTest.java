@@ -1,15 +1,16 @@
 package com.github.signed.timeless.balance;
 
+import static com.github.signed.timeless.WorkHoursPerDay.unreducedWorkHours;
 import static com.github.signed.timeless.storage.DateTimeBuilder.AnyDateTime;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.joda.time.Duration.standardHours;
 import static org.mockito.Mockito.when;
 
-import org.joda.time.Duration;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.github.signed.timeless.HoursRequired;
 import com.github.signed.timeless.TimeCard;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.WorkLogBuilder;
@@ -38,7 +39,7 @@ public class BalanceCalculator_SingleDayTest {
     }
 
     private void haveToWorkHours(int hours) {
-        when(hoursRequired.hoursToWorkAt(day.buildDay())).thenReturn(Duration.standardHours(hours));
+        when(hoursRequired.hoursToWorkAt(day.buildDay())).thenReturn(unreducedWorkHours(standardHours(hours)));
     }
 
     private BalanceSheet balanceSheet() {

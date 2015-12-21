@@ -35,6 +35,6 @@ public class WorkHoursTest {
     }
 
     private Duration hoursToWorkAtGivenDay(LocalDate day) {
-        return workHours.hoursToWorkAt(day);
+        return workHours.hoursToWorkAt(day).duration();
     }
 }

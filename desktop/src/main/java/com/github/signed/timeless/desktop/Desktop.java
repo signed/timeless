@@ -17,7 +17,7 @@ public class Desktop extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FlowPane pane = new FlowPane();
-        ComboBox<String> comboBox = new ComboBox<>();
+        ComboBox<String> comboBox = new ComboBox<String>();
         comboBox.setPrefWidth(500);
         pane.getChildren().add(comboBox);
         comboBox.buttonCellProperty().set(new ListCell<String>() {

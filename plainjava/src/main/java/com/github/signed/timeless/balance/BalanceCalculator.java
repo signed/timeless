@@ -11,6 +11,7 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
+import com.github.signed.timeless.HoursRequired;
 import com.github.signed.timeless.Punch;
 import com.github.signed.timeless.TimeCard;
 
@@ -48,7 +49,7 @@ public class BalanceCalculator {
 
         Duration requiredToWork = Duration.ZERO;
         for (Map.Entry<LocalDate, List<Punch>> punch : punchesPerDay.entrySet()) {
-            requiredToWork = requiredToWork.plus(this.hoursRequired.hoursToWorkAt(punch.getKey()));
+            requiredToWork = requiredToWork.plus(this.hoursRequired.hoursToWorkAt(punch.getKey()).duration());
         }
 
         Duration balance = timeWorked.minus(requiredToWork);
