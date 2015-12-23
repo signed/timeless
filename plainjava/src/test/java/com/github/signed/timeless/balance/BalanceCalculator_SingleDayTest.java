@@ -1,6 +1,6 @@
 package com.github.signed.timeless.balance;
 
-import static com.github.signed.timeless.WorkHoursPerDay.unreducedWorkHours;
+import static com.github.signed.timeless.workhours.WorkHoursPerDay.unreducedWorkHours;
 import static com.github.signed.timeless.storage.DateTimeBuilder.AnyDateTime;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;

@@ -4,20 +4,24 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
-import com.github.signed.timeless.HoursRequired;
-import com.github.signed.timeless.workhours.WorkHoursPerDay;
+import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
+import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 
-public class WorkHours implements HoursRequired {
+public class WorkHours implements WorkHoursPerDayAdjuster{
 
     @Override
-    public WorkHoursPerDay hoursToWorkAt(LocalDate day) {
+    public void adjustHoursToWorkFor(LocalDate day, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
+        workHoursPerDayBuilder.hoursToWork(hoursToWorkAt(day));
+    }
+
+    private Duration hoursToWorkAt(LocalDate day) {
         if (day.dayOfWeek().get() == DateTimeConstants.SATURDAY || day.dayOfWeek().get() == DateTimeConstants.SUNDAY) {
-            return WorkHoursPerDay.unreducedWorkHours(Duration.ZERO);
+            return Duration.ZERO;
         }
         if (isChristmas(day) || isNewYearsEve(day)) {
-            return WorkHoursPerDay.unreducedWorkHours(halfAWorkday());
+            return halfAWorkday();
         }
-        return WorkHoursPerDay.unreducedWorkHours(workday());
+        return workday();
     }
 
     private boolean isChristmas(LocalDate day) {
