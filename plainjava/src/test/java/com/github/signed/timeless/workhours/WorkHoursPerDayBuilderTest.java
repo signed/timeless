@@ -53,6 +53,14 @@ public class WorkHoursPerDayBuilderTest {
         assertThat(durationToWork(), is(Duration.ZERO));
     }
 
+    @Test
+    public void operationsCanBePerformedInRandomOrder() throws Exception {
+        builder.reduceByHalfAWorkDay();
+        builder.hoursToWork(Duration.standardMinutes(30));
+
+        assertThat(durationToWork(), is(Duration.standardMinutes(15)));
+    }
+
     private Duration durationToWork() {
         return builder.build().duration();
     }

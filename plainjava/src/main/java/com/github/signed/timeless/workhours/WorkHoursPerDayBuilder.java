@@ -5,27 +5,27 @@ import org.joda.time.Duration;
 public class WorkHoursPerDayBuilder {
 
     private Duration duration;
-    private Duration toSubtract = Duration.ZERO;
+    private long percentageToSubtract = 0L;
 
     public WorkHoursPerDayBuilder hoursToWork(Duration duration) {
         this.duration = duration;
         return this;
     }
 
-    public WorkHoursPerDayBuilder reduceByHalfAWorkDay(){
-        toSubtract = toSubtract.plus(duration.dividedBy(2));
+    public WorkHoursPerDayBuilder reduceByHalfAWorkDay() {
+        percentageToSubtract += 50;
         return this;
     }
 
-    public WorkHoursPerDayBuilder reduceByCompleteWorkDay(){
+    public WorkHoursPerDayBuilder reduceByCompleteWorkDay() {
         return reduceByHalfAWorkDay().reduceByHalfAWorkDay();
     }
 
-    public WorkHoursPerDay build(){
-        Duration finalDuration = duration.minus(toSubtract);
-        if (Duration.ZERO.isLongerThan(finalDuration)) {
-            finalDuration = Duration.ZERO;
+    public WorkHoursPerDay build() {
+        if(percentageToSubtract >= 100){
+            return WorkHoursPerDay.unreducedWorkHours(Duration.ZERO);
         }
-        return WorkHoursPerDay.unreducedWorkHours(finalDuration);
+        Duration toSubtract = this.duration.dividedBy(100).multipliedBy(percentageToSubtract);
+        return WorkHoursPerDay.unreducedWorkHours(this.duration.minus(toSubtract));
     }
 }
