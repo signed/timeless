@@ -6,15 +6,13 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import com.github.signed.timeless.HoursRequired;
-import com.github.signed.timeless.contract.WorkHours;
 
 public class WorkHoursPerDayCompendium implements HoursRequired {
 
-    private final Set<WorkHoursPerDayAdjuster> adjusters = new HashSet<WorkHoursPerDayAdjuster>();
+    private final Set<WorkHoursPerDayAdjuster> adjusters;
 
-    public WorkHoursPerDayCompendium() {
-        adjusters.add(new WorkHours());
-        adjusters.add(new PersonalTimeOff());
+    public WorkHoursPerDayCompendium(Set<WorkHoursPerDayAdjuster> adjusters) {
+        this.adjusters = new HashSet<WorkHoursPerDayAdjuster>(adjusters);
     }
 
     @Override

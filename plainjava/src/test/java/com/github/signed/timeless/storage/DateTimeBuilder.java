@@ -14,6 +14,10 @@ public class DateTimeBuilder {
         return Year(1976).december(2).at("15:30");
     }
 
+    public static DateTimeBuilder At(LocalDate day){
+        return new DateTimeBuilder().year(day.getYear()).month(day.getMonthOfYear()).the(day.getDayOfMonth());
+    }
+
     private DateTimeZone inputTimeZone = DateTimeZone.UTC;
     private int year;
     private int month;
