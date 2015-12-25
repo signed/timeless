@@ -7,6 +7,9 @@ import org.joda.time.LocalDate;
  */
 public class EasterSundayCalculator {
     public LocalDate easterSundayFor(int year) {
+        if (year < 1583) {
+            throw new IllegalArgumentException();
+        }
         int a = year % 19;
         int b = year / 100;
         int c = year % 100;
