@@ -19,7 +19,7 @@ public class HolidayCalculator {
         List<Holiday> holidays = new ArrayList<Holiday>();
         holidays.add(new Holiday(new LocalDate(year, JANUARY, 1)));
         holidays.add(new Holiday(new LocalDate(year, JANUARY, 6)));
-        LocalDate easterSunday = calculator.easterSundayFor(2015);
+        LocalDate easterSunday = calculator.easterSundayFor(year);
         holidays.add(new Holiday(easterSunday.minusDays(2)));
         holidays.add(new Holiday(easterSunday.plusDays(1)));
         holidays.add(new Holiday(new LocalDate(year, MAY, 1)));
