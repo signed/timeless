@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.github.signed.timeless.HoursRequired;
-import com.github.signed.timeless.TimeCard;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.WorkLogBuilder;
 
@@ -43,7 +42,7 @@ public class BalanceCalculator_SingleDayTest {
     }
 
     private BalanceSheet balanceSheet() {
-        TimeCard timeCard = new TimeCard(workLogBuilder.punches());
-        return new BalanceCalculator(hoursRequired).balanceFor(timeCard);
+        return new BalanceCalculator(hoursRequired).balanceFor(workLogBuilder.timeCard());
     }
+
 }

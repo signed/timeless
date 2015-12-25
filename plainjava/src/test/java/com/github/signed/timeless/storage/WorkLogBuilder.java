@@ -1,10 +1,8 @@
 package com.github.signed.timeless.storage;
 
-import java.util.Collection;
-
 import org.joda.time.DateTimeZone;
 
-import com.github.signed.timeless.Punch;
+import com.github.signed.timeless.TimeCard;
 
 public class WorkLogBuilder {
     private final PunchesBuilder punches = new PunchesBuilder();
@@ -34,8 +32,8 @@ public class WorkLogBuilder {
         return this;
     }
 
-    public Collection<Punch> punches() {
-        return punches.punches();
+    public TimeCard timeCard() {
+        return new TimeCard(punches.punches());
     }
 
     private DateTimeBuilder day() {
