@@ -2,10 +2,13 @@ package com.github.signed.timeless.workhours;
 
 import org.joda.time.Duration;
 
+import java6.util.Optional;
+
 public class WorkHoursPerDayBuilder {
 
     private Duration duration;
     private long percentageToSubtract = 0L;
+    private Optional<Holiday> maybeHoliday = Optional.empty();
 
     public WorkHoursPerDayBuilder hoursToWork(Duration duration) {
         this.duration = duration;
@@ -21,8 +24,13 @@ public class WorkHoursPerDayBuilder {
         return reduceByHalfAWorkDay().reduceByHalfAWorkDay();
     }
 
+    public WorkHoursPerDayBuilder holiday(Holiday holiday) {
+        maybeHoliday = Optional.of(holiday);
+        return this;
+    }
+
     public WorkHoursPerDay build() {
-        if(percentageToSubtract >= 100){
+        if(percentageToSubtract >= 100 || maybeHoliday.isPresent()){
             return WorkHoursPerDay.unreducedWorkHours(Duration.ZERO);
         }
         Duration toSubtract = this.duration.dividedBy(100).multipliedBy(percentageToSubtract);

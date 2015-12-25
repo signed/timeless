@@ -2,6 +2,8 @@ package com.github.signed.timeless.workhours;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.joda.time.Duration.ZERO;
+import static org.joda.time.Duration.standardDays;
 import static org.joda.time.Duration.standardHours;
 import static org.joda.time.Duration.standardMinutes;
 
@@ -33,7 +35,7 @@ public class WorkHoursPerDayBuilderTest {
         builder.reduceByHalfAWorkDay();
         builder.reduceByHalfAWorkDay();
 
-        assertThat(durationToWork(), is(Duration.ZERO));
+        assertThat(durationToWork(), is(ZERO));
     }
 
     @Test
@@ -41,7 +43,7 @@ public class WorkHoursPerDayBuilderTest {
         builder.hoursToWork(standardMinutes(30));
         builder.reduceByCompleteWorkDay();
 
-        assertThat(durationToWork(), is(Duration.ZERO));
+        assertThat(durationToWork(), is(ZERO));
     }
 
     @Test
@@ -50,7 +52,15 @@ public class WorkHoursPerDayBuilderTest {
         builder.reduceByCompleteWorkDay();
         builder.reduceByHalfAWorkDay();
 
-        assertThat(durationToWork(), is(Duration.ZERO));
+        assertThat(durationToWork(), is(ZERO));
+    }
+
+    @Test
+    public void holidaysAreAlwaysFree() throws Exception {
+        builder.hoursToWork(standardDays(8));
+        builder.holiday(HolidayMother.anyHoliday());
+
+        assertThat(durationToWork(), is(ZERO));
     }
 
     @Test

@@ -15,6 +15,7 @@ import com.github.signed.timeless.contract.WorkHours;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.DateTimeMother;
 import com.github.signed.timeless.storage.WorkLogBuilder;
+import com.github.signed.timeless.workhours.Holidays;
 import com.github.signed.timeless.workhours.PersonalTimeOff;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
@@ -29,9 +30,9 @@ public class Integration_Test {
         HashSet<WorkHoursPerDayAdjuster> adjusters = new HashSet<WorkHoursPerDayAdjuster>();
         adjusters.add(workHours);
         adjusters.add(personalTimeOff);
+        adjusters.add(new Holidays());
 
         HoursRequired compendium = new WorkHoursPerDayCompendium(adjusters);
-
 
         LocalDate workday = DateTimeMother.AnyWorkday();
         DateTimeBuilder day = DateTimeBuilder.At(workday);
