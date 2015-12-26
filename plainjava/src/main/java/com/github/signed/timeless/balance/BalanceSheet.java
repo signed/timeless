@@ -2,12 +2,13 @@ package com.github.signed.timeless.balance;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Duration;
 
-public class BalanceSheet {
+public class BalanceSheet implements Iterable<BalanceRow>{
     private final List<BalanceRow> balanceRows;
 
     public BalanceSheet(List<BalanceRow> balanceRows) {
@@ -31,5 +32,10 @@ public class BalanceSheet {
             balance = balance.plus(balanceRow.balance());
         }
         return balance;
+    }
+
+    @Override
+    public Iterator<BalanceRow> iterator() {
+        return Collections.unmodifiableList(balanceRows).iterator();
     }
 }
