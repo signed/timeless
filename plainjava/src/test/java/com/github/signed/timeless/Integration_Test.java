@@ -48,7 +48,6 @@ public class Integration_Test {
         personalTimeOff.halfADayOfAt(workday);
 
         BalanceSheet balanceSheet = balanceCalculator.balanceFor(workLogBuilder.timeCard());
-        balanceSheet.printToSystemOut();
 
         assertThat(balanceSheet.balance(), is(Duration.standardHours(1)));
     }

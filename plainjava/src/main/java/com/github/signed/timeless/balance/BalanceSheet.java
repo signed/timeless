@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.joda.time.DateTimeConstants;
 import org.joda.time.Duration;
 
 public class BalanceSheet implements Iterable<BalanceRow>{
@@ -14,16 +13,6 @@ public class BalanceSheet implements Iterable<BalanceRow>{
     public BalanceSheet(List<BalanceRow> balanceRows) {
         this.balanceRows = new ArrayList<BalanceRow>(balanceRows);
         Collections.sort(balanceRows);
-    }
-
-    public void printToSystemOut() {
-        for (BalanceRow balanceRow : balanceRows) {
-            if (DateTimeConstants.MONDAY == balanceRow.day().dayOfWeek().get()) {
-                System.out.println("");
-            }
-            String dayAsString = balanceRow.day().toString("E yyyy.MM.dd");
-            System.out.println(dayAsString + ": " + balanceRow.balance().toPeriod().toString());
-        }
     }
 
     public Duration requiredToWork(){
