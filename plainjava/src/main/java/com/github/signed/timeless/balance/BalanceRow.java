@@ -28,4 +28,12 @@ public class BalanceRow implements Comparable<BalanceRow>{
     public int compareTo(BalanceRow o) {
         return day.compareTo(o.day);
     }
+
+    public Duration requiredToWork() {
+        return workHoursPerDay.duration();
+    }
+
+    public Duration hoursWorked(){
+        return dailyWorkLog.timeWorked();
+    }
 }
