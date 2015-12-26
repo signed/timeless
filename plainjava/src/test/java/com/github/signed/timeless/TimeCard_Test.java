@@ -28,7 +28,9 @@ public class TimeCard_Test {
     }
 
     @Test
-    public void deriveUntilDayFormLastPunch() throws Exception {
-        assertThat(workLogBuilder.timeCard().until(), is(lastWorkDay));
+    public void coversDayOfLastPunch() throws Exception {
+        TimeCard timeCard = workLogBuilder.timeCard();
+
+        assertThat("the time card should cover the last workday", timeCard.covers(lastWorkDay));
     }
 }

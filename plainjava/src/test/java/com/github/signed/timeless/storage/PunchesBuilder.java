@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
@@ -33,8 +34,8 @@ public class PunchesBuilder {
 
     public Interval intervalCovered() {
         List<Punch> sortedPunches = sortedPunches();
-        DateTime start = fromInternal(sortedPunches).toDateTimeAtStartOfDay();
-        DateTime end = untilInternal(sortedPunches).plusDays(1).toDateTimeAtStartOfDay();
+        DateTime start = fromInternal(sortedPunches).toDateTimeAtStartOfDay(DateTimeZone.UTC);
+        DateTime end = untilInternal(sortedPunches).plusDays(1).toDateTimeAtStartOfDay(DateTimeZone.UTC);
         return new Interval(start, end);
     }
 

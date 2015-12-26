@@ -26,7 +26,7 @@ public class BalanceCalculator {
         List<BalanceRow> balanceRows = new ArrayList<BalanceRow>();
 
         Duration requiredToWork = Duration.ZERO;
-        for (LocalDate day = timeCard.from(); !timeCard.until().isBefore(day); day = day.plusDays(1)) {
+        for (LocalDate day = timeCard.from(); timeCard.covers(day); day = day.plusDays(1)) {
             WorkHoursPerDay workHoursPerDay = this.hoursRequired.hoursToWorkAt(day);
             requiredToWork = requiredToWork.plus(workHoursPerDay.duration());
             List<Punch> punches = punchesPerDay.get(day);

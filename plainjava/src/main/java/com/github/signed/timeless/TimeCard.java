@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
@@ -26,8 +27,8 @@ public class TimeCard {
         return intervalCovered.getStart().toLocalDate();
     }
 
-    public LocalDate until() {
-        return intervalCovered.getEnd().toLocalDate().minusDays(1);
+    public boolean covers(LocalDate day){
+        return intervalCovered.contains(day.toDateTimeAtStartOfDay(DateTimeZone.UTC));
     }
 
     public Map<LocalDate, List<Punch>> punchesPerDay() {
