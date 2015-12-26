@@ -101,7 +101,6 @@ public class DateTimeBuilder {
         return month(10).the(day);
     }
 
-
     public DateTimeBuilder october() {
         return month(10);
     }
@@ -116,6 +115,15 @@ public class DateTimeBuilder {
 
     public DateTimeBuilder december(int day) {
         return month(12).the(day);
+    }
+
+    public DateTimeBuilder on(LocalDate day) {
+        return year(day.getYear()).month(day.getMonthOfYear()).the(day.getDayOfMonth());
+    }
+
+    private DateTimeBuilder month(int month) {
+        this.month = month;
+        return this;
     }
 
     public DateTimeBuilder the(int oneBasedDayOfTheMonth) {
@@ -157,10 +165,5 @@ public class DateTimeBuilder {
 
     public DateTime buildUtc() {
         return new DateTime(year, month, dayOfMonth, hour + hourAdjust, minutes, inputTimeZone).withZone(DateTimeZone.UTC);
-    }
-
-    private DateTimeBuilder month(int oneBasedMonth) {
-        this.month = oneBasedMonth;
-        return this;
     }
 }

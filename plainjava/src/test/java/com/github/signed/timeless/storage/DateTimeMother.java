@@ -8,6 +8,10 @@ public class DateTimeMother {
         return AnySunday().plusDays(2);
     }
 
+    public static LocalDate AnyMondayAtTheStartOfAFiveDayWorkWeek(){
+        return new LocalDate(2015, 11, 16);
+    }
+
     public static LocalDate AnySunday() {
         return AnySaturday().plusDays(1);
     }

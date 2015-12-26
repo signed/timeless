@@ -3,7 +3,6 @@ package com.github.signed.timeless.balance;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,21 +23,12 @@ public class BalanceCalculator {
     }
 
     public BalanceSheet balanceFor(TimeCard timeCard) {
-        Map<LocalDate, List<Punch>> punchesPerDay = new HashMap<LocalDate, List<Punch>>();
-
-        for (Punch punch : timeCard) {
-            LocalDate day = punch.dateTime().toLocalDate();
-
-            List<Punch> punchesAtCurrentDay = punchesPerDay.get(day);
-            if (null == punchesAtCurrentDay) {
-                punchesAtCurrentDay = new ArrayList<Punch>();
-                punchesPerDay.put(day, punchesAtCurrentDay);
-            }
-            punchesAtCurrentDay.add(punch);
-        }
+        Map<LocalDate, List<Punch>> punchesPerDay = timeCard.punchesPerDay();
 
         Duration timeWorked = Duration.millis(0);
         List<DailyWorkLog> workLogs = new ArrayList<DailyWorkLog>();
+
+
         for (Map.Entry<LocalDate, List<Punch>> entry : punchesPerDay.entrySet()) {
             DailyWorkLog workLog = new DailyWorkLog(entry.getKey(), entry.getValue());
             timeWorked = timeWorked.plus(workLog.timeWorked());
@@ -48,12 +38,11 @@ public class BalanceCalculator {
         printToSystemOut(workLogs);
 
         Duration requiredToWork = Duration.ZERO;
-        for (Map.Entry<LocalDate, List<Punch>> punch : punchesPerDay.entrySet()) {
-            requiredToWork = requiredToWork.plus(this.hoursRequired.hoursToWorkAt(punch.getKey()).duration());
+        for(LocalDate day = timeCard.from(); !timeCard.until().isBefore(day); day = day.plusDays(1) ){
+            requiredToWork = requiredToWork.plus(this.hoursRequired.hoursToWorkAt(day).duration());
         }
 
         Duration balance = timeWorked.minus(requiredToWork);
-
         return new BalanceSheet(requiredToWork, timeWorked, balance);
     }
 
