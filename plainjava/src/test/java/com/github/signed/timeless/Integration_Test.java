@@ -45,7 +45,7 @@ public class Integration_Test {
         BalanceCalculator balanceCalculator = new BalanceCalculator(compendium);
         WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime().on(day);
         workLogBuilder.workedFrom("10:00-15:00");
-        personalTimeOff.halfADayOfAt(workday);
+        personalTimeOff.halfADayOffAt(workday);
 
         BalanceSheet balanceSheet = balanceCalculator.balanceFor(workLogBuilder.timeCard());
 

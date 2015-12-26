@@ -17,14 +17,14 @@ public class PersonalTimeOffTest {
 
     @Test
     public void contributeToWorkHoursPerDayIfPersonalTimeOfWasTakenForThisDay() throws Exception {
-        personalTimeOff.dayOfAt(workday);
+        personalTimeOff.dayOffAt(workday);
         personalTimeOff.adjustHoursToWorkFor(workday, builder);
         verify(builder).reduceByCompleteWorkDay();
     }
 
     @Test
     public void contributeToWorkHoursPerDayIfHalfADayOfPersonalTimeOfWasTakenForThisDay() throws Exception {
-        personalTimeOff.halfADayOfAt(workday);
+        personalTimeOff.halfADayOffAt(workday);
         personalTimeOff.adjustHoursToWorkFor(workday, builder);
         verify(builder).reduceByHalfAWorkDay();
     }
