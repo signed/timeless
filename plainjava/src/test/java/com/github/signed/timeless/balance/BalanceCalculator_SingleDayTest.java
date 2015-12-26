@@ -23,10 +23,7 @@ public class BalanceCalculator_SingleDayTest {
     public void canCalculateForThreeWorkPeriodsADay() throws Exception {
         workLogBuilder.on(day).workedFrom("10:00-11:00", "12:00-13:00", "14:00-15:00");
         haveToWorkHours(8);
-
-        assertThat(balanceSheet().requiredToWork, is(standardHours(8)));
-        assertThat(balanceSheet().timeWorked, is(standardHours(3)));
-        assertThat(balanceSheet().balance, is(standardHours(5).negated()));
+        assertThat(balanceSheet().balance(), is(standardHours(5).negated()));
     }
 
     @Test
@@ -34,7 +31,7 @@ public class BalanceCalculator_SingleDayTest {
         workLogBuilder.on(day).workedFrom("10:00-14:00");
         haveToWorkHours(4);
 
-        assertThat(balanceSheet().balance, is(standardHours(0)));
+        assertThat(balanceSheet().balance(), is(standardHours(0)));
     }
 
     private void haveToWorkHours(int hours) {

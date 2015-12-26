@@ -31,6 +31,6 @@ public class BalanceCalculator_MultipleDaysTest {
 
         BalanceSheet balanceSheet = new BalanceCalculator(mock).balanceFor(workLogBuilder.timeCard());
 
-        assertThat(balanceSheet.balance, is(standardHours(1).negated()));
+        assertThat(balanceSheet.balance(), is(standardHours(1).negated()));
     }
 }
