@@ -34,12 +34,12 @@ public class BalanceSheet implements Iterable<BalanceRow>{
         return requiredToWork;
     }
 
-    public Duration hoursWorked(){
-        Duration hoursWorked = Duration.ZERO;
+    public Duration timeWorked(){
+        Duration timeWorked = Duration.ZERO;
         for (BalanceRow balanceRow : balanceRows) {
-            hoursWorked = hoursWorked.plus(balanceRow.hoursWorked());
+            timeWorked = timeWorked.plus(balanceRow.timeWorked());
         }
-        return hoursWorked;
+        return timeWorked;
     }
 
     public Duration balance() {

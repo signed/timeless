@@ -33,7 +33,7 @@ public class BalanceRow implements Comparable<BalanceRow>{
         return workHoursPerDay.duration();
     }
 
-    public Duration hoursWorked(){
+    public Duration timeWorked(){
         return dailyWorkLog.timeWorked();
     }
 }
