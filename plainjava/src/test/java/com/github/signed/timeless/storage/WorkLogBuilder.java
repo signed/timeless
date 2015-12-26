@@ -29,7 +29,11 @@ public class WorkLogBuilder {
     }
 
     public WorkLogBuilder inLocalTime() {
-        inputTimeZone = DateTimeZone.getDefault();
+        return inLocalTime(DateTimeZone.getDefault());
+    }
+
+    public WorkLogBuilder inLocalTime(DateTimeZone inputTimeZone) {
+        this.inputTimeZone = inputTimeZone;
         return this;
     }
 
