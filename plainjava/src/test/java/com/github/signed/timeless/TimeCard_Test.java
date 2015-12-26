@@ -27,7 +27,6 @@ public class TimeCard_Test {
         assertThat(workLogBuilder.timeCard().from(), is(firstWorkDay));
     }
 
-
     @Test
     public void deriveUntilDayFormLastPunch() throws Exception {
         assertThat(workLogBuilder.timeCard().until(), is(lastWorkDay));

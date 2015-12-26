@@ -1,14 +1,23 @@
 package com.github.signed.timeless.storage;
 
+import java.util.List;
+
 import org.joda.time.DateTimeZone;
+import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
+import com.github.signed.timeless.Punch;
 import com.github.signed.timeless.TimeCard;
 
+import java6.util.Optional;
+import java6.util.function.Supplier;
+
 public class WorkLogBuilder {
+
     private final PunchesBuilder punches = new PunchesBuilder();
     private DateTimeZone inputTimeZone = DateTimeZone.UTC;
     private DateTimeBuilder day;
+    private Optional<Interval> maybeInterval = Optional.empty();
 
     public WorkLogBuilder on(LocalDate localDate) {
         return on(new DateTimeBuilder().on(localDate));
@@ -41,8 +50,20 @@ public class WorkLogBuilder {
         return this;
     }
 
+    public WorkLogBuilder forInterval(Interval interval) {
+        maybeInterval = Optional.of(interval);
+        return this;
+    }
+
     public TimeCard timeCard() {
-        return new TimeCard(punches.punches());
+        final List<Punch> punches = this.punches.punches();
+        Interval intervalCovered = maybeInterval.orElseGet(new Supplier<Interval>() {
+            @Override
+            public Interval get() {
+                return WorkLogBuilder.this.punches.intervalCovered();
+            }
+        });
+        return new TimeCard(intervalCovered, punches);
     }
 
     private DateTimeBuilder day() {
