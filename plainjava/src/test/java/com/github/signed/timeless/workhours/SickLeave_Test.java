@@ -24,7 +24,7 @@ public class SickLeave_Test {
     }
 
     @Test
-    public void when_you_are_healty_you_go_to_work_and_do_your_expected_hours() throws Exception {
+    public void when_you_are_healthy_you_go_to_work_and_do_your_expected_hours() throws Exception {
         sickLeave.adjustHoursToWorkFor(day, builder);
 
         verifyZeroInteractions(builder);

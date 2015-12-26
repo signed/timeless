@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.joda.time.LocalDate;
 
+import java6.util.Optional;
 import java6.util.function.Consumer;
 
 public class SickLeave implements WorkHoursPerDayAdjuster {
@@ -21,9 +22,17 @@ public class SickLeave implements WorkHoursPerDayAdjuster {
     }
 
     @Override
-    public void adjustHoursToWorkFor(LocalDate day, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        if (null != sickDays.get(day)) {
-            sickDays.get(day).accept(workHoursPerDayBuilder);
-        }
+    public void adjustHoursToWorkFor(LocalDate day, final WorkHoursPerDayBuilder workHoursPerDayBuilder) {
+        mayBeSickAt(day).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
+            @Override
+            public void accept(Consumer<WorkHoursPerDayBuilder> consumer) {
+                consumer.accept(workHoursPerDayBuilder);
+            }
+        });
     }
+
+    private Optional<Consumer<WorkHoursPerDayBuilder>> mayBeSickAt(LocalDate day) {
+        return Optional.ofNullable(sickDays.get(day));
+    }
+
 }
