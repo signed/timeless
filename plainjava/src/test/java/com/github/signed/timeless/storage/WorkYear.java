@@ -119,10 +119,6 @@ public class WorkYear {
         visitedConference(day);
     }
 
-    protected void visitedConference(DateTimeBuilder day) {
-        conferenceDays.wasAtConference(day.buildDay());
-    }
-
     protected void visitedAwesomeDay(DateTimeBuilder day){
         visitedConference(day);
     }
@@ -131,12 +127,20 @@ public class WorkYear {
         visitedConference(day);
     }
 
+    protected void visitedConference(DateTimeBuilder day) {
+        conferenceDays.wasAtConference(day.buildDay());
+    }
+
     protected void halfADayOfOn(DateTimeBuilder day) {
         timeOff.halfADayOffAt(day.buildDay());
     }
 
     protected void dayOfOn(DateTimeBuilder day) {
         timeOff.dayOffAt(day.buildDay());
+    }
+
+    protected void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
+        timeOff.timeOff(start.buildDay(), end.buildDay());
     }
 
     protected void wasSickOn(DateTimeBuilder day) {
