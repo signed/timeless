@@ -20,21 +20,31 @@ public class DateTimeMother {
         return new LocalDate(2015, 12, 26);
     }
 
-    public static LocalDate ChristmasOnAWorkDay() {
+    public static LocalDate AnyChristmasEve(){
+        return AnyChristmasEveOnAWeekend();
+    }
+
+    public static LocalDate AnyChristmasEveOnAWorkDay() {
         return new LocalDate(1968, 12, 24);
     }
 
-    public static LocalDate ChristmasOnAWeekend() {
+    public static LocalDate AnyChristmasEveOnAWeekend() {
         return new LocalDate(1967, 12, 24);
     }
 
+    public static LocalDate AnyNewYearsEve() {
+        return AnyNewYearsEveOnAWeekend();
+    }
 
-    public static LocalDate NewYearsEveOnAWorkDay() {
+    public static LocalDate AnyNewYearsEveOnAWorkDay() {
         return new LocalDate(1968, 12, 31);
     }
 
-    public static LocalDate NewYearsEveOnAWeekend() {
+    public static LocalDate AnyNewYearsEveOnAWeekend() {
         return new LocalDate(1967, 12, 31);
     }
 
+    public static LocalDate AnyDayNotChristmasEveOrNewYearsEve() {
+        return AnyNewYearsEveOnAWorkDay().plusMonths(1);
+    }
 }

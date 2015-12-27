@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
+import com.github.signed.timeless.contract.EmployerCourtesy;
 import com.github.signed.timeless.contract.WorkHours;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.DateTimeMother;
@@ -43,6 +44,14 @@ public class Integration_Test {
         assertThat(balance(workLogBuilder), is(standardHours(1)));
     }
 
+    @Test
+    public void compendium_works_properly_on_days_that_have_not_the_normal_amount_of_required_hours_to_work() throws Exception {
+        LocalDate day = DateTimeMother.AnyChristmasEveOnAWorkDay();
+        personalTimeOff.halfADayOffAt(day);
+
+        assertThat(completeCompendium().hoursToWorkAt(day).duration(), is(Duration.standardHours(0)));
+    }
+
     private Duration balance(WorkLogBuilder workLogBuilder) {
         HoursRequired compendium = completeCompendium();
         BalanceCalculator balanceCalculator = new BalanceCalculator(compendium);
@@ -58,7 +67,7 @@ public class Integration_Test {
         adjusters.add(holidays);
         adjusters.add(conferenceDays);
         adjusters.add(sickLeave);
-
+        adjusters.add(new EmployerCourtesy());
         return new WorkHoursPerDayCompendium(adjusters);
     }
 }

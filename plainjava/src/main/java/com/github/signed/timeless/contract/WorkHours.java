@@ -1,6 +1,8 @@
 package com.github.signed.timeless.contract;
 
-import org.joda.time.DateTimeConstants;
+import static org.joda.time.DateTimeConstants.SATURDAY;
+import static org.joda.time.DateTimeConstants.SUNDAY;
+
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
@@ -15,25 +17,10 @@ public class WorkHours implements WorkHoursPerDayAdjuster{
     }
 
     private Duration hoursToWorkAt(LocalDate day) {
-        if (day.dayOfWeek().get() == DateTimeConstants.SATURDAY || day.dayOfWeek().get() == DateTimeConstants.SUNDAY) {
+        if (day.dayOfWeek().get() == SATURDAY || day.dayOfWeek().get() == SUNDAY) {
             return Duration.ZERO;
         }
-        if (isChristmas(day) || isNewYearsEve(day)) {
-            return halfAWorkday();
-        }
         return workday();
-    }
-
-    private boolean isChristmas(LocalDate day) {
-        return day.monthOfYear().get() == DateTimeConstants.DECEMBER && day.dayOfMonth().get() == 24;
-    }
-
-    private boolean isNewYearsEve(LocalDate day) {
-        return day.monthOfYear().get() == DateTimeConstants.DECEMBER && day.dayOfMonth().get() == 31;
-    }
-
-    private Duration halfAWorkday() {
-        return workday().dividedBy(2);
     }
 
     private Duration workday() {

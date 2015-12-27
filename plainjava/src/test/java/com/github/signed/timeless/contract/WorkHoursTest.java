@@ -2,9 +2,6 @@ package com.github.signed.timeless.contract;
 
 import static com.github.signed.timeless.storage.DateTimeMother.AnySaturday;
 import static com.github.signed.timeless.storage.DateTimeMother.AnySunday;
-import static com.github.signed.timeless.storage.DateTimeMother.ChristmasOnAWorkDay;
-import static com.github.signed.timeless.storage.DateTimeMother.NewYearsEveOnAWeekend;
-import static com.github.signed.timeless.storage.DateTimeMother.NewYearsEveOnAWorkDay;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.joda.time.Duration.ZERO;
@@ -41,30 +38,6 @@ public class WorkHoursTest {
     public void anyOtherDayOfTheWeekItIsEightHoursOfWorkTime() throws Exception {
         day = DateTimeMother.AnyWorkday();
         assertThat(hoursToWorkAt(day), is(normalWorkDay()));
-    }
-
-    @Test
-    public void christmasIsOnlyHalfADayOfWork() throws Exception {
-        assertThat(hoursToWorkAt(ChristmasOnAWorkDay()), is(halfANormalWorkDay()));
-    }
-
-    @Test
-    public void christmasOnTheWeekendIsStillFree() throws Exception {
-        assertThat(hoursToWorkAt(DateTimeMother.ChristmasOnAWeekend()), is(ZERO));
-    }
-
-    @Test
-    public void newYearsEveIsOnlyHalfADayOfWork() throws Exception {
-        assertThat(hoursToWorkAt(NewYearsEveOnAWorkDay()), is(halfANormalWorkDay()));
-    }
-
-    @Test
-    public void newYearsEveOnTheWeekEndIsStillFree() throws Exception {
-        assertThat(hoursToWorkAt(NewYearsEveOnAWeekend()), is(ZERO));
-    }
-
-    private Duration halfANormalWorkDay() {
-        return normalWorkDay().dividedBy(2);
     }
 
     private Duration normalWorkDay() {
