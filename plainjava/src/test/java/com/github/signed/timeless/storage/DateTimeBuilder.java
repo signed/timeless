@@ -1,6 +1,19 @@
 package com.github.signed.timeless.storage;
 
+import static org.joda.time.DateTimeConstants.APRIL;
+import static org.joda.time.DateTimeConstants.AUGUST;
+import static org.joda.time.DateTimeConstants.DECEMBER;
+import static org.joda.time.DateTimeConstants.FEBRUARY;
+import static org.joda.time.DateTimeConstants.JANUARY;
+import static org.joda.time.DateTimeConstants.JUNE;
+import static org.joda.time.DateTimeConstants.MARCH;
+import static org.joda.time.DateTimeConstants.MAY;
+import static org.joda.time.DateTimeConstants.NOVEMBER;
+import static org.joda.time.DateTimeConstants.OCTOBER;
+import static org.joda.time.DateTimeConstants.SEPTEMBER;
+
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 
@@ -38,15 +51,27 @@ public class DateTimeBuilder {
     }
 
     public DateTimeBuilder january(int day) {
-        return month(1).the(day);
+        return january().the(day);
+    }
+
+    public DateTimeBuilder january() {
+        return month(JANUARY);
     }
 
     public DateTimeBuilder february(int day) {
-        return month(2).the(day);
+        return february().the(day);
+    }
+
+    public DateTimeBuilder february() {
+        return month(FEBRUARY);
     }
 
     public DateTimeBuilder march(int day) {
-        return month(3).the(day);
+        return march().the(day);
+    }
+
+    public DateTimeBuilder march() {
+        return month(MARCH);
     }
 
     public DateTimeBuilder april(int day) {
@@ -54,7 +79,7 @@ public class DateTimeBuilder {
     }
 
     public DateTimeBuilder april() {
-        return month(4);
+        return month(APRIL);
     }
 
     public DateTimeBuilder may(int day) {
@@ -62,7 +87,7 @@ public class DateTimeBuilder {
     }
 
     public DateTimeBuilder may() {
-        return month(5);
+        return month(MAY);
     }
 
     public DateTimeBuilder june(int day) {
@@ -70,51 +95,55 @@ public class DateTimeBuilder {
     }
 
     public DateTimeBuilder june() {
-        return month(6);
+        return month(JUNE);
     }
 
     public DateTimeBuilder july(int day) {
-        return month(7).the(day);
+        return july().the(day);
     }
 
     public DateTimeBuilder july() {
-        return month(7);
+        return month(DateTimeConstants.JULY);
     }
 
     public DateTimeBuilder august(int day) {
-        return month(8).the(day);
+        return august().the(day);
     }
 
     public DateTimeBuilder august() {
-        return month(8);
+        return month(AUGUST);
     }
 
     public DateTimeBuilder september(int day) {
-        return month(9).the(day);
+        return september().the(day);
     }
 
     public DateTimeBuilder september() {
-        return month(9);
+        return month(SEPTEMBER);
     }
 
     public DateTimeBuilder october(int day) {
-        return month(10).the(day);
+        return october().the(day);
     }
 
     public DateTimeBuilder october() {
-        return month(10);
+        return month(OCTOBER);
     }
 
     public DateTimeBuilder november(int day) {
-        return month(11).the(day);
+        return november().the(day);
     }
 
     public DateTimeBuilder november() {
-        return month(11);
+        return month(NOVEMBER);
     }
 
     public DateTimeBuilder december(int day) {
-        return month(12).the(day);
+        return december().the(day);
+    }
+
+    public DateTimeBuilder december() {
+        return month(DECEMBER);
     }
 
     public DateTimeBuilder on(LocalDate day) {
