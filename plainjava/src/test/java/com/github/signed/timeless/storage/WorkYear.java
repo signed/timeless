@@ -33,10 +33,6 @@ public class WorkYear {
 
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
 
-    public WorkYear() {
-
-    }
-
     public static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters){
         return new HashSet<WorkHoursPerDayAdjuster>(Arrays.asList(adjusters));
     }
@@ -67,15 +63,15 @@ public class WorkYear {
         december(_2015.december());
     }
 
-    private void january(DateTimeBuilder january) {
+    public void january(DateTimeBuilder january) {
         //did not work
     }
 
-    private void february(DateTimeBuilder february) {
+    public void february(DateTimeBuilder february) {
         //did not work
     }
 
-    private void march(DateTimeBuilder march) {
+    public void march(DateTimeBuilder march) {
         //did not work
     }
 
