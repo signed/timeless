@@ -2,6 +2,7 @@ package com.github.signed.timeless;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.joda.time.Duration.standardHours;
 
 import java.util.HashSet;
 
@@ -28,9 +29,29 @@ public class Integration_Test {
     private final Holidays holidays = new Holidays();
     private final ConferenceDays conferenceDays = new ConferenceDays();
     private final SickLeave sickLeave = new SickLeave();
+    private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime();
 
     @Test
     public void smoke_test_after_wiring_everything() throws Exception {
+        LocalDate workday = DateTimeMother.AnyWorkday();
+        DateTimeBuilder day = DateTimeBuilder.At(workday);
+
+        WorkLogBuilder workLogBuilder = this.workLogBuilder.on(day);
+        workLogBuilder.workedFrom("10:00-15:00");
+        personalTimeOff.halfADayOffAt(workday);
+
+        assertThat(balance(workLogBuilder), is(standardHours(1)));
+    }
+
+    private Duration balance(WorkLogBuilder workLogBuilder) {
+        HoursRequired compendium = completeCompendium();
+        BalanceCalculator balanceCalculator = new BalanceCalculator(compendium);
+        BalanceSheet balanceSheet = balanceCalculator.balanceFor(workLogBuilder.timeCard());
+
+        return balanceSheet.balance();
+    }
+
+    private HoursRequired completeCompendium() {
         HashSet<WorkHoursPerDayAdjuster> adjusters = new HashSet<WorkHoursPerDayAdjuster>();
         adjusters.add(workHours);
         adjusters.add(personalTimeOff);
@@ -38,17 +59,6 @@ public class Integration_Test {
         adjusters.add(conferenceDays);
         adjusters.add(sickLeave);
 
-        HoursRequired compendium = new WorkHoursPerDayCompendium(adjusters);
-        LocalDate workday = DateTimeMother.AnyWorkday();
-        DateTimeBuilder day = DateTimeBuilder.At(workday);
-
-        BalanceCalculator balanceCalculator = new BalanceCalculator(compendium);
-        WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime().on(day);
-        workLogBuilder.workedFrom("10:00-15:00");
-        personalTimeOff.halfADayOffAt(workday);
-
-        BalanceSheet balanceSheet = balanceCalculator.balanceFor(workLogBuilder.timeCard());
-
-        assertThat(balanceSheet.balance(), is(Duration.standardHours(1)));
+        return new WorkHoursPerDayCompendium(adjusters);
     }
 }
