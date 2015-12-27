@@ -15,9 +15,11 @@ import com.github.signed.timeless.workhours.WorkHoursPerDay;
 
 public class BalanceCalculator {
 
+    private final Duration initialBalance;
     private final HoursRequired hoursRequired;
 
-    public BalanceCalculator(HoursRequired hoursRequired) {
+    public BalanceCalculator(Duration initialBalance, HoursRequired hoursRequired) {
+        this.initialBalance = initialBalance;
         this.hoursRequired = hoursRequired;
     }
 
@@ -36,7 +38,7 @@ public class BalanceCalculator {
             DailyWorkLog dailyWorkLog = new DailyWorkLog(day, punches);
             balanceRows.add(new BalanceRow(day, workHoursPerDay, dailyWorkLog));
         }
-        return new BalanceSheet(balanceRows);
+        return new BalanceSheet(initialBalance, balanceRows);
     }
 
 }

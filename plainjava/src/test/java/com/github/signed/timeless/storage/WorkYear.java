@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
+import org.joda.time.Duration;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
@@ -21,34 +22,49 @@ import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 
 public class WorkYear {
-    private final WorkHours workHours = new WorkHours();
-    protected final PersonalTimeOff timeOff = new PersonalTimeOff();
-    private final Holidays holidays = new Holidays();
-    private final SickLeave sickLeave = new SickLeave();
-    private final ConferenceDays conferenceDays = new ConferenceDays();
-    private final EmployerCourtesy employerCourtesy = new EmployerCourtesy();
-    private final WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(timeOff, workHours, holidays, sickLeave, conferenceDays, employerCourtesy));
-    private final BalanceCalculator balanceCalculator = new BalanceCalculator(compendium);
-    private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
 
-    private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
 
-    public static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters){
+    private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters){
         return new HashSet<WorkHoursPerDayAdjuster>(Arrays.asList(adjusters));
     }
 
-    public BalanceSheet balance() {
-        DateTimeBuilder year = DateTimeBuilder.Year(2015);
-        LocalDate startedWorking = new LocalDate(2015, DateTimeConstants.APRIL, 1);
-        LocalDate endOfYear = new LocalDate(2016, DateTimeConstants.JANUARY, 1);
-        workLogBuilder.forInterval(new Interval(startedWorking.toDateTimeAtStartOfDay(inputTimeZone), endOfYear.toDateTimeAtStartOfDay(inputTimeZone)));
-        year(year);
+    private final PersonalTimeOff timeOff = new PersonalTimeOff();
+    private final SickLeave sickLeave = new SickLeave();
+    private final ConferenceDays conferenceDays = new ConferenceDays();
+    private final BalanceCalculator balanceCalculator;
+    private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
+    private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
+    private final int year;
 
+    public WorkYear(Duration initialBalance, int year){
+        WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(timeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
+        balanceCalculator = new BalanceCalculator(initialBalance, compendium);
+        this.year = year;
+    }
+
+    public BalanceSheet balanceTillEndOfYearStarting(LocalDate start) {
+        LocalDate endOfYear = new LocalDate(2016, DateTimeConstants.JANUARY, 1);
+
+        return balance(start, endOfYear);
+    }
+
+    public BalanceSheet balanceUpUntilToday(){
+        LocalDate today = new LocalDate();
+        LocalDate startOfYear = new LocalDate(year, 1, 1);
+        LocalDate until = today;
+        if (today.isBefore(startOfYear)){
+            until = startOfYear;
+        }
+        return balance(startOfYear, until);
+    }
+
+    private BalanceSheet balance(LocalDate start, LocalDate endOfYear) {
+        workLogBuilder.forInterval(new Interval(start.toDateTimeAtStartOfDay(inputTimeZone), endOfYear.toDateTimeAtStartOfDay(inputTimeZone)));
+        year(DateTimeBuilder.Year(this.year));
         return balanceCalculator.balanceFor(workLogBuilder.timeCard());
     }
 
-
-    public void year(DateTimeBuilder _2015) {
+    private void year(DateTimeBuilder _2015) {
         january(_2015.january());
         february(_2015.february());
         march(_2015.march());

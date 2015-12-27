@@ -7,6 +7,7 @@ import static org.hamcrest.core.Is.is;
 import static org.joda.time.Duration.standardHours;
 import static org.mockito.Mockito.when;
 
+import org.joda.time.Duration;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -39,7 +40,7 @@ public class BalanceCalculator_SingleDayTest {
     }
 
     private BalanceSheet balanceSheet() {
-        return new BalanceCalculator(hoursRequired).balanceFor(workLogBuilder.timeCard());
+        return new BalanceCalculator(Duration.ZERO, hoursRequired).balanceFor(workLogBuilder.timeCard());
     }
 
 }

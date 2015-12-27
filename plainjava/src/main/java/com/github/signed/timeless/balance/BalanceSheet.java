@@ -9,8 +9,10 @@ import org.joda.time.Duration;
 
 public class BalanceSheet implements Iterable<BalanceRow>{
     private final List<BalanceRow> balanceRows;
+    private final Duration initialBalance;
 
-    public BalanceSheet(List<BalanceRow> balanceRows) {
+    public BalanceSheet(Duration initialBalance, List<BalanceRow> balanceRows) {
+        this.initialBalance = initialBalance;
         this.balanceRows = new ArrayList<BalanceRow>(balanceRows);
         Collections.sort(balanceRows);
     }
@@ -36,7 +38,7 @@ public class BalanceSheet implements Iterable<BalanceRow>{
         for (BalanceRow balanceRow : balanceRows) {
             balance = balance.plus(balanceRow.balance());
         }
-        return balance;
+        return initialBalance.plus(balance);
     }
 
     @Override
