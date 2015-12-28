@@ -1,0 +1,1 @@
+Putting punches into day buckets during valance calculation has to be done in input timezone, otherwise punches can be added to the wrong day. 
