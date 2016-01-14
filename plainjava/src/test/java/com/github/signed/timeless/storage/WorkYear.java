@@ -58,8 +58,8 @@ public class WorkYear {
         return balance(startOfYear, until);
     }
 
-    private BalanceSheet balance(LocalDate start, LocalDate endOfYear) {
-        workLogBuilder.forInterval(new Interval(start.toDateTimeAtStartOfDay(inputTimeZone), endOfYear.toDateTimeAtStartOfDay(inputTimeZone)));
+    private BalanceSheet balance(LocalDate start, LocalDate inclusiveEnd) {
+        workLogBuilder.forInterval(new Interval(start.toDateTimeAtStartOfDay(inputTimeZone), inclusiveEnd.plusDays(1).toDateTimeAtStartOfDay(inputTimeZone)));
         year(DateTimeBuilder.Year(this.year));
         return balanceCalculator.balanceFor(workLogBuilder.timeCard());
     }
