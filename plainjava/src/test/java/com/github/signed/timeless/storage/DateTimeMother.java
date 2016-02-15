@@ -47,4 +47,8 @@ public class DateTimeMother {
     public static LocalDate AnyDayNotChristmasEveOrNewYearsEve() {
         return AnyNewYearsEveOnAWorkDay().plusMonths(1);
     }
+
+    public static LocalDate AnyWorkdayFridayWhereNextMondayIsAWorkday() {
+        return new LocalDate(2016, 2, 12);
+    }
 }

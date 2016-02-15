@@ -10,6 +10,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
+import com.github.signed.timeless.storage.DateTimeMother;
+
 public class WorkDays_Test {
 
     @Test
@@ -39,6 +41,13 @@ public class WorkDays_Test {
         LocalDate friday = monday.plusDays(4);
 
         assertThat(workdaysInRange(monday, friday), is(5));
+    }
+
+    @Test
+    public void fridayToMondayAreTwoDays() throws Exception {
+        LocalDate friday = DateTimeMother.AnyWorkdayFridayWhereNextMondayIsAWorkday();
+        LocalDate monday = friday.plusDays(3);
+        assertThat(workdaysInRange(friday, monday), is(2));
     }
 
     private int workdaysInRange(LocalDate start, LocalDate end) {

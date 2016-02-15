@@ -19,10 +19,10 @@ public class WorkDays {
     }
 
     public int workdays(LocalDate startInclusive, LocalDate endInclusive) {
-        WorkHoursPerDayBuilder workHoursPerDayBuilder = new WorkHoursPerDayBuilder().hoursToWork(Duration.standardDays(1));
         Duration total = Duration.ZERO;
 
         for (LocalDate day = startInclusive; !day.isAfter(endInclusive); day = day.plusDays(1)) {
+            WorkHoursPerDayBuilder workHoursPerDayBuilder = new WorkHoursPerDayBuilder().hoursToWork(Duration.standardDays(1));
             for (WorkHoursPerDayAdjuster adjuster : adjusters) {
                 adjuster.adjustHoursToWorkFor(day, workHoursPerDayBuilder);
             }
@@ -31,6 +31,6 @@ public class WorkDays {
         }
 
 
-        return (int) total.dividedBy(Duration.standardDays(1).getMillis()).getMillis();
+        return (int) total.getStandardDays();
     }
 }
