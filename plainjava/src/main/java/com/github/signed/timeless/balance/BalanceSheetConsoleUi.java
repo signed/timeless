@@ -24,14 +24,24 @@ public class BalanceSheetConsoleUi {
     }
 
     public void print(BalanceSheet balanceSheet) {
+        Duration weeklyBalance = Duration.ZERO;
         for (BalanceRow balanceRow : balanceSheet) {
+            weeklyBalance = weeklyBalance.plus(balanceRow.balance());
             if (DateTimeConstants.MONDAY == balanceRow.day().dayOfWeek().get()) {
+                System.out.println("weekly balance: " + balanceToString(weeklyBalance));
                 System.out.println("");
+                weeklyBalance = Duration.ZERO;
             }
             String dayAsString = balanceRow.day().toString("E yyyy.MM.dd");
-            if( printPredicate.test(balanceRow)){
-                System.out.println(dayAsString + ": " + balanceRow.balance().toPeriod().toString());
+            if (printPredicate.test(balanceRow)) {
+                System.out.println(dayAsString + ": " + balanceToString(balanceRow.balance()));
             }
         }
+        System.out.println("balance "+balanceToString(weeklyBalance));
+    }
+
+
+    private String balanceToString(Duration balance) {
+        return balance.toPeriod().toString();
     }
 }
