@@ -26,12 +26,12 @@ public class BalanceSheetConsoleUi {
     public void print(BalanceSheet balanceSheet) {
         Duration weeklyBalance = Duration.ZERO;
         for (BalanceRow balanceRow : balanceSheet) {
-            weeklyBalance = weeklyBalance.plus(balanceRow.balance());
             if (DateTimeConstants.MONDAY == balanceRow.day().dayOfWeek().get()) {
                 System.out.println("weekly balance: " + balanceToString(weeklyBalance));
                 System.out.println("");
                 weeklyBalance = Duration.ZERO;
             }
+            weeklyBalance = weeklyBalance.plus(balanceRow.balance());
             String dayAsString = balanceRow.day().toString("E yyyy.MM.dd");
             if (printPredicate.test(balanceRow)) {
                 System.out.println(dayAsString + ": " + balanceToString(balanceRow.balance()));
