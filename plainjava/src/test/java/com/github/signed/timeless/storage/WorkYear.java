@@ -129,18 +129,6 @@ public class WorkYear {
         return workLogBuilder.on(day);
     }
 
-    protected void visitedXpDays(DateTimeBuilder day){
-        visitedConference(day);
-    }
-
-    protected void visitedAwesomeDay(DateTimeBuilder day){
-        visitedConference(day);
-    }
-
-    protected void visitedSocratesOn(DateTimeBuilder day) {
-        visitedConference(day);
-    }
-
     protected void visitedConference(DateTimeBuilder day) {
         conferenceDays.wasAtConference(day.buildDay());
     }
