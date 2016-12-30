@@ -54,7 +54,7 @@ public class Integration_Test {
 
     private Duration balance(WorkLogBuilder workLogBuilder) {
         HoursRequired compendium = completeCompendium();
-        BalanceCalculator balanceCalculator = new BalanceCalculator(Duration.ZERO, compendium);
+        BalanceCalculator balanceCalculator = new BalanceCalculator(compendium);
         BalanceSheet balanceSheet = balanceCalculator.balanceFor(workLogBuilder.timeCard());
 
         return balanceSheet.balance();

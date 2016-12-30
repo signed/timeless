@@ -6,7 +6,6 @@ import java.util.Set;
 
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Duration;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
@@ -23,7 +22,6 @@ import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 
 public class WorkYear {
 
-
     private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters){
         return new HashSet<WorkHoursPerDayAdjuster>(Arrays.asList(adjusters));
     }
@@ -36,9 +34,9 @@ public class WorkYear {
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final int year;
 
-    public WorkYear(Duration initialBalance, int year){
+    public WorkYear(int year){
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(timeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
-        balanceCalculator = new BalanceCalculator(initialBalance, compendium);
+        balanceCalculator = new BalanceCalculator(compendium);
         this.year = year;
     }
 
