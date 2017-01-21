@@ -1,4 +1,4 @@
-package com.github.signed.timeless.workhours;
+package com.github.signed.timeless.holidays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -11,6 +11,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import com.github.signed.timeless.storage.DateTimeMother;
+import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 
 public class Holidays_Test {
 

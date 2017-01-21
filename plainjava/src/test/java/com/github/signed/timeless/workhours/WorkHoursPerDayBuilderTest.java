@@ -10,6 +10,8 @@ import static org.joda.time.Duration.standardMinutes;
 import org.joda.time.Duration;
 import org.junit.Test;
 
+import com.github.signed.timeless.holidays.HolidayMother;
+
 public class WorkHoursPerDayBuilderTest {
 
     private final WorkHoursPerDayBuilder builder = new WorkHoursPerDayBuilder();

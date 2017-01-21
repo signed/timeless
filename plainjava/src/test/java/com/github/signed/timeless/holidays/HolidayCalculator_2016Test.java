@@ -1,4 +1,4 @@
-package com.github.signed.timeless.workhours;
+package com.github.signed.timeless.holidays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -11,6 +11,8 @@ import static org.joda.time.DateTimeConstants.OCTOBER;
 
 import org.joda.time.LocalDate;
 import org.junit.Test;
+
+import com.github.signed.timeless.holidays.HolidayCalculator;
 
 public class HolidayCalculator_2016Test {
 

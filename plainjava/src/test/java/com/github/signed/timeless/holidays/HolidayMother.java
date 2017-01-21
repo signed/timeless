@@ -1,6 +1,8 @@
-package com.github.signed.timeless.workhours;
+package com.github.signed.timeless.holidays;
 
 import org.joda.time.LocalDate;
+
+import com.github.signed.timeless.holidays.Holiday;
 
 public class HolidayMother {
 

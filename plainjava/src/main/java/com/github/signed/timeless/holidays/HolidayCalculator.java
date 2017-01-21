@@ -1,4 +1,4 @@
-package com.github.signed.timeless.workhours;
+package com.github.signed.timeless.holidays;
 
 import static org.joda.time.DateTimeConstants.DECEMBER;
 import static org.joda.time.DateTimeConstants.JANUARY;
@@ -11,11 +11,13 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 
-public class HolidayCalculator {
+import com.github.signed.timeless.workhours.EasterSundayCalculator;
+
+class HolidayCalculator {
 
     private final EasterSundayCalculator calculator = new EasterSundayCalculator();
 
-    public List<Holiday> holidaysFor(int year) {
+    List<Holiday> holidaysFor(int year) {
         List<Holiday> holidays = new ArrayList<Holiday>();
         holidays.add(new Holiday(new LocalDate(year, JANUARY, 1)));
         holidays.add(new Holiday(new LocalDate(year, JANUARY, 6)));

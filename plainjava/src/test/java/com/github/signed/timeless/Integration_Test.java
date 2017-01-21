@@ -18,7 +18,7 @@ import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.DateTimeMother;
 import com.github.signed.timeless.storage.WorkLogBuilder;
 import com.github.signed.timeless.workhours.ConferenceDays;
-import com.github.signed.timeless.workhours.Holidays;
+import com.github.signed.timeless.holidays.Holidays;
 import com.github.signed.timeless.workhours.PersonalTimeOff;
 import com.github.signed.timeless.workhours.SickLeave;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;

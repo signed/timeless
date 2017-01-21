@@ -1,10 +1,13 @@
-package com.github.signed.timeless.workhours;
+package com.github.signed.timeless.holidays;
 
 import java.util.List;
 
 import org.joda.time.LocalDate;
 
-public class Holidays implements WorkHoursPerDayAdjuster{
+import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
+import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
+
+public class Holidays implements WorkHoursPerDayAdjuster {
 
     private final HolidayCalculator calculator = new HolidayCalculator();
     @Override

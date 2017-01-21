@@ -7,8 +7,9 @@ import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
 import com.github.signed.timeless.contract.EmployerCourtesy;
+import com.github.signed.timeless.holidays.Holidays;
 
-public class WorkDays {
+class WorkDays {
 
     private final List<WorkHoursPerDayAdjuster> adjusters = new ArrayList<WorkHoursPerDayAdjuster>();
 
@@ -18,7 +19,7 @@ public class WorkDays {
         adjusters.add(new WeekendsAreFree());
     }
 
-    public int workdays(LocalDate startInclusive, LocalDate endInclusive) {
+    int workdays(LocalDate startInclusive, LocalDate endInclusive) {
         Duration total = Duration.ZERO;
 
         for (LocalDate day = startInclusive; !day.isAfter(endInclusive); day = day.plusDays(1)) {

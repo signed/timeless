@@ -1,6 +1,5 @@
-package com.github.signed.timeless.workhours;
+package com.github.signed.timeless.holidays;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.joda.time.DateTimeConstants.APRIL;
 import static org.joda.time.DateTimeConstants.MARCH;
@@ -8,10 +7,13 @@ import static org.joda.time.DateTimeConstants.MARCH;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.hamcrest.MatcherAssert;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
+import com.github.signed.timeless.workhours.EasterSundayCalculator;
 
 @RunWith(Parameterized.class)
 public class EasterSundayCalculator_Test {
@@ -32,15 +34,15 @@ public class EasterSundayCalculator_Test {
 
     private final int year;
 
-    private final LocalDate easterSunnday;
+    private final LocalDate easterSunday;
 
     public EasterSundayCalculator_Test(int year, int month, int dayOfMonth) {
         this.year = year;
-        this.easterSunnday = new LocalDate(year, month, dayOfMonth);
+        this.easterSunday = new LocalDate(year, month, dayOfMonth);
     }
 
     @Test
     public void calculateEasterSunday() throws Exception {
-        assertThat(new EasterSundayCalculator().easterSundayFor(year), is(easterSunnday));
+        MatcherAssert.assertThat(new EasterSundayCalculator().easterSundayFor(year), is(easterSunday));
     }
 }

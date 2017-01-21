@@ -14,7 +14,7 @@ import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.EmployerCourtesy;
 import com.github.signed.timeless.contract.WorkHours;
 import com.github.signed.timeless.workhours.ConferenceDays;
-import com.github.signed.timeless.workhours.Holidays;
+import com.github.signed.timeless.holidays.Holidays;
 import com.github.signed.timeless.workhours.PersonalTimeOff;
 import com.github.signed.timeless.workhours.SickLeave;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;

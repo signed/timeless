@@ -2,6 +2,8 @@ package com.github.signed.timeless.workhours;
 
 import org.joda.time.Duration;
 
+import com.github.signed.timeless.holidays.Holiday;
+
 import java6.util.Optional;
 
 public class WorkHoursPerDayBuilder {
