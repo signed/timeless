@@ -37,7 +37,7 @@ public class BalanceSheetConsoleUi {
                 System.out.println(dayAsString + ": " + balanceToString(balanceRow.balance()));
             }
         }
-        System.out.println("balance "+balanceToString(weeklyBalance));
+        System.out.println("balance " + balanceToString(weeklyBalance));
     }
 
 

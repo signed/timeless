@@ -34,19 +34,23 @@ public class WorkYear {
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final int year;
 
-    public WorkYear(int year){
+    WorkYear(int year){
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(timeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
         balanceCalculator = new BalanceCalculator(compendium);
         this.year = year;
     }
 
-    public BalanceSheet balanceTillEndOfYearStarting(LocalDate start) {
-        LocalDate endOfYear = new LocalDate(2016, DateTimeConstants.JANUARY, 1);
+    BalanceSheet balanceAtEndOfYear() {
+        return balanceAtEndOfYearStarting(startThisYear());
+    }
+
+    BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
+        LocalDate endOfYear = startOfNexYear();
 
         return balance(start, endOfYear);
     }
 
-    public BalanceSheet balanceUpUntilToday(){
+    BalanceSheet balanceUpUntilToday(){
         LocalDate today = new LocalDate();
         LocalDate startOfYear = new LocalDate(year, 1, 1);
         LocalDate until = today;
@@ -54,27 +58,6 @@ public class WorkYear {
             until = startOfYear;
         }
         return balance(startOfYear, until);
-    }
-
-    private BalanceSheet balance(LocalDate start, LocalDate inclusiveEnd) {
-        workLogBuilder.forInterval(new Interval(start.toDateTimeAtStartOfDay(inputTimeZone), inclusiveEnd.plusDays(1).toDateTimeAtStartOfDay(inputTimeZone)));
-        year(DateTimeBuilder.Year(this.year));
-        return balanceCalculator.balanceFor(workLogBuilder.timeCard());
-    }
-
-    private void year(DateTimeBuilder _2015) {
-        january(_2015.january());
-        february(_2015.february());
-        march(_2015.march());
-        april(_2015.april());
-        may(_2015.may());
-        june(_2015.june());
-        july(_2015.july());
-        august(_2015.august());
-        september(_2015.september());
-        october(_2015.october());
-        november(_2015.november());
-        december(_2015.december());
     }
 
     public void january(DateTimeBuilder january) {
@@ -129,23 +112,56 @@ public class WorkYear {
         return workLogBuilder.on(day);
     }
 
-    protected void visitedConference(DateTimeBuilder day) {
-        conferenceDays.wasAtConference(day.buildDay());
-    }
-
     protected void halfADayOfOn(DateTimeBuilder day) {
         timeOff.halfADayOffAt(day.buildDay());
     }
 
-    protected void dayOfOn(DateTimeBuilder day) {
+    void dayOfOn(DateTimeBuilder day) {
         timeOff.dayOffAt(day.buildDay());
     }
 
-    protected void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
+    void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
         timeOff.timeOff(start.buildDay(), end.buildDay());
     }
 
-    protected void wasSickOn(DateTimeBuilder day) {
+    void wasSickOn(DateTimeBuilder day) {
         sickLeave.wasSickOn(day.buildDay());
+    }
+
+    private void year(DateTimeBuilder _2015) {
+        january(_2015.january());
+        february(_2015.february());
+        march(_2015.march());
+        april(_2015.april());
+        may(_2015.may());
+        june(_2015.june());
+        july(_2015.july());
+        august(_2015.august());
+        september(_2015.september());
+        october(_2015.october());
+        november(_2015.november());
+        december(_2015.december());
+    }
+
+    private LocalDate startThisYear() {
+        return januaryFirst(year);
+    }
+
+    private LocalDate startOfNexYear() {
+        return januaryFirst(year+1);
+    }
+
+    private LocalDate januaryFirst(int year) {
+        return new LocalDate(year, DateTimeConstants.JANUARY, 1);
+    }
+
+    private BalanceSheet balance(LocalDate start, LocalDate inclusiveEnd) {
+        workLogBuilder.forInterval(new Interval(start.toDateTimeAtStartOfDay(inputTimeZone), inclusiveEnd.plusDays(1).toDateTimeAtStartOfDay(inputTimeZone)));
+        year(DateTimeBuilder.Year(this.year));
+        return balanceCalculator.balanceFor(workLogBuilder.timeCard());
+    }
+
+    private void visitedConference(DateTimeBuilder day) {
+        conferenceDays.wasAtConference(day.buildDay());
     }
 }
