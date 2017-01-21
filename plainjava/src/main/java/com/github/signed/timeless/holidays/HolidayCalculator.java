@@ -13,11 +13,12 @@ import org.joda.time.LocalDate;
 
 import com.github.signed.timeless.workhours.EasterSundayCalculator;
 
-class HolidayCalculator {
+class HolidayCalculator implements HolidayAlmanac{
 
     private final EasterSundayCalculator calculator = new EasterSundayCalculator();
 
-    List<Holiday> holidaysFor(int year) {
+    @Override
+    public List<Holiday> holidaysFor(int year) {
         List<Holiday> holidays = new ArrayList<Holiday>();
         holidays.add(new Holiday(new LocalDate(year, JANUARY, 1)));
         holidays.add(new Holiday(new LocalDate(year, JANUARY, 6)));
