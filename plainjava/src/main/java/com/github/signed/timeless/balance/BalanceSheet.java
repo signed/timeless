@@ -10,7 +10,7 @@ import org.joda.time.Duration;
 public class BalanceSheet implements Iterable<BalanceRow>{
     private final List<BalanceRow> balanceRows;
 
-    public BalanceSheet(List<BalanceRow> balanceRows) {
+    BalanceSheet(List<BalanceRow> balanceRows) {
         this.balanceRows = new ArrayList<BalanceRow>(balanceRows);
         Collections.sort(balanceRows);
     }
@@ -29,6 +29,30 @@ public class BalanceSheet implements Iterable<BalanceRow>{
             timeWorked = timeWorked.plus(balanceRow.timeWorked());
         }
         return timeWorked;
+    }
+
+    Iterable<WeeklyBalance> weeklyBalance(){
+        int currentWeekOfYear = Integer.MIN_VALUE;
+        ArrayList<WeeklyBalance> weeklyBalances = new ArrayList<WeeklyBalance>();
+        List<BalanceRow> currentWeekBalanceRows = new ArrayList<BalanceRow>();
+
+        for (BalanceRow balanceRow : balanceRows) {
+            int weekOfWeekyear = balanceRow.day().getWeekOfWeekyear();
+            if (currentWeekOfYear != weekOfWeekyear) {
+                currentWeekOfYear = weekOfWeekyear;
+                if(!currentWeekBalanceRows.isEmpty()){
+                    weeklyBalances.add(new WeeklyBalance(currentWeekBalanceRows));
+                    currentWeekBalanceRows = new ArrayList<BalanceRow>();
+                }
+            }
+            currentWeekBalanceRows.add(balanceRow);
+        }
+
+        if(!currentWeekBalanceRows.isEmpty()){
+            weeklyBalances.add(new WeeklyBalance(currentWeekBalanceRows));
+        }
+
+        return weeklyBalances;
     }
 
     public Duration balance() {
