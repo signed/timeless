@@ -20,7 +20,7 @@ import com.github.signed.timeless.workhours.SickLeave;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 
-public class WorkYear {
+class WorkYear {
 
     private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters){
         return new HashSet<WorkHoursPerDayAdjuster>(Arrays.asList(adjusters));
@@ -44,7 +44,7 @@ public class WorkYear {
         return balanceAtEndOfYearStarting(startThisYear());
     }
 
-    BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
+    private BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
         LocalDate endOfYear = startOfNexYear();
 
         return balance(start, endOfYear);
@@ -60,51 +60,51 @@ public class WorkYear {
         return balance(startOfYear, until);
     }
 
-    public void january(DateTimeBuilder january) {
+    private void january(DateTimeBuilder january) {
         //did not work
     }
 
-    public void february(DateTimeBuilder february) {
+    private void february(DateTimeBuilder february) {
         //did not work
     }
 
-    public void march(DateTimeBuilder march) {
+    private void march(DateTimeBuilder march) {
         //did not work
     }
 
-    public void may(DateTimeBuilder may) {
+    private void may(DateTimeBuilder may) {
         //did not work
     }
 
-    public void july(DateTimeBuilder july) {
+    private void july(DateTimeBuilder july) {
         //did not work
     }
 
-    public void april(DateTimeBuilder april) {
+    private void april(DateTimeBuilder april) {
         //did not work
     }
 
-    public void june(DateTimeBuilder june) {
+    private void june(DateTimeBuilder june) {
         //did not work
     }
 
-    public void august(DateTimeBuilder august) {
+    private void august(DateTimeBuilder august) {
         //did not work
     }
 
-    public void september(DateTimeBuilder september) {
+    private void september(DateTimeBuilder september) {
         //did not work
     }
 
-    public void october(DateTimeBuilder october) {
+    private void october(DateTimeBuilder october) {
         //did not work
     }
 
-    public void november(DateTimeBuilder november) {
+    private void november(DateTimeBuilder november) {
         //did not work
     }
 
-    public void december(DateTimeBuilder december) {
+    private void december(DateTimeBuilder december) {
         //did not work
     }
 

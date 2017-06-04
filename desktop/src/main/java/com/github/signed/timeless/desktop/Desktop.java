@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
-public class Desktop extends Application {
+class Desktop extends Application {
 
     public static void main(String[] args) {
         launch(args);

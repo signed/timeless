@@ -5,7 +5,7 @@ import org.joda.time.LocalDate;
 
 import com.github.signed.timeless.workhours.WorkHoursPerDay;
 
-public class BalanceRow implements Comparable<BalanceRow>{
+class BalanceRow implements Comparable<BalanceRow>{
     private final LocalDate day;
     private final WorkHoursPerDay workHoursPerDay;
     private final DailyWorkLog dailyWorkLog;
@@ -35,5 +35,9 @@ public class BalanceRow implements Comparable<BalanceRow>{
 
     public Duration timeWorked(){
         return dailyWorkLog.timeWorked();
+    }
+
+    public DailyWorkLog dailyWorkLog(){
+        return dailyWorkLog;
     }
 }

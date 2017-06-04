@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.joda.time.Duration;
 
-public final class WeeklyBalance implements Iterable<BalanceRow>{
+final class WeeklyBalance implements Iterable<BalanceRow>{
     private final List<BalanceRow> balanceRows;
 
     WeeklyBalance(List<BalanceRow> balanceRows) {

@@ -45,7 +45,7 @@ public class DateTimeBuilder {
         return this;
     }
 
-    public DateTimeBuilder year(int year) {
+    private DateTimeBuilder year(int year) {
         this.year = year;
         return this;
     }
@@ -138,7 +138,7 @@ public class DateTimeBuilder {
         return month(NOVEMBER);
     }
 
-    public DateTimeBuilder december(int day) {
+    private DateTimeBuilder december(int day) {
         return december().the(day);
     }
 
@@ -155,7 +155,7 @@ public class DateTimeBuilder {
         return this;
     }
 
-    public DateTimeBuilder the(int oneBasedDayOfTheMonth) {
+    private DateTimeBuilder the(int oneBasedDayOfTheMonth) {
         this.dayOfMonth = oneBasedDayOfTheMonth;
         return this;
     }

@@ -1,10 +1,26 @@
 package com.github.signed.timeless.balance;
 
+import static com.github.signed.timeless.Constants.frontendTimeZone;
+import static java8.util.stream.Collectors.joining;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimeFormatterBuilder;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
+
+import com.github.signed.timeless.ConsecutiveTime;
 
 import java6.util.function.Predicate;
+import java8.util.stream.StreamSupport;
 
-public class BalanceSheetConsoleUi {
+class BalanceSheetConsoleUi {
+
+    private final DateTimeZone uiTimeZone = frontendTimeZone();
 
     private Predicate<BalanceRow> printPredicate = new Predicate<BalanceRow>() {
         @Override
@@ -25,19 +41,29 @@ public class BalanceSheetConsoleUi {
     public void print(BalanceSheet balanceSheet) {
         for (WeeklyBalance weeklyBalance : balanceSheet.weeklyBalance()) {
             for (BalanceRow balanceRow : weeklyBalance) {
-                String dayAsString = balanceRow.day().toString("E yyyy.MM.dd");
                 if (printPredicate.test(balanceRow)) {
-                    System.out.println(dayAsString + ": " + balanceToString(balanceRow.balance()));
+                    printWorkDay(balanceRow);
                 }
             }
             System.out.println("weekly balance: " + balanceToString(weeklyBalance.balance()));
             System.out.println("");
-
         }
     }
 
+    private void printWorkDay(BalanceRow balanceRow) {
+        String dayAsString = balanceRow.day().toString("E yyyy.MM.dd");
+
+        List<String> workBlocks = new ArrayList<String>();
+        for (ConsecutiveTime consecutiveTime : balanceRow.dailyWorkLog().consecutiveTimes()) {
+            DateTimeFormatter workLogFormatter = new DateTimeFormatterBuilder().appendHourOfDay(2).appendLiteral(":").appendMinuteOfHour(2).toFormatter();
+            workBlocks.add(consecutiveTime.start().toDateTime(uiTimeZone).toString(workLogFormatter) + "-" +consecutiveTime.stop().toDateTime(uiTimeZone).toString(workLogFormatter));
+        }
+
+        System.out.println(dayAsString + ": " + balanceToString(balanceRow.balance()) +"\t\t"+ StreamSupport.stream(workBlocks).collect(joining("  ")));
+    }
 
     private String balanceToString(Duration balance) {
-        return balance.toPeriod().toString();
+        PeriodFormatter formatter = new PeriodFormatterBuilder().minimumPrintedDigits(2).appendHours().appendSuffix("H").appendSeparatorIfFieldsBefore(" ").appendMinutes().appendSuffix("M").toFormatter();
+        return String.format("%10s", balance.toPeriod().toString(formatter));
     }
 }

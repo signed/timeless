@@ -4,6 +4,7 @@ import static com.github.signed.timeless.Punch.compareByTimeStamp;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,21 @@ public class TimeCard {
         this.punches = new ArrayList<Punch>(punches);
         Collections.sort(this.punches, compareByTimeStamp());
         this.intervalCovered = intervalCovered;
+    }
+
+    public static List<ConsecutiveTime> consecutiveTimesFor(LocalDate day, List<Punch> value) {
+        Collections.sort(value, new ComparatorByDateTime());
+        List<ConsecutiveTime> consecutiveTimes = new ArrayList<ConsecutiveTime>();
+        if (!value.isEmpty()) {
+            consecutiveTimes.add(new ConsecutiveTime(value.get(0), value.get(1)));
+        }
+        if (value.size() >= 4) {
+            consecutiveTimes.add(new ConsecutiveTime(value.get(2), value.get(3)));
+        }
+        if (value.size() >= 6) {
+            consecutiveTimes.add(new ConsecutiveTime(value.get(4), value.get(5)));
+        }
+        return consecutiveTimes;
     }
 
     public LocalDate from() {
@@ -45,5 +61,13 @@ public class TimeCard {
             punchesAtCurrentDay.add(punch);
         }
         return punchesPerDay;
+    }
+
+    public static class ComparatorByDateTime implements Comparator<Punch> {
+
+        @Override
+        public int compare(Punch o1, Punch o2) {
+            return o1.dateTime().compareTo(o2.dateTime());
+        }
     }
 }

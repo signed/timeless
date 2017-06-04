@@ -25,7 +25,7 @@ public class Punch {
     private final boolean isIn;
     private final DateTime dateTime;
 
-    public Punch(boolean isIn, DateTime dateTime) {
+    private Punch(boolean isIn, DateTime dateTime) {
         this.isIn = isIn;
         this.dateTime = dateTime;
     }

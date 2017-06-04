@@ -28,7 +28,7 @@ public class DateTimeMother {
         return new LocalDate(1968, 12, 24);
     }
 
-    public static LocalDate AnyChristmasEveOnAWeekend() {
+    private static LocalDate AnyChristmasEveOnAWeekend() {
         return new LocalDate(1967, 12, 24);
     }
 
@@ -36,11 +36,11 @@ public class DateTimeMother {
         return AnyNewYearsEveOnAWeekend();
     }
 
-    public static LocalDate AnyNewYearsEveOnAWorkDay() {
+    private static LocalDate AnyNewYearsEveOnAWorkDay() {
         return new LocalDate(1968, 12, 31);
     }
 
-    public static LocalDate AnyNewYearsEveOnAWeekend() {
+    private static LocalDate AnyNewYearsEveOnAWeekend() {
         return new LocalDate(1967, 12, 31);
     }
 

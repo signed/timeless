@@ -2,6 +2,6 @@ package com.github.signed.timeless.holidays;
 
 import java.util.List;
 
-public interface HolidayAlmanac {
+interface HolidayAlmanac {
     List<Holiday> holidaysFor(int year);
 }

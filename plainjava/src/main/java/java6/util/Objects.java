@@ -15,7 +15,7 @@ import java6.util.function.Supplier;
  *
  * @since 1.7
  */
-public final class Objects {
+final class Objects {
     private Objects() {
         throw new AssertionError("No java.util.Objects instances for you!");
     }

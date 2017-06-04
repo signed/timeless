@@ -1,6 +1,6 @@
 package com.github.signed.timeless;
 
-public interface CheckClock {
+interface CheckClock {
 
     void punch_in();
 

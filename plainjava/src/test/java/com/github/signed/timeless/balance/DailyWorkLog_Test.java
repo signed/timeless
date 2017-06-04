@@ -9,15 +9,16 @@ import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
-import com.github.signed.timeless.Punch;
+import com.github.signed.timeless.ConsecutiveTime;
 import com.github.signed.timeless.storage.DateTimeMother;
 
 public class DailyWorkLog_Test {
 
     @Test
-    public void if_there_are_no_hours_punched_the_was_no_work_done_for_this_day() throws Exception {
+    public void if_there_are_no_hours_punched_there_was_no_work_done_for_this_day() throws Exception {
         LocalDate day = DateTimeMother.AnyWorkday();
 
-        assertThat(new DailyWorkLog(day, Collections.<Punch>emptyList()).timeWorked(), is(Duration.ZERO));
+        assertThat(new DailyWorkLog(day, Collections.<ConsecutiveTime>emptyList()).timeWorked(), is(Duration.ZERO));
     }
+
 }

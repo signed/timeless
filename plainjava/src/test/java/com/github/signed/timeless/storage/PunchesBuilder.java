@@ -1,5 +1,6 @@
 package com.github.signed.timeless.storage;
 
+import static com.github.signed.timeless.Constants.backendTimeZone;
 import static com.github.signed.timeless.Punch.compareByTimeStamp;
 
 import java.util.ArrayList;
@@ -7,20 +8,19 @@ import java.util.Collections;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
 import com.github.signed.timeless.Punch;
 
-public class PunchesBuilder {
+class PunchesBuilder {
     private final List<Punch> punches = new ArrayList<Punch>();
 
-    public static LocalDate fromInternal(List<Punch> punches) {
+    private static LocalDate fromInternal(List<Punch> punches) {
         return punches.get(0).dateTime().toLocalDate();
     }
 
-    public static LocalDate untilInternal(List<Punch> punches) {
+    private static LocalDate untilInternal(List<Punch> punches) {
         return punches.get(punches.size() - 1).dateTime().toLocalDate();
     }
 
@@ -34,8 +34,8 @@ public class PunchesBuilder {
 
     public Interval intervalCovered() {
         List<Punch> sortedPunches = sortedPunches();
-        DateTime start = fromInternal(sortedPunches).toDateTimeAtStartOfDay(DateTimeZone.UTC);
-        DateTime end = untilInternal(sortedPunches).plusDays(1).toDateTimeAtStartOfDay(DateTimeZone.UTC);
+        DateTime start = fromInternal(sortedPunches).toDateTimeAtStartOfDay(backendTimeZone());
+        DateTime end = untilInternal(sortedPunches).plusDays(1).toDateTimeAtStartOfDay(backendTimeZone());
         return new Interval(start, end);
     }
 

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
 import com.github.signed.timeless.HoursRequired;
@@ -25,15 +24,13 @@ public class BalanceCalculator {
         Map<LocalDate, List<Punch>> punchesPerDay = timeCard.punchesPerDay();
         List<BalanceRow> balanceRows = new ArrayList<BalanceRow>();
 
-        Duration requiredToWork = Duration.ZERO;
         for (LocalDate day = timeCard.from(); timeCard.covers(day); day = day.plusDays(1)) {
             WorkHoursPerDay workHoursPerDay = this.hoursRequired.hoursToWorkAt(day);
-            requiredToWork = requiredToWork.plus(workHoursPerDay.duration());
             List<Punch> punches = punchesPerDay.get(day);
             if (punches == null) {
                 punches = Collections.emptyList();
             }
-            DailyWorkLog dailyWorkLog = new DailyWorkLog(day, punches);
+            DailyWorkLog dailyWorkLog = new DailyWorkLog(day, TimeCard.consecutiveTimesFor(day, new ArrayList<Punch>(punches)));
             balanceRows.add(new BalanceRow(day, workHoursPerDay, dailyWorkLog));
         }
         return new BalanceSheet(balanceRows);
