@@ -60,51 +60,51 @@ class WorkYear {
         return balance(startOfYear, until);
     }
 
-    private void january(DateTimeBuilder january) {
+    protected void january(DateTimeBuilder january) {
         //did not work
     }
 
-    private void february(DateTimeBuilder february) {
+    protected void february(DateTimeBuilder february) {
         //did not work
     }
 
-    private void march(DateTimeBuilder march) {
+    protected void march(DateTimeBuilder march) {
         //did not work
     }
 
-    private void may(DateTimeBuilder may) {
+    protected void may(DateTimeBuilder may) {
         //did not work
     }
 
-    private void july(DateTimeBuilder july) {
+    protected void july(DateTimeBuilder july) {
         //did not work
     }
 
-    private void april(DateTimeBuilder april) {
+    protected void april(DateTimeBuilder april) {
         //did not work
     }
 
-    private void june(DateTimeBuilder june) {
+    protected void june(DateTimeBuilder june) {
         //did not work
     }
 
-    private void august(DateTimeBuilder august) {
+    protected void august(DateTimeBuilder august) {
         //did not work
     }
 
-    private void september(DateTimeBuilder september) {
+    protected void september(DateTimeBuilder september) {
         //did not work
     }
 
-    private void october(DateTimeBuilder october) {
+    protected void october(DateTimeBuilder october) {
         //did not work
     }
 
-    private void november(DateTimeBuilder november) {
+    protected void november(DateTimeBuilder november) {
         //did not work
     }
 
-    private void december(DateTimeBuilder december) {
+    protected void december(DateTimeBuilder december) {
         //did not work
     }
 

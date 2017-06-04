@@ -18,7 +18,7 @@ import com.github.signed.timeless.ConsecutiveTime;
 import java6.util.function.Predicate;
 import java8.util.stream.StreamSupport;
 
-class BalanceSheetConsoleUi {
+public class BalanceSheetConsoleUi {
 
     private final DateTimeZone uiTimeZone = frontendTimeZone();
 

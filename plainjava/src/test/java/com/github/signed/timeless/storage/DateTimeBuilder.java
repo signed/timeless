@@ -155,7 +155,7 @@ public class DateTimeBuilder {
         return this;
     }
 
-    private DateTimeBuilder the(int oneBasedDayOfTheMonth) {
+    public DateTimeBuilder the(int oneBasedDayOfTheMonth) {
         this.dayOfMonth = oneBasedDayOfTheMonth;
         return this;
     }
