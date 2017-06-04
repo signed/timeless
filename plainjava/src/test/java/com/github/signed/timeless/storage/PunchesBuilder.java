@@ -40,6 +40,13 @@ class PunchesBuilder {
     }
 
     public List<Punch> punches(){
+        Punch previous = null;
+        for (Punch punch : punches) {
+            if(null != previous && !previous.dateTime().isBefore(punch.dateTime())){
+                throw new RuntimeException("Punches should be in order "+ previous.dateTime() +" "+ punch.dateTime());
+            }
+            previous = punch;
+        }
         return new ArrayList<Punch>(punches);
     }
 
