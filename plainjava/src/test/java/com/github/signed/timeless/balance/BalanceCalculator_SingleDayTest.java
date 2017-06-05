@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.HoursRequired;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.WorkLogBuilder;
@@ -39,7 +40,7 @@ public class BalanceCalculator_SingleDayTest {
     }
 
     private BalanceSheet balanceSheet() {
-        return new BalanceCalculator(hoursRequired).balanceFor(workLogBuilder.timeCard());
+        return new BalanceCalculator(hoursRequired, Constants.frontendTimeZone()).balanceFor(workLogBuilder.timeCard());
     }
 
 }

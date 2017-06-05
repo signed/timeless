@@ -1,39 +1,44 @@
 package com.github.signed.timeless.balance;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
+import org.joda.time.DateTimeZone;
+import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
+import com.github.signed.timeless.ConsecutiveTime;
 import com.github.signed.timeless.HoursRequired;
-import com.github.signed.timeless.Punch;
 import com.github.signed.timeless.TimeCard;
 import com.github.signed.timeless.workhours.WorkHoursPerDay;
 
 public class BalanceCalculator {
 
     private final HoursRequired hoursRequired;
+    private final DateTimeZone dateTimeZone;
 
-    public BalanceCalculator(HoursRequired hoursRequired) {
+    public BalanceCalculator(HoursRequired hoursRequired, DateTimeZone dateTimeZone) {
         this.hoursRequired = hoursRequired;
+        this.dateTimeZone = dateTimeZone;
     }
 
     public BalanceSheet balanceFor(TimeCard timeCard) {
-        Map<LocalDate, List<Punch>> punchesPerDay = timeCard.punchesPerDay();
         List<BalanceRow> balanceRows = new ArrayList<BalanceRow>();
-
         for (LocalDate day = timeCard.from(); timeCard.covers(day); day = day.plusDays(1)) {
-            WorkHoursPerDay workHoursPerDay = this.hoursRequired.hoursToWorkAt(day);
-            List<Punch> punches = punchesPerDay.get(day);
-            if (punches == null) {
-                punches = Collections.emptyList();
-            }
-            DailyWorkLog dailyWorkLog = new DailyWorkLog(day, TimeCard.consecutiveTimesFor(day, new ArrayList<Punch>(punches)));
-            balanceRows.add(new BalanceRow(day, workHoursPerDay, dailyWorkLog));
+            balanceRows.add(balanceRowFor(day, timeCard));
         }
         return new BalanceSheet(balanceRows);
+    }
+
+    private BalanceRow balanceRowFor(LocalDate day, TimeCard timeCard) {
+        WorkHoursPerDay workHoursPerDay = this.hoursRequired.hoursToWorkAt(day);
+        DailyWorkLog dailyWorkLog = new DailyWorkLog(day, dateTimeZone, worked(timeCard, day));
+        return new BalanceRow(day, workHoursPerDay, dailyWorkLog);
+    }
+
+    private List<ConsecutiveTime> worked(TimeCard timeCard, LocalDate day) {
+        Interval workday = new Interval(day.toDateTimeAtStartOfDay(dateTimeZone), day.plusDays(1).toDateTimeAtStartOfDay(dateTimeZone));
+        return timeCard.consecutiveTimesOverlapping(workday);
     }
 
 }

@@ -5,6 +5,7 @@ import static java8.util.stream.StreamSupport.stream;
 import java.util.Collections;
 import java.util.List;
 
+import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
@@ -18,7 +19,7 @@ class DailyWorkLog {
     private final LocalDate day;
     private final List<ConsecutiveTime> consecutiveTimes;
 
-    DailyWorkLog(LocalDate day, List<ConsecutiveTime> consecutiveTimes) {
+    DailyWorkLog(LocalDate day, DateTimeZone dateTimeZone, List<ConsecutiveTime> consecutiveTimes) {
         this.day = day;
         this.consecutiveTimes = consecutiveTimes;
     }

@@ -9,6 +9,7 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
+import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.EmployerCourtesy;
@@ -36,7 +37,7 @@ class WorkYear {
 
     WorkYear(int year){
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(timeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
-        balanceCalculator = new BalanceCalculator(compendium);
+        balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
         this.year = year;
     }
 

@@ -23,6 +23,14 @@ public class ConsecutiveTime {
     }
 
     public Duration toDuration() {
-        return new Interval(start.dateTime(), stop.dateTime()).toDuration().toDuration();
+        return interval().toDuration();
+    }
+
+    public boolean overlapsWith(Interval interval) {
+        return interval().overlaps(interval);
+    }
+
+    private Interval interval() {
+        return new Interval(start.dateTime(), stop.dateTime());
     }
 }
