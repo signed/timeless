@@ -24,7 +24,7 @@ public class DateTimeBuilder {
     }
 
     public static DateTimeBuilder AnyDateTime() {
-        return Year(1976).december(2).at("15:30");
+        return Year(1976).december(2).hour(15).minute(30);
     }
 
     public static DateTimeBuilder At(LocalDate day){
@@ -162,8 +162,18 @@ public class DateTimeBuilder {
 
     public DateTimeBuilder at(String timeString) {
         String[] split = timeString.split(":");
-        hour = Integer.parseInt(split[0]);
-        minutes = Integer.parseInt(split[1]);
+        hour(Integer.parseInt(split[0]));
+        minute(Integer.parseInt(split[1]));
+        return this;
+    }
+
+    public DateTimeBuilder hour(int hour) {
+        this.hour = hour;
+        return this;
+    }
+
+    private DateTimeBuilder minute(int minute) {
+        this.minutes = minute;
         return this;
     }
 
