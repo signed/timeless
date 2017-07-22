@@ -37,6 +37,7 @@ public class DateTimeBuilder {
     private int dayOfMonth;
     private int hour;
     private int hourAdjust = 0;
+    private int dayAdjust = 0;
 
     private int minutes;
 
@@ -160,10 +161,14 @@ public class DateTimeBuilder {
         return this;
     }
 
-    public DateTimeBuilder at(String timeString) {
-        String[] split = timeString.split(":");
-        hour(Integer.parseInt(split[0]));
-        minute(Integer.parseInt(split[1]));
+    public DateTimeBuilder at(HourAndMinute hourAndMinute) {
+        hour(hourAndMinute.hour);
+        minute(hourAndMinute.minute);
+        return this;
+    }
+
+    public DateTimeBuilder nextDay() {
+        this.dayAdjust += 1;
         return this;
     }
 
@@ -203,6 +208,6 @@ public class DateTimeBuilder {
     }
 
     public DateTime buildUtc() {
-        return new DateTime(year, month, dayOfMonth, hour + hourAdjust, minutes, inputTimeZone).withZone(DateTimeZone.UTC);
+        return new DateTime(year, month, dayOfMonth, hour + hourAdjust, minutes, inputTimeZone).withZone(DateTimeZone.UTC).plusDays(dayAdjust);
     }
 }

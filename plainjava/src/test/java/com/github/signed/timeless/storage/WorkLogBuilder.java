@@ -53,8 +53,10 @@ public class WorkLogBuilder {
     public WorkLogBuilder workedFrom(String... multipleFromTills) {
         for (String fromTill : multipleFromTills) {
             String[] split = fromTill.split("-");
-            punches.punchInAt(day().at(split[0]));
-            punches.punchOutAt(day().at(split[1]));
+            HourAndMinute in = HourAndMinute.parse(split[0]);
+            HourAndMinute out = HourAndMinute.parse(split[1]);
+            punches.punchInAt(day().at(in));
+            punches.punchOutAt(day().nextDay().at(out));
         }
         return this;
     }
