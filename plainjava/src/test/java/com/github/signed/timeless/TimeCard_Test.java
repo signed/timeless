@@ -18,8 +18,8 @@ public class TimeCard_Test {
 
     @Before
     public void logWorkOverMultipleDaysInWrongOrder() throws Exception {
-        workLogBuilder.on(lastWorkDay).workedFrom(FromUntilMother.anyAmountOfTime());
         workLogBuilder.on(firstWorkDay).workedFrom(FromUntilMother.anyAmountOfTime());
+        workLogBuilder.on(lastWorkDay).workedFrom(FromUntilMother.anyAmountOfTime());
     }
 
     @Test
