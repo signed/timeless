@@ -73,19 +73,19 @@ class WorkYear {
         //did not work
     }
 
-    protected void may(DateTimeBuilder may) {
-        //did not work
-    }
-
-    protected void july(DateTimeBuilder july) {
-        //did not work
-    }
-
     protected void april(DateTimeBuilder april) {
         //did not work
     }
 
+    protected void may(DateTimeBuilder may) {
+        //did not work
+    }
+
     protected void june(DateTimeBuilder june) {
+        //did not work
+    }
+
+    protected void july(DateTimeBuilder july) {
         //did not work
     }
 
@@ -129,19 +129,19 @@ class WorkYear {
         sickLeave.wasSickOn(day.buildDay());
     }
 
-    private void year(DateTimeBuilder _2015) {
-        january(_2015.january());
-        february(_2015.february());
-        march(_2015.march());
-        april(_2015.april());
-        may(_2015.may());
-        june(_2015.june());
-        july(_2015.july());
-        august(_2015.august());
-        september(_2015.september());
-        october(_2015.october());
-        november(_2015.november());
-        december(_2015.december());
+    private void year(DateTimeBuilder year) {
+        january(year.january());
+        february(year.february());
+        march(year.march());
+        april(year.april());
+        may(year.may());
+        june(year.june());
+        july(year.july());
+        august(year.august());
+        september(year.september());
+        october(year.october());
+        november(year.november());
+        december(year.december());
     }
 
     private LocalDate startThisYear() {
