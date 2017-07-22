@@ -41,6 +41,15 @@ public class WorkLogBuilder {
         return workedFrom(multipleFromTills);
     }
 
+    public WorkLogBuilder teamBuilding(String occasion, String... multipleFromTills) {
+        //ignore right now
+        return this;
+    }
+
+    public WorkLogBuilder workedDoubleTimeFrom(String... multipleFromTills) {
+        return this.workedFrom(multipleFromTills);
+    }
+
     public WorkLogBuilder workedFrom(String... multipleFromTills) {
         for (String fromTill : multipleFromTills) {
             String[] split = fromTill.split("-");
