@@ -45,7 +45,7 @@ class WorkYear {
         return balanceAtEndOfYearStarting(startThisYear());
     }
 
-    private BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
+    BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
         LocalDate endOfYear = startOfNexYear();
 
         return balance(start, endOfYear);
