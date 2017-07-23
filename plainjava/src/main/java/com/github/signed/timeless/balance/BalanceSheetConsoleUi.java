@@ -8,12 +8,11 @@ import java.util.List;
 
 import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
+import org.joda.time.Interval;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
-
-import com.github.signed.timeless.ConsecutiveTime;
 
 import java6.util.function.Predicate;
 import java8.util.stream.StreamSupport;
@@ -54,9 +53,9 @@ public class BalanceSheetConsoleUi {
         String dayAsString = balanceRow.day().toString("E yyyy.MM.dd");
 
         List<String> workBlocks = new ArrayList<String>();
-        for (ConsecutiveTime consecutiveTime : balanceRow.dailyWorkLog().consecutiveTimes()) {
+        for (Interval consecutiveTime : balanceRow.dailyWorkLog().intervalsWorked()) {
             DateTimeFormatter workLogFormatter = new DateTimeFormatterBuilder().appendHourOfDay(2).appendLiteral(":").appendMinuteOfHour(2).toFormatter();
-            workBlocks.add(consecutiveTime.start().toDateTime(uiTimeZone).toString(workLogFormatter) + "-" +consecutiveTime.stop().toDateTime(uiTimeZone).toString(workLogFormatter));
+            workBlocks.add(consecutiveTime.getStart().toDateTime(uiTimeZone).toString(workLogFormatter) + "-" +consecutiveTime.getEnd().toDateTime(uiTimeZone).toString(workLogFormatter));
         }
 
         System.out.println(dayAsString + ": " + balanceToString(balanceRow.balance()) +"\t\t"+ StreamSupport.stream(workBlocks).collect(joining("  ")));

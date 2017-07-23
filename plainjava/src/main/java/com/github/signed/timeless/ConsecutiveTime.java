@@ -1,36 +1,24 @@
 package com.github.signed.timeless;
 
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
 import org.joda.time.Interval;
 
 public class ConsecutiveTime {
 
-    private final Punch start;
-    private final Punch stop;
+    private final Interval interval;
 
     ConsecutiveTime(Punch start, Punch stop) {
-        this.start = start;
-        this.stop = stop;
+        this.interval = new Interval(start.dateTime(), stop.dateTime());
     }
 
-    public DateTime start() {
-        return start.dateTime();
+    public Interval overlap(Interval interval) {
+        return interval().overlap(interval);
     }
 
-    public DateTime stop() {
-        return stop.dateTime();
-    }
-
-    public Duration toDuration() {
-        return interval().toDuration();
-    }
-
-    public boolean overlapsWith(Interval interval) {
+    boolean overlapsWith(Interval interval) {
         return interval().overlaps(interval);
     }
 
     private Interval interval() {
-        return new Interval(start.dateTime(), stop.dateTime());
+        return interval;
     }
 }

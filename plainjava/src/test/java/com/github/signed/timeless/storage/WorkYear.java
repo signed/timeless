@@ -45,6 +45,11 @@ class WorkYear {
         return balanceAtEndOfYearStarting(startThisYear());
     }
 
+    BalanceSheet balanceUntil(LocalDate until){
+        LocalDate startOfYear = new LocalDate(year, 1, 1);
+        return balance(startOfYear, until);
+    }
+
     BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
         LocalDate endOfYear = startOfNexYear();
 
