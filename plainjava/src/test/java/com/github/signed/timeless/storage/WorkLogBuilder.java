@@ -56,7 +56,11 @@ public class WorkLogBuilder {
             HourAndMinute in = HourAndMinute.parse(split[0]);
             HourAndMinute out = HourAndMinute.parse(split[1]);
             punches.punchInAt(day().at(in));
-            punches.punchOutAt(day().nextDay().at(out));
+            if (out.earlierInDayThan(in)) {
+                punches.punchOutAt(day().nextDay().at(out));
+            } else {
+                punches.punchOutAt(day().at(out));
+            }
         }
         return this;
     }
