@@ -126,6 +126,10 @@ class WorkYear {
         timeOff.dayOffAt(day.buildDay());
     }
 
+    void dayOfUsingOvertime(DateTimeBuilder day){
+        //this is a noop, just let the workday to its thing
+    }
+
     void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
         timeOff.timeOff(start.buildDay(), end.buildDay());
     }

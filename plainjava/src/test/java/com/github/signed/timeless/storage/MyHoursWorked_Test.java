@@ -11,12 +11,13 @@ public class MyHoursWorked_Test {
 
 
     @Test
-    public void sampleUsage() throws Exception {
+    public void sampleUsage() {
         WorkYear workYear = new WorkYear(2017) {
 
             @Override
             protected void january(DateTimeBuilder january) {
                 on(january.the(1)).workedFrom("23:59-00:01");
+                dayOfUsingOvertime(january.the(2));
             }
         };
 
