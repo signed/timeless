@@ -42,12 +42,18 @@ class PunchesBuilder {
     public List<Punch> punches(){
         Punch previous = null;
         for (Punch punch : punches) {
-            if(null != previous && !previous.dateTime().isBefore(punch.dateTime())){
+            if(null != previous && !isBefore(previous, punch)){
                 throw new RuntimeException("Punches should be in order "+ previous.dateTime() +" "+ punch.dateTime());
             }
             previous = punch;
         }
         return new ArrayList<Punch>(punches);
+    }
+
+    private boolean isBefore(Punch previous, Punch punch) {
+        DateTime previousDateTime = previous.dateTime();
+        DateTime currentDateTime = punch.dateTime();
+        return previousDateTime.isBefore(currentDateTime) || previousDateTime.equals(currentDateTime);
     }
 
     private List<Punch> sortedPunches() {
