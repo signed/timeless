@@ -8,17 +8,17 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.joda.time.LocalDate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 
-public class Holidays_Test {
+class Holidays_Test {
 
     private final WorkHoursPerDayBuilder builder = mock(WorkHoursPerDayBuilder.class);
 
     @Test
-    public void pass_holiday_to_builder_if_day_is_an_actual_holiday() throws Exception {
+    void pass_holiday_to_builder_if_day_is_an_actual_holiday() {
         Holiday holiday = HolidayMother.anyHoliday();
         adjustHoursToWorkAt(holiday.date);
 
@@ -29,7 +29,7 @@ public class Holidays_Test {
     }
 
     @Test
-    public void pass_extraordinary_holiday_to_builder() throws Exception {
+    void pass_extraordinary_holiday_to_builder() {
         Holiday holiday = HolidayMother.extraordinaryHoliday();
         adjustHoursToWorkAt(holiday.date);
 
@@ -40,7 +40,7 @@ public class Holidays_Test {
     }
 
     @Test
-    public void do_not_interact_with_builder_if_day_is_not_a_holiday() throws Exception {
+    void do_not_interact_with_builder_if_day_is_not_a_holiday() {
         adjustHoursToWorkAt(AnyWorkday());
 
         verifyZeroInteractions(builder);

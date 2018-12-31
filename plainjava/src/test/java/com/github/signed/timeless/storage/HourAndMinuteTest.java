@@ -2,12 +2,12 @@ package com.github.signed.timeless.storage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class HourAndMinuteTest {
+class HourAndMinuteTest {
 
     @Test
-    public void checkForOur() throws Exception {
+    void checkForOur() {
         HourAndMinute in = HourAndMinute.parse("23:59");
         HourAndMinute out = HourAndMinute.parse("00:01");
 
@@ -15,7 +15,7 @@ public class HourAndMinuteTest {
     }
 
     @Test
-    public void checkForMinute() throws Exception {
+    void checkForMinute() {
         HourAndMinute in = HourAndMinute.parse("00:01");
         HourAndMinute out = HourAndMinute.parse("00:00");
 
@@ -23,7 +23,7 @@ public class HourAndMinuteTest {
     }
 
     @Test
-    public void checkForHourAndMinute() throws Exception {
+    void checkForHourAndMinute() {
         HourAndMinute in = HourAndMinute.parse("00:00");
         HourAndMinute out = HourAndMinute.parse("00:59");
 

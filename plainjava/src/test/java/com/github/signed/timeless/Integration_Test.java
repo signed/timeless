@@ -8,23 +8,23 @@ import java.util.HashSet;
 
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.EmployerCourtesy;
 import com.github.signed.timeless.contract.WorkHours;
+import com.github.signed.timeless.holidays.Holidays;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.DateTimeMother;
 import com.github.signed.timeless.storage.WorkLogBuilder;
 import com.github.signed.timeless.workhours.ConferenceDays;
-import com.github.signed.timeless.holidays.Holidays;
 import com.github.signed.timeless.workhours.PersonalTimeOff;
 import com.github.signed.timeless.workhours.SickLeave;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 
-public class Integration_Test {
+class Integration_Test {
     private final WorkHours workHours = new WorkHours();
     private final PersonalTimeOff personalTimeOff = new PersonalTimeOff();
     private final Holidays holidays = new Holidays();
@@ -33,7 +33,7 @@ public class Integration_Test {
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime();
 
     @Test
-    public void smoke_test_after_wiring_everything() throws Exception {
+    void smoke_test_after_wiring_everything() {
         LocalDate workday = DateTimeMother.AnyWorkday();
         DateTimeBuilder day = DateTimeBuilder.At(workday);
 
@@ -45,7 +45,7 @@ public class Integration_Test {
     }
 
     @Test
-    public void compendium_works_properly_on_days_that_have_not_the_normal_amount_of_required_hours_to_work() throws Exception {
+    void compendium_works_properly_on_days_that_have_not_the_normal_amount_of_required_hours_to_work() {
         LocalDate day = DateTimeMother.AnyChristmasEveOnAWorkDay();
         personalTimeOff.halfADayOffAt(day);
 

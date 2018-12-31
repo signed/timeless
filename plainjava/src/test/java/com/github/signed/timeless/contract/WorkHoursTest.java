@@ -10,32 +10,32 @@ import static org.mockito.Mockito.mock;
 
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import com.github.signed.timeless.storage.DateTimeMother;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 
-public class WorkHoursTest {
+class WorkHoursTest {
 
     private final WorkHours workHours = new WorkHours();
     private LocalDate day;
 
     @Test
-    public void saturdayIsWorkFree() throws Exception {
+    void saturdayIsWorkFree() {
         day = AnySaturday();
         assertThat(hoursToWorkAt(day), is(ZERO));
     }
 
     @Test
-    public void sundayIsWorkFree() throws Exception {
+    void sundayIsWorkFree() {
         day = AnySunday();
         assertThat(hoursToWorkAt(day), is(ZERO));
     }
 
     @Test
-    public void anyOtherDayOfTheWeekItIsEightHoursOfWorkTime() throws Exception {
+    void anyOtherDayOfTheWeekItIsEightHoursOfWorkTime() {
         day = DateTimeMother.AnyWorkday();
         assertThat(hoursToWorkAt(day), is(normalWorkDay()));
     }

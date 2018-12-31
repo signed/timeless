@@ -8,23 +8,23 @@ import static org.joda.time.Duration.standardHours;
 import static org.joda.time.Duration.standardMinutes;
 
 import org.joda.time.Duration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.github.signed.timeless.holidays.HolidayMother;
 
-public class WorkHoursPerDayBuilderTest {
+class WorkHoursPerDayBuilderTest {
 
     private final WorkHoursPerDayBuilder builder = new WorkHoursPerDayBuilder();
 
     @Test
-    public void withNoReductionsWorkHoursAreReturned() throws Exception {
+    void withNoReductionsWorkHoursAreReturned() {
         builder.hoursToWork(standardHours(2));
 
         assertThat(durationToWork(), is(standardHours(2)));
     }
 
     @Test
-    public void takeReduceHalfADayIntoAccount() throws Exception {
+    void takeReduceHalfADayIntoAccount() {
         builder.hoursToWork(standardHours(8));
         builder.reduceByHalfAWorkDay();
 
@@ -32,7 +32,7 @@ public class WorkHoursPerDayBuilderTest {
     }
 
     @Test
-    public void ifReducedTwiceByHalfAWorkDayMakesAFreeDay() throws Exception {
+    void ifReducedTwiceByHalfAWorkDayMakesAFreeDay() {
         builder.hoursToWork(standardHours(8));
         builder.reduceByHalfAWorkDay();
         builder.reduceByHalfAWorkDay();
@@ -41,7 +41,7 @@ public class WorkHoursPerDayBuilderTest {
     }
 
     @Test
-    public void takeReduceFullDayIntoAccount() throws Exception {
+    void takeReduceFullDayIntoAccount() {
         builder.hoursToWork(standardMinutes(30));
         builder.reduceByCompleteWorkDay();
 
@@ -49,7 +49,7 @@ public class WorkHoursPerDayBuilderTest {
     }
 
     @Test
-    public void doNotGoBelowZero() throws Exception {
+    void doNotGoBelowZero() {
         builder.hoursToWork(standardHours(1));
         builder.reduceByCompleteWorkDay();
         builder.reduceByHalfAWorkDay();
@@ -58,7 +58,7 @@ public class WorkHoursPerDayBuilderTest {
     }
 
     @Test
-    public void holidaysAreAlwaysFree() throws Exception {
+    void holidaysAreAlwaysFree() {
         builder.hoursToWork(standardDays(8));
         builder.holiday(HolidayMother.anyHoliday());
 
@@ -66,7 +66,7 @@ public class WorkHoursPerDayBuilderTest {
     }
 
     @Test
-    public void operationsCanBePerformedInRandomOrder() throws Exception {
+    void operationsCanBePerformedInRandomOrder() {
         builder.reduceByHalfAWorkDay();
         builder.hoursToWork(Duration.standardMinutes(30));
 

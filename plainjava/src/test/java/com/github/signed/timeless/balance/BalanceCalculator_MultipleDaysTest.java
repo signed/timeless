@@ -8,19 +8,19 @@ import static org.joda.time.Duration.standardHours;
 import static org.mockito.Mockito.when;
 
 import org.joda.time.LocalDate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.HoursRequired;
 import com.github.signed.timeless.storage.WorkLogBuilder;
 
-public class BalanceCalculator_MultipleDaysTest {
+class BalanceCalculator_MultipleDaysTest {
 
     private WorkLogBuilder workLogBuilder = new WorkLogBuilder();
 
     @Test
-    public void calculateBalanceFromFirstToLastDayOfATimeSheetAndConsiderDaysWithoutHoursWorked() throws Exception {
+    void calculateBalanceFromFirstToLastDayOfATimeSheetAndConsiderDaysWithoutHoursWorked() {
         HoursRequired mock = Mockito.mock(HoursRequired.class);
         when(mock.hoursToWorkAt(Mockito.any(LocalDate.class))).thenReturn(unreducedWorkHours(standardHours(1)));
 

@@ -10,69 +10,67 @@ import static org.joda.time.DateTimeConstants.NOVEMBER;
 import static org.joda.time.DateTimeConstants.OCTOBER;
 
 import org.joda.time.LocalDate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.github.signed.timeless.holidays.HolidayCalculator;
-
-public class HolidayCalculator_2016Test {
+class HolidayCalculator_2016Test {
 
     @Test
-    public void new_year_is_always_january_first() throws Exception {
+    void new_year_is_always_january_first() {
         assertThat(dateOfHoliday(0), is(_2016(JANUARY, 1)));
     }
 
     @Test
-    public void epiphany_is_always_january_sixth() throws Exception {
+    void epiphany_is_always_january_sixth() {
         assertThat(dateOfHoliday(1), is(_2016(JANUARY, 6)));
     }
 
     @Test
-    public void good_friday_is_two_days_before_easter_sunday() throws Exception {
+    void good_friday_is_two_days_before_easter_sunday() {
         assertThat(dateOfHoliday(2), is(_2016(MARCH, 25)));
     }
 
     @Test
-    public void easter_monday_is_one_day_after_easter_sunday() throws Exception {
+    void easter_monday_is_one_day_after_easter_sunday() {
         assertThat(dateOfHoliday(3), is(_2016(MARCH, 28)));
     }
 
     @Test
-    public void labour_day_is_always_may_first() throws Exception {
+    void labour_day_is_always_may_first() {
         assertThat(dateOfHoliday(4), is(_2016(MAY, 1)));
     }
 
     @Test
-    public void ascension_day_is_39_days_after_easter_sunday() throws Exception {
+    void ascension_day_is_39_days_after_easter_sunday() {
         assertThat(dateOfHoliday(5), is(_2016(MAY, 5)));
     }
 
     @Test
-    public void whit_monday_is_50_days_after_easter_sunday() throws Exception {
+    void whit_monday_is_50_days_after_easter_sunday() {
         assertThat(dateOfHoliday(6), is(_2016(MAY, 16)));
     }
 
     @Test
-    public void corpus_christi_is_60_days_after_easter_sunday() throws Exception {
+    void corpus_christi_is_60_days_after_easter_sunday() {
         assertThat(dateOfHoliday(7), is(_2016(MAY, 26)));
     }
 
     @Test
-    public void anniversary_of_German_unification_is_always_october_third() throws Exception {
+    void anniversary_of_German_unification_is_always_october_third() {
         assertThat(dateOfHoliday(8), is(_2016(OCTOBER, 3)));
     }
 
     @Test
-    public void all_saints_is_always_november_first() throws Exception {
+    void all_saints_is_always_november_first() {
         assertThat(dateOfHoliday(9), is(_2016(NOVEMBER, 1)));
     }
 
     @Test
-    public void christmas_day_is_always_december_25() throws Exception {
+    void christmas_day_is_always_december_25() {
         assertThat(dateOfHoliday(10), is(_2016(DECEMBER, 25)));
     }
 
     @Test
-    public void boxing_day_is_always_december_26() throws Exception {
+    void boxing_day_is_always_december_26() {
         assertThat(dateOfHoliday(11), is(_2016(DECEMBER, 26)));
     }
 

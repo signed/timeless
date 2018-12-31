@@ -1,17 +1,17 @@
 package com.github.signed.timeless.storage;
 
 import org.joda.time.Duration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
 
-public class MyHoursWorked_Test {
+class MyHoursWorked_Test {
     private final BalanceSheetConsoleUi consoleUi = new BalanceSheetConsoleUi();
 
 
     @Test
-    public void sampleUsage() {
+    void sampleUsage() {
         WorkYear workYear = new WorkYear(2017) {
 
             @Override
@@ -28,7 +28,7 @@ public class MyHoursWorked_Test {
         BalanceSheet balanceSheet = workYear.balanceUpUntilToday();
         consoleUi.print(balanceSheet);
 
-        System.out.println("");
+        System.out.println();
         System.out.println("required to work: " + asString(balanceSheet.requiredToWork()));
         System.out.println("time worked     : " + asString(balanceSheet.timeWorked()));
     }

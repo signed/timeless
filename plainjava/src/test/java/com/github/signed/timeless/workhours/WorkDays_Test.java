@@ -8,35 +8,35 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.joda.time.LocalDate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.github.signed.timeless.storage.DateTimeMother;
 
-public class WorkDays_Test {
+class WorkDays_Test {
 
     @Test
-    public void workdayIsOneDay() throws Exception {
+    void workdayIsOneDay() {
         LocalDate workday = AnyWorkday();
 
         assertThat(workdaysInRange(workday, workday), is(1));
     }
 
     @Test
-    public void saturdayIsNoWorkDay() throws Exception {
+    void saturdayIsNoWorkDay() {
         LocalDate saturday = AnySaturday();
 
         assertThat(workdaysInRange(saturday, saturday), is(0));
     }
 
     @Test
-    public void sundayIsNoWorkDay() throws Exception {
+    void sundayIsNoWorkDay() {
         LocalDate sunday = AnySunday();
 
         assertThat(workdaysInRange(sunday, sunday), is(0));
     }
 
     @Test
-    public void workweekHasFiveWorkDaysFromSundayToSunday() throws Exception {
+    void workweekHasFiveWorkDaysFromSundayToSunday() {
         LocalDate monday = AnyMondayAtTheStartOfAFiveDayWorkWeek();
         LocalDate friday = monday.plusDays(4);
 
@@ -44,7 +44,7 @@ public class WorkDays_Test {
     }
 
     @Test
-    public void fridayToMondayAreTwoDays() throws Exception {
+    void fridayToMondayAreTwoDays() {
         LocalDate friday = DateTimeMother.AnyWorkdayFridayWhereNextMondayIsAWorkday();
         LocalDate monday = friday.plusDays(3);
         assertThat(workdaysInRange(friday, monday), is(2));
