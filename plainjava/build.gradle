@@ -5,16 +5,14 @@ targetCompatibility = 1.6
 
 dependencies {
     compile(
-            'joda-time:joda-time:2.7'
-            , 'com.google.code.gson:gson:2.3.1'
-            , 'net.sourceforge.streamsupport:streamsupport:1.5.5'
+            'joda-time:joda-time:2.10.1'
+            , 'com.google.code.gson:gson:2.8.5'
+            , 'net.sourceforge.streamsupport:streamsupport:1.7.0'
     )
 
     testCompile(
             'junit:junit:4.12'
-            , 'org.mockito:mockito-core:2.0.7-beta'
-            , 'info.cukes:cucumber-java:1.2.2'
-            , 'info.cukes:cucumber-junit:1.2.2'
-            , 'com.jayway.jsonpath:json-path-assert:2.0.0'
+            , 'org.mockito:mockito-core:2.23.4'
+            , 'com.jayway.jsonpath:json-path-assert:2.4.0'
     )
 }

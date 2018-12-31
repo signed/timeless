@@ -1,1 +1,1 @@
-include ':plainjava', ':desktop'
+include ':plainjava'
