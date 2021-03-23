@@ -1,30 +1,25 @@
 package com.github.signed.timeless.storage;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.joda.time.DateTimeConstants;
-import org.joda.time.DateTimeZone;
-import org.joda.time.Interval;
-import org.joda.time.LocalDate;
-
 import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.EmployerCourtesy;
 import com.github.signed.timeless.contract.WorkHours;
-import com.github.signed.timeless.workhours.ConferenceDays;
 import com.github.signed.timeless.holidays.Holidays;
-import com.github.signed.timeless.workhours.PersonalTimeOff;
-import com.github.signed.timeless.workhours.SickLeave;
-import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
-import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
+import com.github.signed.timeless.workhours.*;
+import org.joda.time.DateTimeConstants;
+import org.joda.time.DateTimeZone;
+import org.joda.time.Interval;
+import org.joda.time.LocalDate;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 class WorkYear {
 
     private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters){
-        return new HashSet<WorkHoursPerDayAdjuster>(Arrays.asList(adjusters));
+        return new HashSet<>(Arrays.asList(adjusters));
     }
 
     private final PersonalTimeOff timeOff = new PersonalTimeOff();
@@ -46,7 +41,7 @@ class WorkYear {
     }
 
     BalanceSheet balanceUntil(LocalDate until){
-        LocalDate startOfYear = new LocalDate(year, 1, 1);
+        LocalDate startOfYear = startOfYear();
         return balance(startOfYear, until);
     }
 
@@ -58,12 +53,22 @@ class WorkYear {
 
     BalanceSheet balanceUpUntilToday(){
         LocalDate today = new LocalDate();
-        LocalDate startOfYear = new LocalDate(year, 1, 1);
+        LocalDate startOfYear = startOfYear();
         LocalDate until = today;
         if (today.isBefore(startOfYear)){
             until = startOfYear;
         }
         return balance(startOfYear, until);
+    }
+
+    BalanceSheet balanceFor(LocalDate start, LocalDate end) {
+        if(start.isBefore(startOfYear())){
+            start = startOfYear();
+        }
+        if(!end.isBefore(startOfNexYear())){
+            end = startOfNexYear();
+        }
+        return balance(start, end);
     }
 
     protected void january(DateTimeBuilder january) {
@@ -136,6 +141,10 @@ class WorkYear {
 
     void wasSickOn(DateTimeBuilder day) {
         sickLeave.wasSickOn(day.buildDay());
+    }
+
+    private LocalDate startOfYear() {
+        return new LocalDate(year, 1, 1);
     }
 
     private void year(DateTimeBuilder year) {
