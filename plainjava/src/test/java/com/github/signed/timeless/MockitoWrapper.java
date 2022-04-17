@@ -4,6 +4,6 @@ import org.mockito.Mockito;
 
 public class MockitoWrapper {
     public static void verifyZeroInteractions(Object... mocks) {
-        Mockito.verifyZeroInteractions(mocks);
+        Mockito.verifyNoMoreInteractions(mocks);
     }
 }
