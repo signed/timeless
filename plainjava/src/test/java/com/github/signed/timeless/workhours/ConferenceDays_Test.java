@@ -1,8 +1,8 @@
 package com.github.signed.timeless.workhours;
 
+import static com.github.signed.timeless.MockitoWrapper.verifyZeroInteractions;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,9 @@
 package com.github.signed.timeless.contract;
 
+import static com.github.signed.timeless.MockitoWrapper.verifyZeroInteractions;
 import static com.github.signed.timeless.storage.DateTimeMother.AnyChristmasEve;
 import static com.github.signed.timeless.storage.DateTimeMother.AnyNewYearsEve;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
