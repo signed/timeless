@@ -1,5 +1,12 @@
 package com.github.signed.timeless.balance;
 
+import com.github.signed.timeless.Constants;
+import com.github.signed.timeless.HoursRequired;
+import com.github.signed.timeless.storage.WorkLogBuilder;
+import org.joda.time.LocalDate;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
 import static com.github.signed.timeless.storage.DateTimeMother.AnyMondayAtTheStartOfAFiveDayWorkWeek;
 import static com.github.signed.timeless.workhours.WorkHoursPerDay.unreducedWorkHours;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -7,17 +14,9 @@ import static org.hamcrest.Matchers.is;
 import static org.joda.time.Duration.standardHours;
 import static org.mockito.Mockito.when;
 
-import org.joda.time.LocalDate;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import com.github.signed.timeless.Constants;
-import com.github.signed.timeless.HoursRequired;
-import com.github.signed.timeless.storage.WorkLogBuilder;
-
 class BalanceCalculator_MultipleDaysTest {
 
-    private WorkLogBuilder workLogBuilder = new WorkLogBuilder();
+    private final WorkLogBuilder workLogBuilder = new WorkLogBuilder();
 
     @Test
     void calculateBalanceFromFirstToLastDayOfATimeSheetAndConsiderDaysWithoutHoursWorked() {
