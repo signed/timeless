@@ -22,7 +22,7 @@ class WorkYear {
         return new HashSet<>(Arrays.asList(adjusters));
     }
 
-    private final PersonalTimeOff timeOff = new PersonalTimeOff();
+    private final PersonalTimeOff personalTimeOff = new PersonalTimeOff();
     private final SickLeave sickLeave = new SickLeave();
     private final ConferenceDays conferenceDays = new ConferenceDays();
     private final BalanceCalculator balanceCalculator;
@@ -31,7 +31,7 @@ class WorkYear {
     private final int year;
 
     WorkYear(int year){
-        WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(timeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
+        WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(personalTimeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
         balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
         this.year = year;
     }
@@ -124,11 +124,11 @@ class WorkYear {
     }
 
     protected void halfADayOfOn(DateTimeBuilder day) {
-        timeOff.halfADayOffAt(day.buildDay());
+        personalTimeOff.halfADayOffAt(day.buildDay());
     }
 
     void dayOfOn(DateTimeBuilder day) {
-        timeOff.dayOffAt(day.buildDay());
+        personalTimeOff.dayOffAt(day.buildDay());
     }
 
     void dayOfUsingOvertime(DateTimeBuilder day){
@@ -136,7 +136,7 @@ class WorkYear {
     }
 
     void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
-        timeOff.consecutiveDaysOf(start.buildDay(), end.buildDay());
+        personalTimeOff.consecutiveDaysOf(start.buildDay(), end.buildDay());
     }
 
     void wasSickOn(DateTimeBuilder day) {
