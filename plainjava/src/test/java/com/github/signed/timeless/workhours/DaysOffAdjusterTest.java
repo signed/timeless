@@ -9,29 +9,29 @@ import org.junit.jupiter.api.Test;
 
 import com.github.signed.timeless.storage.DateTimeMother;
 
-class PersonalTimeOffTest {
+class DaysOffAdjusterTest {
 
     private final WorkHoursPerDayBuilder builder = mock(WorkHoursPerDayBuilder.class);
-    private final PersonalTimeOff personalTimeOff = new PersonalTimeOff();
+    private final DaysOffAdjuster daysOffAdjuster = new DaysOffAdjuster();
     private final LocalDate workday = DateTimeMother.AnyWorkday();
 
     @Test
     void contributeToWorkHoursPerDayIfPersonalTimeOfWasTakenForThisDay() {
-        personalTimeOff.dayOffAt(workday);
-        personalTimeOff.adjustHoursToWorkFor(workday, builder);
+        daysOffAdjuster.dayOffAt(workday);
+        daysOffAdjuster.adjustHoursToWorkFor(workday, builder);
         verify(builder).reduceByCompleteWorkDay();
     }
 
     @Test
     void contributeToWorkHoursPerDayIfHalfADayOfPersonalTimeOfWasTakenForThisDay() {
-        personalTimeOff.halfADayOffAt(workday);
-        personalTimeOff.adjustHoursToWorkFor(workday, builder);
+        daysOffAdjuster.halfADayOffAt(workday);
+        daysOffAdjuster.adjustHoursToWorkFor(workday, builder);
         verify(builder).reduceByHalfAWorkDay();
     }
 
     @Test
     void doNotContributeToWorkHoursPerDayIfNoTimeOfWasTakenAtThatDay() {
-        personalTimeOff.adjustHoursToWorkFor(workday, builder);
+        daysOffAdjuster.adjustHoursToWorkFor(workday, builder);
         verifyZeroInteractions(builder);
     }
 }

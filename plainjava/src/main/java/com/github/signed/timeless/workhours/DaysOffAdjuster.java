@@ -8,7 +8,7 @@ import org.joda.time.LocalDate;
 import java6.util.Optional;
 import java6.util.function.Consumer;
 
-public class PersonalTimeOff implements WorkHoursPerDayAdjuster {
+public class DaysOffAdjuster implements WorkHoursPerDayAdjuster {
 
     private final Map<LocalDate, Consumer<WorkHoursPerDayBuilder>> daysOff = new HashMap<LocalDate, Consumer<WorkHoursPerDayBuilder>>();
 

@@ -10,9 +10,9 @@ import org.mockito.Mockito;
 
 import com.github.signed.timeless.storage.DateTimeMother;
 
-class PersonalTimeOff_MultipleDaysTest {
+class DaysOff_Adjuster_MultipleDaysTest {
 
-    private final PersonalTimeOff personalTimeOff = new PersonalTimeOff();
+    private final DaysOffAdjuster daysOffAdjuster = new DaysOffAdjuster();
     private final WorkHoursPerDayBuilder builder = Mockito.mock(WorkHoursPerDayBuilder.class);
 
     private final LocalDate start = DateTimeMother.AnyWorkday();
@@ -20,19 +20,19 @@ class PersonalTimeOff_MultipleDaysTest {
 
     @BeforeEach
     void add_time_of_over_multiple_days() {
-        personalTimeOff.consecutiveDaysOf(start, end);
+        daysOffAdjuster.consecutiveDaysOf(start, end);
     }
 
     @Test
     void day_before_start_day_you_have_to_work(){
-        personalTimeOff.adjustHoursToWorkFor(start.minusDays(1), builder);
+        daysOffAdjuster.adjustHoursToWorkFor(start.minusDays(1), builder);
 
         verifyZeroInteractions(builder);
     }
 
     @Test
     void start_day_is_work_free() {
-        personalTimeOff.adjustHoursToWorkFor(start, builder);
+        daysOffAdjuster.adjustHoursToWorkFor(start, builder);
 
         verify(builder).reduceByCompleteWorkDay();
     }
@@ -40,21 +40,21 @@ class PersonalTimeOff_MultipleDaysTest {
     @Test
     void all_days_in_between_are_work_free() {
         LocalDate anyDayBetweenStartAndEnd = start.plusDays(2);
-        personalTimeOff.adjustHoursToWorkFor(anyDayBetweenStartAndEnd, builder);
+        daysOffAdjuster.adjustHoursToWorkFor(anyDayBetweenStartAndEnd, builder);
 
         verify(builder).reduceByCompleteWorkDay();
     }
 
     @Test
     void until_day_is_included() {
-        personalTimeOff.adjustHoursToWorkFor(end, builder);
+        daysOffAdjuster.adjustHoursToWorkFor(end, builder);
 
         verify(builder).reduceByCompleteWorkDay();
     }
 
     @Test
     void all_days_after_the_end_day_you_have_to_work_again() {
-        personalTimeOff.adjustHoursToWorkFor(end.plusDays(1), builder);
+        daysOffAdjuster.adjustHoursToWorkFor(end.plusDays(1), builder);
 
         verifyZeroInteractions(builder);
     }

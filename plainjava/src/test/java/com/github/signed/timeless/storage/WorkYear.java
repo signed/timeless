@@ -22,7 +22,7 @@ class WorkYear {
         return new HashSet<>(Arrays.asList(adjusters));
     }
 
-    private final PersonalTimeOff personalTimeOff = new PersonalTimeOff();
+    private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final SickLeave sickLeave = new SickLeave();
     private final ConferenceDays conferenceDays = new ConferenceDays();
     private final BalanceCalculator balanceCalculator;

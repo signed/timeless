@@ -19,14 +19,14 @@ import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.DateTimeMother;
 import com.github.signed.timeless.storage.WorkLogBuilder;
 import com.github.signed.timeless.workhours.ConferenceDays;
-import com.github.signed.timeless.workhours.PersonalTimeOff;
+import com.github.signed.timeless.workhours.DaysOffAdjuster;
 import com.github.signed.timeless.workhours.SickLeave;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 
 class Integration_Test {
     private final WorkHours workHours = new WorkHours();
-    private final PersonalTimeOff personalTimeOff = new PersonalTimeOff();
+    private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final Holidays holidays = new Holidays();
     private final ConferenceDays conferenceDays = new ConferenceDays();
     private final SickLeave sickLeave = new SickLeave();
