@@ -14,11 +14,12 @@ dependencies {
             , 'net.sourceforge.streamsupport:streamsupport:1.7.4'
     )
     testImplementation(
-            platform('org.junit:junit-bom:5.9.3')
+            platform('org.junit:junit-bom:5.10.1')
             ,'org.junit.jupiter:junit-jupiter'
             , 'org.mockito:mockito-core:5.4.0'
             , 'org.hamcrest:hamcrest:2.2'
     )
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     test {
         useJUnitPlatform()
