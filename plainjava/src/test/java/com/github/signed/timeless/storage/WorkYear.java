@@ -23,8 +23,8 @@ class WorkYear {
     }
 
     private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
-    private final SickLeave sickLeave = new SickLeave();
-    private final ConferenceDays conferenceDays = new ConferenceDays();
+    private final DaysOffAdjuster sickLeave = new DaysOffAdjuster();
+    private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();
     private final BalanceCalculator balanceCalculator;
     private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);

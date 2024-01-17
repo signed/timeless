@@ -1,15 +1,5 @@
 package com.github.signed.timeless;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.joda.time.Duration.standardHours;
-
-import java.util.HashSet;
-
-import org.joda.time.Duration;
-import org.joda.time.LocalDate;
-import org.junit.jupiter.api.Test;
-
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.EmployerCourtesy;
@@ -18,18 +8,25 @@ import com.github.signed.timeless.holidays.Holidays;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.DateTimeMother;
 import com.github.signed.timeless.storage.WorkLogBuilder;
-import com.github.signed.timeless.workhours.ConferenceDays;
 import com.github.signed.timeless.workhours.DaysOffAdjuster;
-import com.github.signed.timeless.workhours.SickLeave;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
+import org.joda.time.Duration;
+import org.joda.time.LocalDate;
+import org.junit.jupiter.api.Test;
+
+import java.util.HashSet;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.joda.time.Duration.standardHours;
 
 class Integration_Test {
     private final WorkHours workHours = new WorkHours();
     private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final Holidays holidays = new Holidays();
-    private final ConferenceDays conferenceDays = new ConferenceDays();
-    private final SickLeave sickLeave = new SickLeave();
+    private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();
+    private final DaysOffAdjuster sickLeave = new DaysOffAdjuster();
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime();
 
     @Test
