@@ -4,5 +4,5 @@ import org.joda.time.LocalDate;
 
 public interface WorkHoursPerDayAdjuster {
 
-    void adjustHoursToWorkFor(LocalDate day, WorkHoursPerDayBuilder workHoursPerDayBuilder);
+    void adjustHoursToWorkFor(LocalDate date, WorkHoursPerDayBuilder workHoursPerDayBuilder);
 }

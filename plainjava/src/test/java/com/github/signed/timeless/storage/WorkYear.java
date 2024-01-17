@@ -140,7 +140,7 @@ class WorkYear {
     }
 
     void wasSickOn(DateTimeBuilder day) {
-        sickLeave.wasSickOn(day.buildDay());
+        sickLeave.dayOffAt(day.buildDay());
     }
 
     private void visitedConference(DateTimeBuilder day) {

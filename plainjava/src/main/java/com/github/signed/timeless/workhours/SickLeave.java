@@ -10,10 +10,10 @@ import java6.util.function.Consumer;
 
 public class SickLeave implements WorkHoursPerDayAdjuster {
 
-    private final Map<LocalDate, Consumer<WorkHoursPerDayBuilder>> sickDays = new HashMap<LocalDate, Consumer<WorkHoursPerDayBuilder>>();
+    private final Map<LocalDate, Consumer<WorkHoursPerDayBuilder>> daysOff = new HashMap<LocalDate, Consumer<WorkHoursPerDayBuilder>>();
 
-    public void wasSickOn(LocalDate day) {
-        sickDays.put(day, new Consumer<WorkHoursPerDayBuilder>() {
+    public void dayOffAt(LocalDate date) {
+        daysOff.put(date, new Consumer<WorkHoursPerDayBuilder>() {
             @Override
             public void accept(WorkHoursPerDayBuilder workHoursPerDayBuilder) {
                 workHoursPerDayBuilder.reduceByCompleteWorkDay();
@@ -22,8 +22,8 @@ public class SickLeave implements WorkHoursPerDayAdjuster {
     }
 
     @Override
-    public void adjustHoursToWorkFor(LocalDate day, final WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        mayBeSickAt(day).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
+    public void adjustHoursToWorkFor(LocalDate date, final WorkHoursPerDayBuilder workHoursPerDayBuilder) {
+        mayBeDayOffAt(date).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
             @Override
             public void accept(Consumer<WorkHoursPerDayBuilder> consumer) {
                 consumer.accept(workHoursPerDayBuilder);
@@ -31,8 +31,8 @@ public class SickLeave implements WorkHoursPerDayAdjuster {
         });
     }
 
-    private Optional<Consumer<WorkHoursPerDayBuilder>> mayBeSickAt(LocalDate day) {
-        return Optional.ofNullable(sickDays.get(day));
+    private Optional<Consumer<WorkHoursPerDayBuilder>> mayBeDayOffAt(LocalDate day) {
+        return Optional.ofNullable(daysOff.get(day));
     }
 
 }

@@ -12,8 +12,8 @@ import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 public class WorkHours implements WorkHoursPerDayAdjuster{
 
     @Override
-    public void adjustHoursToWorkFor(LocalDate day, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        workHoursPerDayBuilder.hoursToWork(hoursToWorkAt(day));
+    public void adjustHoursToWorkFor(LocalDate date, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
+        workHoursPerDayBuilder.hoursToWork(hoursToWorkAt(date));
     }
 
     private Duration hoursToWorkAt(LocalDate day) {

@@ -13,11 +13,11 @@ public class Holidays implements WorkHoursPerDayAdjuster {
     private final Iterable<HolidayAlmanac> holidayAlmanacs = Arrays.asList(new HolidayCalculator(), new ExtraordinaryHolidays());
 
     @Override
-    public void adjustHoursToWorkFor(LocalDate day, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
+    public void adjustHoursToWorkFor(LocalDate date, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
         for (HolidayAlmanac almanac : holidayAlmanacs) {
-            List<Holiday> holidays = almanac.holidaysFor(day.getYear());
+            List<Holiday> holidays = almanac.holidaysFor(date.getYear());
             for (Holiday holiday : holidays) {
-                if (holiday.date.equals(day)) {
+                if (holiday.date.equals(date)) {
                     workHoursPerDayBuilder.holiday(holiday);
                     return;
                 }

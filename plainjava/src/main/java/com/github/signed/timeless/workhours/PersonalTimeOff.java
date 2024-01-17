@@ -37,8 +37,8 @@ public class PersonalTimeOff implements WorkHoursPerDayAdjuster {
     }
 
     @Override
-    public void adjustHoursToWorkFor(LocalDate day, final WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        mayBeDayOffAt(day).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
+    public void adjustHoursToWorkFor(LocalDate date, final WorkHoursPerDayBuilder workHoursPerDayBuilder) {
+        mayBeDayOffAt(date).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
             @Override
             public void accept(Consumer<WorkHoursPerDayBuilder> consumer) {
                 consumer.accept(workHoursPerDayBuilder);

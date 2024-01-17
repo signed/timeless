@@ -17,7 +17,7 @@ class SickLeave_Test {
 
     @Test
     void when_your_are_sick_you_do_not_have_to_work() {
-        sickLeave.wasSickOn(day);
+        sickLeave.dayOffAt(day);
         sickLeave.adjustHoursToWorkFor(day, builder);
 
         verify(builder).reduceByCompleteWorkDay();
