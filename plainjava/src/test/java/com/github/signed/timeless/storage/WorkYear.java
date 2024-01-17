@@ -143,6 +143,10 @@ class WorkYear {
         sickLeave.wasSickOn(day.buildDay());
     }
 
+    private void visitedConference(DateTimeBuilder day) {
+        conferenceDays.wasAtConference(day.buildDay());
+    }
+
     private LocalDate startOfYear() {
         return new LocalDate(year, 1, 1);
     }
@@ -178,9 +182,5 @@ class WorkYear {
         workLogBuilder.forInterval(new Interval(start.toDateTimeAtStartOfDay(inputTimeZone), inclusiveEnd.plusDays(1).toDateTimeAtStartOfDay(inputTimeZone)));
         year(DateTimeBuilder.Year(this.year));
         return balanceCalculator.balanceFor(workLogBuilder.timeCard());
-    }
-
-    private void visitedConference(DateTimeBuilder day) {
-        conferenceDays.wasAtConference(day.buildDay());
     }
 }
