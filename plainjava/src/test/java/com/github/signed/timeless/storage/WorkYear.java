@@ -136,7 +136,7 @@ class WorkYear {
     }
 
     void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
-        timeOff.timeOff(start.buildDay(), end.buildDay());
+        timeOff.consecutiveDaysOf(start.buildDay(), end.buildDay());
     }
 
     void wasSickOn(DateTimeBuilder day) {

@@ -20,7 +20,7 @@ class PersonalTimeOff_MultipleDaysTest {
 
     @BeforeEach
     void add_time_of_over_multiple_days() {
-        personalTimeOff.timeOff(start, end);
+        personalTimeOff.consecutiveDaysOf(start, end);
     }
 
     @Test

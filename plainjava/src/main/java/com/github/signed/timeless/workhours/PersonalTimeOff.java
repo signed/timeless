@@ -9,16 +9,17 @@ import java6.util.Optional;
 import java6.util.function.Consumer;
 
 public class PersonalTimeOff implements WorkHoursPerDayAdjuster {
-    private final Map<LocalDate, Consumer<WorkHoursPerDayBuilder>> daysOf = new HashMap<LocalDate, Consumer<WorkHoursPerDayBuilder>>();
 
-    public void timeOff(LocalDate from, LocalDate until) {
+    private final Map<LocalDate, Consumer<WorkHoursPerDayBuilder>> daysOff = new HashMap<LocalDate, Consumer<WorkHoursPerDayBuilder>>();
+
+    public void consecutiveDaysOf(LocalDate from, LocalDate until) {
         for (LocalDate day = from; !until.isBefore(day); day = day.plusDays(1)) {
             dayOffAt(day);
         }
     }
 
-    public void dayOffAt(LocalDate day) {
-        daysOf.put(day, new Consumer<WorkHoursPerDayBuilder>() {
+    public void dayOffAt(LocalDate date) {
+        daysOff.put(date, new Consumer<WorkHoursPerDayBuilder>() {
             @Override
             public void accept(WorkHoursPerDayBuilder workHoursPerDayBuilder) {
                 workHoursPerDayBuilder.reduceByCompleteWorkDay();
@@ -27,7 +28,7 @@ public class PersonalTimeOff implements WorkHoursPerDayAdjuster {
     }
 
     public void halfADayOffAt(LocalDate workday) {
-        daysOf.put(workday, new Consumer<WorkHoursPerDayBuilder>() {
+        daysOff.put(workday, new Consumer<WorkHoursPerDayBuilder>() {
             @Override
             public void accept(WorkHoursPerDayBuilder workHoursPerDayBuilder) {
                 workHoursPerDayBuilder.reduceByHalfAWorkDay();
@@ -37,7 +38,7 @@ public class PersonalTimeOff implements WorkHoursPerDayAdjuster {
 
     @Override
     public void adjustHoursToWorkFor(LocalDate day, final WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        maybeDayOff(day).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
+        mayBeDayOffAt(day).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
             @Override
             public void accept(Consumer<WorkHoursPerDayBuilder> consumer) {
                 consumer.accept(workHoursPerDayBuilder);
@@ -45,7 +46,7 @@ public class PersonalTimeOff implements WorkHoursPerDayAdjuster {
         });
     }
 
-    private Optional<Consumer<WorkHoursPerDayBuilder>> maybeDayOff(LocalDate day) {
-        return Optional.ofNullable(daysOf.get(day));
+    private Optional<Consumer<WorkHoursPerDayBuilder>> mayBeDayOffAt(LocalDate day) {
+        return Optional.ofNullable(daysOff.get(day));
     }
 }
