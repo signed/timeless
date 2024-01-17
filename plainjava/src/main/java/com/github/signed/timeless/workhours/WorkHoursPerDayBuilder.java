@@ -33,9 +33,10 @@ public class WorkHoursPerDayBuilder {
 
     public WorkHoursPerDay build() {
         if(percentageToSubtract >= 100 || maybeHoliday.isPresent()){
-            return WorkHoursPerDay.unreducedWorkHours(Duration.ZERO);
+            return WorkHoursPerDay.freeDay();
         }
         Duration toSubtract = this.duration.dividedBy(100).multipliedBy(percentageToSubtract);
         return WorkHoursPerDay.unreducedWorkHours(this.duration.minus(toSubtract));
     }
+
 }
