@@ -144,7 +144,7 @@ class WorkYear {
     }
 
     private void visitedConference(DateTimeBuilder day) {
-        conferenceDays.wasAtConference(day.buildDay());
+        conferenceDays.dayOffAt(day.buildDay());
     }
 
     private LocalDate startOfYear() {

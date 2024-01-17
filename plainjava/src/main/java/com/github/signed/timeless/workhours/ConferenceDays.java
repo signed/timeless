@@ -10,16 +10,16 @@ import java6.util.function.Consumer;
 
 public class ConferenceDays implements WorkHoursPerDayAdjuster {
 
-    private final Map<LocalDate, Consumer<WorkHoursPerDayBuilder>> conferenceDays = new HashMap<LocalDate, Consumer<WorkHoursPerDayBuilder>>();
+    private final Map<LocalDate, Consumer<WorkHoursPerDayBuilder>> daysOff = new HashMap<LocalDate, Consumer<WorkHoursPerDayBuilder>>();
 
-    public void wasAtConference(LocalDate from, LocalDate until) {
+    public void consecutiveDaysOf(LocalDate from, LocalDate until) {
         for (LocalDate day = from; !until.isBefore(day); day = day.plusDays(1)) {
-            wasAtConference(day);
+            dayOffAt(day);
         }
     }
 
-    public void wasAtConference(LocalDate day) {
-        conferenceDays.put(day, new Consumer<WorkHoursPerDayBuilder>() {
+    public void dayOffAt(LocalDate date) {
+        daysOff.put(date, new Consumer<WorkHoursPerDayBuilder>() {
             @Override
             public void accept(WorkHoursPerDayBuilder workHoursPerDayBuilder) {
                 workHoursPerDayBuilder.reduceByCompleteWorkDay();
@@ -29,7 +29,7 @@ public class ConferenceDays implements WorkHoursPerDayAdjuster {
 
     @Override
     public void adjustHoursToWorkFor(LocalDate day, final WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        mayBeSickAt(day).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
+        mayBeDayOffAt(day).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
             @Override
             public void accept(Consumer<WorkHoursPerDayBuilder> consumer) {
                 consumer.accept(workHoursPerDayBuilder);
@@ -37,7 +37,7 @@ public class ConferenceDays implements WorkHoursPerDayAdjuster {
         });
     }
 
-    private Optional<Consumer<WorkHoursPerDayBuilder>> mayBeSickAt(LocalDate day) {
-        return Optional.ofNullable(conferenceDays.get(day));
+    private Optional<Consumer<WorkHoursPerDayBuilder>> mayBeDayOffAt(LocalDate day) {
+        return Optional.ofNullable(daysOff.get(day));
     }
 }

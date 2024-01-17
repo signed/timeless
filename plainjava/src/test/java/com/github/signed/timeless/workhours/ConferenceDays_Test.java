@@ -27,7 +27,7 @@ class ConferenceDays_Test {
     void normally_you_are_at_a_conference_for_more_than_one_day() {
         LocalDate until = day.plusDays(2);
 
-        conferenceDays.wasAtConference(day, until);
+        conferenceDays.consecutiveDaysOf(day, until);
 
         conferenceDays.adjustHoursToWorkFor(day, builder);
         verify(builder).reduceByCompleteWorkDay();
@@ -47,7 +47,7 @@ class ConferenceDays_Test {
 
     @Test
     void when_at_a_conference_have_to_log_work() {
-        conferenceDays.wasAtConference(day);
+        conferenceDays.dayOffAt(day);
         conferenceDays.adjustHoursToWorkFor(day, builder);
 
         verify(builder).reduceByCompleteWorkDay();
