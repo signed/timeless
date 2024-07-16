@@ -3,7 +3,7 @@ package com.github.signed.timeless;
 import java.util.Collection;
 import java.util.Collections;
 
-class TrackYourTime {
+class Application {
 
     public static void main(String[] args) {
         Clock clock = new UtcSystemTimeClock();
