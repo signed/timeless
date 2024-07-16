@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-class WorkYear {
+public class WorkYear {
 
     private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters){
         return new HashSet<>(Arrays.asList(adjusters));
@@ -30,28 +30,28 @@ class WorkYear {
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final int year;
 
-    WorkYear(int year){
+    public WorkYear(int year){
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(personalTimeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
         balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
         this.year = year;
     }
 
-    BalanceSheet balanceAtEndOfYear() {
+    public BalanceSheet balanceAtEndOfYear() {
         return balanceAtEndOfYearStarting(startThisYear());
     }
 
-    BalanceSheet balanceUntil(LocalDate until){
+    public BalanceSheet balanceUntil(LocalDate until){
         LocalDate startOfYear = startOfYear();
         return balance(startOfYear, until);
     }
 
-    BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
+    public BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
         LocalDate endOfYear = startOfNexYear();
 
         return balance(start, endOfYear);
     }
 
-    BalanceSheet balanceUpUntilToday(){
+    public BalanceSheet balanceUpUntilToday(){
         LocalDate today = new LocalDate();
         LocalDate startOfYear = startOfYear();
         LocalDate until = today;
@@ -61,7 +61,7 @@ class WorkYear {
         return balance(startOfYear, until);
     }
 
-    BalanceSheet balanceFor(LocalDate start, LocalDate end) {
+    public BalanceSheet balanceFor(LocalDate start, LocalDate end) {
         if(start.isBefore(startOfYear())){
             start = startOfYear();
         }
@@ -71,51 +71,51 @@ class WorkYear {
         return balance(start, end);
     }
 
-    protected void january(DateTimeBuilder january) {
+    public void january(DateTimeBuilder january) {
         //did not work
     }
 
-    protected void february(DateTimeBuilder february) {
+    public void february(DateTimeBuilder february) {
         //did not work
     }
 
-    protected void march(DateTimeBuilder march) {
+    public void march(DateTimeBuilder march) {
         //did not work
     }
 
-    protected void april(DateTimeBuilder april) {
+    public void april(DateTimeBuilder april) {
         //did not work
     }
 
-    protected void may(DateTimeBuilder may) {
+    public void may(DateTimeBuilder may) {
         //did not work
     }
 
-    protected void june(DateTimeBuilder june) {
+    public void june(DateTimeBuilder june) {
         //did not work
     }
 
-    protected void july(DateTimeBuilder july) {
+    public void july(DateTimeBuilder july) {
         //did not work
     }
 
-    protected void august(DateTimeBuilder august) {
+    public void august(DateTimeBuilder august) {
         //did not work
     }
 
-    protected void september(DateTimeBuilder september) {
+    public void september(DateTimeBuilder september) {
         //did not work
     }
 
-    protected void october(DateTimeBuilder october) {
+    public void october(DateTimeBuilder october) {
         //did not work
     }
 
-    protected void november(DateTimeBuilder november) {
+    public void november(DateTimeBuilder november) {
         //did not work
     }
 
-    protected void december(DateTimeBuilder december) {
+    public void december(DateTimeBuilder december) {
         //did not work
     }
 
@@ -127,19 +127,19 @@ class WorkYear {
         personalTimeOff.halfADayOffAt(day.buildDay());
     }
 
-    void dayOfOn(DateTimeBuilder day) {
+    protected void dayOfOn(DateTimeBuilder day) {
         personalTimeOff.dayOffAt(day.buildDay());
     }
 
-    void dayOfUsingOvertime(DateTimeBuilder day){
+    protected void dayOfUsingOvertime(DateTimeBuilder day){
         //this is a noop, just let the workday to its thing
     }
 
-    void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
+    protected void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
         personalTimeOff.consecutiveDaysOf(start.buildDay(), end.buildDay());
     }
 
-    void wasSickOn(DateTimeBuilder day) {
+    protected void wasSickOn(DateTimeBuilder day) {
         sickLeave.dayOffAt(day.buildDay());
     }
 
