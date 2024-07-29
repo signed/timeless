@@ -13,13 +13,13 @@ public class WorkHoursPerDay {
         return new WorkHoursPerDay(initialDuration);
     }
 
-    private final Duration reducedDuration;
+    private final Duration duration;
 
-    private WorkHoursPerDay(Duration reducedDuration) {
-        this.reducedDuration = reducedDuration;
+    private WorkHoursPerDay(Duration duration) {
+        this.duration = duration;
     }
 
     public Duration duration(){
-        return reducedDuration;
+        return duration;
     }
 }
