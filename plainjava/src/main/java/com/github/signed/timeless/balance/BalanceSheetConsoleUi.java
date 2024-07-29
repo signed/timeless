@@ -21,7 +21,7 @@ public class BalanceSheetConsoleUi {
 
     private final DateTimeZone uiTimeZone = frontendTimeZone();
 
-    private Predicate<BalanceRow> printPredicate = new Predicate<BalanceRow>() {
+    private Predicate<BalanceRow> printPredicate = new Predicate<>() {
         @Override
         public boolean test(BalanceRow balanceRows) {
             return true;
@@ -29,7 +29,7 @@ public class BalanceSheetConsoleUi {
     };
 
     public void onlyDisplayWithNegativeBalance() {
-        this.printPredicate = new Predicate<BalanceRow>() {
+        this.printPredicate = new Predicate<>() {
             @Override
             public boolean test(BalanceRow balanceRows) {
                 return balanceRows.balance().compareTo(Duration.ZERO) < 0;
@@ -52,7 +52,7 @@ public class BalanceSheetConsoleUi {
     private void printWorkDay(BalanceRow balanceRow) {
         String dayAsString = balanceRow.day().toString("E yyyy.MM.dd");
 
-        List<String> workBlocks = new ArrayList<String>();
+        List<String> workBlocks = new ArrayList<>();
         for (Interval consecutiveTime : balanceRow.dailyWorkLog().intervalsWorked()) {
             DateTimeFormatter workLogFormatter = new DateTimeFormatterBuilder().appendHourOfDay(2).appendLiteral(":").appendMinuteOfHour(2).toFormatter();
             workBlocks.add(consecutiveTime.getStart().toDateTime(uiTimeZone).toString(workLogFormatter) + "-" +consecutiveTime.getEnd().toDateTime(uiTimeZone).toString(workLogFormatter));

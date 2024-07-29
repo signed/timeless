@@ -14,7 +14,7 @@ import org.joda.time.LocalDate;
 import com.github.signed.timeless.Punch;
 
 class PunchesBuilder {
-    private final List<Punch> punches = new ArrayList<Punch>();
+    private final List<Punch> punches = new ArrayList<>();
 
     private static LocalDate fromInternal(List<Punch> punches) {
         return punches.get(0).dateTime().toLocalDate();
@@ -47,7 +47,7 @@ class PunchesBuilder {
             }
             previous = punch;
         }
-        return new ArrayList<Punch>(punches);
+        return new ArrayList<>(punches);
     }
 
     private boolean isBefore(Punch previous, Punch punch) {

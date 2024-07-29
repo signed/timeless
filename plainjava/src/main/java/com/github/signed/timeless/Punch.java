@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 public class Punch {
 
     public static Comparator<Punch> compareByTimeStamp() {
-        return new Comparator<Punch>() {
+        return new Comparator<>() {
             @Override
             public int compare(Punch o1, Punch o2) {
                 return o1.dateTime().compareTo(o2.dateTime());

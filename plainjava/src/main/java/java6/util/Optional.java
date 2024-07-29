@@ -53,7 +53,7 @@ public final class Optional<T> {
     /**
      * Common instance for {@code empty()}.
      */
-    private static final Optional<?> EMPTY = new Optional<Object>();
+    private static final Optional<?> EMPTY = new Optional<>();
 
     /**
      * If non-null, the value; if null, indicates no value is present
@@ -120,7 +120,7 @@ public final class Optional<T> {
      * @throws NullPointerException if value is null
      */
     public static <T> Optional<T> of(T value) {
-        return new Optional<T>(value);
+        return new Optional<>(value);
     }
 
     /**

@@ -19,7 +19,7 @@ class HolidayCalculator implements HolidayAlmanac{
 
     @Override
     public List<Holiday> holidaysFor(int year) {
-        List<Holiday> holidays = new ArrayList<Holiday>();
+        List<Holiday> holidays = new ArrayList<>();
         holidays.add(new Holiday(new LocalDate(year, JANUARY, 1)));
         holidays.add(new Holiday(new LocalDate(year, JANUARY, 6)));
         LocalDate easterSunday = calculator.easterSundayFor(year);

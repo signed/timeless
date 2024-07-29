@@ -11,7 +11,7 @@ public class BalanceSheet implements Iterable<BalanceRow>{
     private final List<BalanceRow> balanceRows;
 
     BalanceSheet(List<BalanceRow> balanceRows) {
-        this.balanceRows = new ArrayList<BalanceRow>(balanceRows);
+        this.balanceRows = new ArrayList<>(balanceRows);
         Collections.sort(balanceRows);
     }
 
@@ -33,8 +33,8 @@ public class BalanceSheet implements Iterable<BalanceRow>{
 
     Iterable<WeeklyBalance> weeklyBalance(){
         int currentWeekOfYear = Integer.MIN_VALUE;
-        ArrayList<WeeklyBalance> weeklyBalances = new ArrayList<WeeklyBalance>();
-        List<BalanceRow> currentWeekBalanceRows = new ArrayList<BalanceRow>();
+        ArrayList<WeeklyBalance> weeklyBalances = new ArrayList<>();
+        List<BalanceRow> currentWeekBalanceRows = new ArrayList<>();
 
         for (BalanceRow balanceRow : balanceRows) {
             int weekOfWeekyear = balanceRow.day().getWeekOfWeekyear();
@@ -42,7 +42,7 @@ public class BalanceSheet implements Iterable<BalanceRow>{
                 currentWeekOfYear = weekOfWeekyear;
                 if(!currentWeekBalanceRows.isEmpty()){
                     weeklyBalances.add(new WeeklyBalance(currentWeekBalanceRows));
-                    currentWeekBalanceRows = new ArrayList<BalanceRow>();
+                    currentWeekBalanceRows = new ArrayList<>();
                 }
             }
             currentWeekBalanceRows.add(balanceRow);

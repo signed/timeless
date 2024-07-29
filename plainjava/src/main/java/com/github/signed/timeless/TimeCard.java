@@ -13,7 +13,7 @@ import org.joda.time.LocalDate;
 public class TimeCard {
 
     private static List<ConsecutiveTime> toConsecutiveTimes(List<Punch> sortedPunches) {
-        List<ConsecutiveTime> result = new ArrayList<ConsecutiveTime>();
+        List<ConsecutiveTime> result = new ArrayList<>();
         for (int i = 0; i < sortedPunches.size(); i += 2) {
             Punch start = sortedPunches.get(i);
             Punch stop = sortedPunches.get(i + 1);
@@ -27,7 +27,7 @@ public class TimeCard {
 
     public TimeCard(Interval intervalCovered, List<Punch> punches) {
         this.intervalCovered = intervalCovered;
-        List<Punch> sortedPunches = new ArrayList<Punch>(punches);
+        List<Punch> sortedPunches = new ArrayList<>(punches);
         Collections.sort(sortedPunches, compareByTimeStamp());
         consecutiveTimes = toConsecutiveTimes(sortedPunches);
     }
@@ -41,7 +41,7 @@ public class TimeCard {
     }
 
     public List<ConsecutiveTime> consecutiveTimesOverlapping(Interval workday) {
-        List<ConsecutiveTime> result = new ArrayList<ConsecutiveTime>();
+        List<ConsecutiveTime> result = new ArrayList<>();
         for (ConsecutiveTime candidate : consecutiveTimes) {
             if (candidate.overlapsWith(workday)) {
                 result.add(candidate);

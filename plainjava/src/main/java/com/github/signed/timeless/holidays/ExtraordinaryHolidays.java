@@ -9,7 +9,7 @@ class ExtraordinaryHolidays implements HolidayAlmanac {
 
     @Override
     public List<Holiday> holidaysFor(int year) {
-        List<Holiday> holidays = new ArrayList<Holiday>();
+        List<Holiday> holidays = new ArrayList<>();
         holidays.add(new Holiday(new LocalDate(2017, 10, 31)));
         return holidays;
     }

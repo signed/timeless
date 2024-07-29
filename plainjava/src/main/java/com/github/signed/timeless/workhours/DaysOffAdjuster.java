@@ -10,7 +10,7 @@ import java6.util.function.Consumer;
 
 public class DaysOffAdjuster implements WorkHoursPerDayAdjuster {
 
-    private final Map<LocalDate, Consumer<WorkHoursPerDayBuilder>> daysOff = new HashMap<LocalDate, Consumer<WorkHoursPerDayBuilder>>();
+    private final Map<LocalDate, Consumer<WorkHoursPerDayBuilder>> daysOff = new HashMap<>();
 
     public void consecutiveDaysOf(LocalDate from, LocalDate until) {
         for (LocalDate day = from; !until.isBefore(day); day = day.plusDays(1)) {
@@ -19,7 +19,7 @@ public class DaysOffAdjuster implements WorkHoursPerDayAdjuster {
     }
 
     public void dayOffAt(LocalDate date) {
-        daysOff.put(date, new Consumer<WorkHoursPerDayBuilder>() {
+        daysOff.put(date, new Consumer<>() {
             @Override
             public void accept(WorkHoursPerDayBuilder workHoursPerDayBuilder) {
                 workHoursPerDayBuilder.reduceByCompleteWorkDay();
@@ -28,7 +28,7 @@ public class DaysOffAdjuster implements WorkHoursPerDayAdjuster {
     }
 
     public void halfADayOffAt(LocalDate workday) {
-        daysOff.put(workday, new Consumer<WorkHoursPerDayBuilder>() {
+        daysOff.put(workday, new Consumer<>() {
             @Override
             public void accept(WorkHoursPerDayBuilder workHoursPerDayBuilder) {
                 workHoursPerDayBuilder.reduceByHalfAWorkDay();
@@ -38,7 +38,7 @@ public class DaysOffAdjuster implements WorkHoursPerDayAdjuster {
 
     @Override
     public void adjustHoursToWorkFor(LocalDate date, final WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        mayBeDayOffAt(date).ifPresent(new Consumer<Consumer<WorkHoursPerDayBuilder>>() {
+        mayBeDayOffAt(date).ifPresent(new Consumer<>() {
             @Override
             public void accept(Consumer<WorkHoursPerDayBuilder> consumer) {
                 consumer.accept(workHoursPerDayBuilder);

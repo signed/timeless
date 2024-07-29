@@ -39,7 +39,7 @@ class DailyWorkLog {
             public Duration apply(Interval consecutiveTime) {
                 return consecutiveTime.toDuration();
             }
-        }).reduce(Duration.ZERO, new BinaryOperator<Duration>() {
+        }).reduce(Duration.ZERO, new BinaryOperator<>() {
             @Override
             public Duration apply(Duration accumulator, Duration it) {
                 return accumulator.plus(it);
@@ -48,7 +48,7 @@ class DailyWorkLog {
     }
 
     private Stream<Interval> adjusted() {
-        return stream(consecutiveTimes).map(new Function<ConsecutiveTime, Interval>() {
+        return stream(consecutiveTimes).map(new Function<>() {
             @Override
             public Interval apply(ConsecutiveTime consecutiveTime) {
                 return consecutiveTime.overlap(thisWorkDay);

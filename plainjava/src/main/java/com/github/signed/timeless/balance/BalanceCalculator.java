@@ -23,7 +23,7 @@ public class BalanceCalculator {
     }
 
     public BalanceSheet balanceFor(TimeCard timeCard) {
-        List<BalanceRow> balanceRows = new ArrayList<BalanceRow>();
+        List<BalanceRow> balanceRows = new ArrayList<>();
         for (LocalDate day = timeCard.from(); timeCard.covers(day); day = day.plusDays(1)) {
             balanceRows.add(balanceRowFor(day, timeCard));
         }

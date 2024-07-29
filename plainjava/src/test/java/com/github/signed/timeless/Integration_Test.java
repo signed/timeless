@@ -58,7 +58,7 @@ class Integration_Test {
     }
 
     private HoursRequired completeCompendium() {
-        HashSet<WorkHoursPerDayAdjuster> adjusters = new HashSet<WorkHoursPerDayAdjuster>();
+        HashSet<WorkHoursPerDayAdjuster> adjusters = new HashSet<>();
         adjusters.add(workHours);
         adjusters.add(personalTimeOff);
         adjusters.add(holidays);

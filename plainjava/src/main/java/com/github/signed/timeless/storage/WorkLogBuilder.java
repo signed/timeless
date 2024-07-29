@@ -76,7 +76,7 @@ public class WorkLogBuilder {
 
     public TimeCard timeCard() {
         final List<Punch> punches = this.punches.punches();
-        Interval intervalCovered = maybeInterval.orElseGet(new Supplier<Interval>() {
+        Interval intervalCovered = maybeInterval.orElseGet(new Supplier<>() {
             @Override
             public Interval get() {
                 return WorkLogBuilder.this.punches.intervalCovered();

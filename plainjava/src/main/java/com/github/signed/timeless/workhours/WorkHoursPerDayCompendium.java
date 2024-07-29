@@ -12,7 +12,7 @@ public class WorkHoursPerDayCompendium implements HoursRequired {
     private final Set<WorkHoursPerDayAdjuster> adjusters;
 
     public WorkHoursPerDayCompendium(Set<WorkHoursPerDayAdjuster> adjusters) {
-        this.adjusters = new HashSet<WorkHoursPerDayAdjuster>(adjusters);
+        this.adjusters = new HashSet<>(adjusters);
     }
 
     @Override

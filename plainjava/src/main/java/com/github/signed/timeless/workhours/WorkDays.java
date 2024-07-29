@@ -11,7 +11,7 @@ import com.github.signed.timeless.holidays.Holidays;
 
 class WorkDays {
 
-    private final List<WorkHoursPerDayAdjuster> adjusters = new ArrayList<WorkHoursPerDayAdjuster>();
+    private final List<WorkHoursPerDayAdjuster> adjusters = new ArrayList<>();
 
     {
         adjusters.add(new Holidays());
