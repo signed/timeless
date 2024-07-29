@@ -1,16 +1,14 @@
 package com.github.signed.timeless.storage;
 
-import java.util.List;
-
+import com.github.signed.timeless.Punch;
+import com.github.signed.timeless.TimeCard;
+import java6.util.Optional;
+import java6.util.function.Supplier;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
-import com.github.signed.timeless.Punch;
-import com.github.signed.timeless.TimeCard;
-
-import java6.util.Optional;
-import java6.util.function.Supplier;
+import java.util.List;
 
 public class WorkLogBuilder {
 

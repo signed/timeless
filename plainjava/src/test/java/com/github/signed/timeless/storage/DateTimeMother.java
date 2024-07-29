@@ -8,7 +8,7 @@ public class DateTimeMother {
         return AnySunday().plusDays(2);
     }
 
-    public static LocalDate AnyMondayAtTheStartOfAFiveDayWorkWeek(){
+    public static LocalDate AnyMondayAtTheStartOfAFiveDayWorkWeek() {
         return new LocalDate(2015, 11, 16);
     }
 
@@ -20,7 +20,7 @@ public class DateTimeMother {
         return new LocalDate(2015, 12, 26);
     }
 
-    public static LocalDate AnyChristmasEve(){
+    public static LocalDate AnyChristmasEve() {
         return AnyChristmasEveOnAWeekend();
     }
 

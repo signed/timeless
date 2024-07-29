@@ -1,16 +1,25 @@
 package com.github.signed.timeless;
 
-import static com.github.signed.timeless.Constants.backendTimeZone;
-import static com.github.signed.timeless.Punch.compareByTimeStamp;
+import org.joda.time.Interval;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.joda.time.Interval;
-import org.joda.time.LocalDate;
+import static com.github.signed.timeless.Constants.backendTimeZone;
+import static com.github.signed.timeless.Punch.compareByTimeStamp;
 
 public class TimeCard {
+
+    private final Interval intervalCovered;
+    private final List<ConsecutiveTime> consecutiveTimes;
+    public TimeCard(Interval intervalCovered, List<Punch> punches) {
+        this.intervalCovered = intervalCovered;
+        List<Punch> sortedPunches = new ArrayList<>(punches);
+        Collections.sort(sortedPunches, compareByTimeStamp());
+        consecutiveTimes = toConsecutiveTimes(sortedPunches);
+    }
 
     private static List<ConsecutiveTime> toConsecutiveTimes(List<Punch> sortedPunches) {
         List<ConsecutiveTime> result = new ArrayList<>();
@@ -20,16 +29,6 @@ public class TimeCard {
             result.add(new ConsecutiveTime(start, stop));
         }
         return result;
-    }
-
-    private final Interval intervalCovered;
-    private final List<ConsecutiveTime> consecutiveTimes;
-
-    public TimeCard(Interval intervalCovered, List<Punch> punches) {
-        this.intervalCovered = intervalCovered;
-        List<Punch> sortedPunches = new ArrayList<>(punches);
-        Collections.sort(sortedPunches, compareByTimeStamp());
-        consecutiveTimes = toConsecutiveTimes(sortedPunches);
     }
 
     public LocalDate from() {

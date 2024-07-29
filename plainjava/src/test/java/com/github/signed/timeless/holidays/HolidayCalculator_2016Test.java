@@ -1,16 +1,11 @@
 package com.github.signed.timeless.holidays;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.joda.time.DateTimeConstants.DECEMBER;
-import static org.joda.time.DateTimeConstants.JANUARY;
-import static org.joda.time.DateTimeConstants.MARCH;
-import static org.joda.time.DateTimeConstants.MAY;
-import static org.joda.time.DateTimeConstants.NOVEMBER;
-import static org.joda.time.DateTimeConstants.OCTOBER;
-
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.joda.time.DateTimeConstants.*;
 
 class HolidayCalculator_2016Test {
 

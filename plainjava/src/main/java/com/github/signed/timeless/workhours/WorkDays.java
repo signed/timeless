@@ -1,13 +1,12 @@
 package com.github.signed.timeless.workhours;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.github.signed.timeless.contract.EmployerCourtesy;
+import com.github.signed.timeless.holidays.Holidays;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
-import com.github.signed.timeless.contract.EmployerCourtesy;
-import com.github.signed.timeless.holidays.Holidays;
+import java.util.ArrayList;
+import java.util.List;
 
 class WorkDays {
 

@@ -1,17 +1,16 @@
 package com.github.signed.timeless.storage;
 
-import static com.github.signed.timeless.Constants.backendTimeZone;
-import static com.github.signed.timeless.Punch.compareByTimeStamp;
+import com.github.signed.timeless.Punch;
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.joda.time.DateTime;
-import org.joda.time.Interval;
-import org.joda.time.LocalDate;
-
-import com.github.signed.timeless.Punch;
+import static com.github.signed.timeless.Constants.backendTimeZone;
+import static com.github.signed.timeless.Punch.compareByTimeStamp;
 
 class PunchesBuilder {
     private final List<Punch> punches = new ArrayList<>();
@@ -39,11 +38,11 @@ class PunchesBuilder {
         return new Interval(start, end);
     }
 
-    public List<Punch> punches(){
+    public List<Punch> punches() {
         Punch previous = null;
         for (Punch punch : punches) {
-            if(null != previous && !isBefore(previous, punch)){
-                throw new RuntimeException("Punches should be in order "+ previous.dateTime() +" "+ punch.dateTime());
+            if (null != previous && !isBefore(previous, punch)) {
+                throw new RuntimeException("Punches should be in order " + previous.dateTime() + " " + punch.dateTime());
             }
             previous = punch;
         }

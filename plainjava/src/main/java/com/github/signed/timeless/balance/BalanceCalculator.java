@@ -1,16 +1,15 @@
 package com.github.signed.timeless.balance;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.joda.time.DateTimeZone;
-import org.joda.time.Interval;
-import org.joda.time.LocalDate;
-
 import com.github.signed.timeless.ConsecutiveTime;
 import com.github.signed.timeless.HoursRequired;
 import com.github.signed.timeless.TimeCard;
 import com.github.signed.timeless.workhours.WorkHoursPerDay;
+import org.joda.time.DateTimeZone;
+import org.joda.time.Interval;
+import org.joda.time.LocalDate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BalanceCalculator {
 

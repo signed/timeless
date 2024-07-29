@@ -1,23 +1,22 @@
 package com.github.signed.timeless.storage;
 
-import static org.joda.time.DateTimeConstants.APRIL;
-import static org.joda.time.DateTimeConstants.AUGUST;
-import static org.joda.time.DateTimeConstants.DECEMBER;
-import static org.joda.time.DateTimeConstants.FEBRUARY;
-import static org.joda.time.DateTimeConstants.JANUARY;
-import static org.joda.time.DateTimeConstants.JUNE;
-import static org.joda.time.DateTimeConstants.MARCH;
-import static org.joda.time.DateTimeConstants.MAY;
-import static org.joda.time.DateTimeConstants.NOVEMBER;
-import static org.joda.time.DateTimeConstants.OCTOBER;
-import static org.joda.time.DateTimeConstants.SEPTEMBER;
-
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 
+import static org.joda.time.DateTimeConstants.*;
+
 public class DateTimeBuilder {
+
+    private DateTimeZone inputTimeZone = DateTimeZone.UTC;
+    private int year;
+    private int month;
+    private int dayOfMonth;
+    private int hour;
+    private int hourAdjust = 0;
+    private int dayAdjust = 0;
+    private int minutes;
 
     public static DateTimeBuilder Year(int year) {
         return new DateTimeBuilder().year(year);
@@ -27,19 +26,9 @@ public class DateTimeBuilder {
         return Year(1976).december(2).hour(15).minute(30);
     }
 
-    public static DateTimeBuilder At(LocalDate day){
+    public static DateTimeBuilder At(LocalDate day) {
         return new DateTimeBuilder().year(day.getYear()).month(day.getMonthOfYear()).the(day.getDayOfMonth());
     }
-
-    private DateTimeZone inputTimeZone = DateTimeZone.UTC;
-    private int year;
-    private int month;
-    private int dayOfMonth;
-    private int hour;
-    private int hourAdjust = 0;
-    private int dayAdjust = 0;
-
-    private int minutes;
 
     public DateTimeBuilder withInputTimeZone(DateTimeZone inputTimeZone) {
         this.inputTimeZone = inputTimeZone;
@@ -203,7 +192,7 @@ public class DateTimeBuilder {
         return that;
     }
 
-    public LocalDate buildDay(){
+    public LocalDate buildDay() {
         return buildUtc().toLocalDate();
     }
 

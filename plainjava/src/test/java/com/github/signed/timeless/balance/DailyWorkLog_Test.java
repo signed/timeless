@@ -1,17 +1,16 @@
 package com.github.signed.timeless.balance;
 
-import static com.github.signed.timeless.Constants.frontendTimeZone;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
-import java.util.Collections;
-
+import com.github.signed.timeless.ConsecutiveTime;
+import com.github.signed.timeless.storage.DateTimeMother;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
-import com.github.signed.timeless.ConsecutiveTime;
-import com.github.signed.timeless.storage.DateTimeMother;
+import java.util.Collections;
+
+import static com.github.signed.timeless.Constants.frontendTimeZone;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 class DailyWorkLog_Test {
 

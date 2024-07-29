@@ -1,10 +1,10 @@
 package com.github.signed.timeless.holidays;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 class ExtraordinaryHolidaysTest {
 

@@ -1,10 +1,9 @@
 package com.github.signed.timeless.contract;
 
-import org.joda.time.DateTimeConstants;
-import org.joda.time.LocalDate;
-
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
+import org.joda.time.DateTimeConstants;
+import org.joda.time.LocalDate;
 
 public class EmployerCourtesy implements WorkHoursPerDayAdjuster {
     @Override

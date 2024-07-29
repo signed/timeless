@@ -1,11 +1,10 @@
 package com.github.signed.timeless.storage;
 
+import com.github.signed.timeless.balance.BalanceSheet;
+import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
-
-import com.github.signed.timeless.balance.BalanceSheet;
-import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
 
 import java.io.PrintStream;
 

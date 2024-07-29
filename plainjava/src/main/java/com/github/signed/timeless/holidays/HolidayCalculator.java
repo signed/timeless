@@ -1,19 +1,14 @@
 package com.github.signed.timeless.holidays;
 
-import static org.joda.time.DateTimeConstants.DECEMBER;
-import static org.joda.time.DateTimeConstants.JANUARY;
-import static org.joda.time.DateTimeConstants.MAY;
-import static org.joda.time.DateTimeConstants.NOVEMBER;
-import static org.joda.time.DateTimeConstants.OCTOBER;
+import com.github.signed.timeless.workhours.EasterSundayCalculator;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joda.time.LocalDate;
+import static org.joda.time.DateTimeConstants.*;
 
-import com.github.signed.timeless.workhours.EasterSundayCalculator;
-
-class HolidayCalculator implements HolidayAlmanac{
+class HolidayCalculator implements HolidayAlmanac {
 
     private final EasterSundayCalculator calculator = new EasterSundayCalculator();
 

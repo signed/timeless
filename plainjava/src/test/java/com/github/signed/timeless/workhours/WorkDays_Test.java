@@ -1,16 +1,12 @@
 package com.github.signed.timeless.workhours;
 
-import static com.github.signed.timeless.storage.DateTimeMother.AnyMondayAtTheStartOfAFiveDayWorkWeek;
-import static com.github.signed.timeless.storage.DateTimeMother.AnySaturday;
-import static com.github.signed.timeless.storage.DateTimeMother.AnySunday;
-import static com.github.signed.timeless.storage.DateTimeMother.AnyWorkday;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
+import com.github.signed.timeless.storage.DateTimeMother;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
-import com.github.signed.timeless.storage.DateTimeMother;
+import static com.github.signed.timeless.storage.DateTimeMother.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 class WorkDays_Test {
 

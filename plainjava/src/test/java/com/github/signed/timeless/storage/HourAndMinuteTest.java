@@ -1,8 +1,8 @@
 package com.github.signed.timeless.storage;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 class HourAndMinuteTest {
 

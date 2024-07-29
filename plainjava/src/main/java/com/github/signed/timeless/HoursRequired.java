@@ -1,8 +1,7 @@
 package com.github.signed.timeless;
 
-import org.joda.time.LocalDate;
-
 import com.github.signed.timeless.workhours.WorkHoursPerDay;
+import org.joda.time.LocalDate;
 
 public interface HoursRequired {
 

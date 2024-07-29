@@ -1,19 +1,19 @@
 package com.github.signed.timeless.balance;
 
+import org.joda.time.Duration;
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.joda.time.Duration;
-
-final class WeeklyBalance implements Iterable<BalanceRow>{
+final class WeeklyBalance implements Iterable<BalanceRow> {
     private final List<BalanceRow> balanceRows;
 
     WeeklyBalance(List<BalanceRow> balanceRows) {
         this.balanceRows = balanceRows;
     }
 
-    public Duration requiredToWork(){
+    public Duration requiredToWork() {
         Duration requiredToWork = Duration.ZERO;
         for (BalanceRow balanceRow : balanceRows) {
             requiredToWork = requiredToWork.plus(balanceRow.requiredToWork());
@@ -21,7 +21,7 @@ final class WeeklyBalance implements Iterable<BalanceRow>{
         return requiredToWork;
     }
 
-    public Duration timeWorked(){
+    public Duration timeWorked() {
         Duration timeWorked = Duration.ZERO;
         for (BalanceRow balanceRow : balanceRows) {
             timeWorked = timeWorked.plus(balanceRow.timeWorked());

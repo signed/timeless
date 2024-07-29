@@ -1,14 +1,13 @@
 package com.github.signed.timeless;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
+import com.github.signed.timeless.storage.DateTimeMother;
+import com.github.signed.timeless.storage.WorkLogBuilder;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.github.signed.timeless.storage.DateTimeMother;
-import com.github.signed.timeless.storage.WorkLogBuilder;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 class TimeCard_Test {
 

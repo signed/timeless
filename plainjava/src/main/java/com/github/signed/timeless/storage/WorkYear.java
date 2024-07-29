@@ -6,7 +6,9 @@ import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.EmployerCourtesy;
 import com.github.signed.timeless.contract.WorkHours;
 import com.github.signed.timeless.holidays.Holidays;
-import com.github.signed.timeless.workhours.*;
+import com.github.signed.timeless.workhours.DaysOffAdjuster;
+import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
+import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
@@ -18,10 +20,6 @@ import java.util.Set;
 
 public class WorkYear {
 
-    private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters){
-        return new HashSet<>(Arrays.asList(adjusters));
-    }
-
     private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final DaysOffAdjuster sickLeave = new DaysOffAdjuster();
     private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();
@@ -29,18 +27,21 @@ public class WorkYear {
     private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final int year;
-
-    public WorkYear(int year){
+    public WorkYear(int year) {
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(personalTimeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
         balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
         this.year = year;
+    }
+
+    private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters) {
+        return new HashSet<>(Arrays.asList(adjusters));
     }
 
     public BalanceSheet balanceAtEndOfYear() {
         return balanceAtEndOfYearStarting(startThisYear());
     }
 
-    public BalanceSheet balanceUntil(LocalDate until){
+    public BalanceSheet balanceUntil(LocalDate until) {
         LocalDate startOfYear = startOfYear();
         return balance(startOfYear, until);
     }
@@ -51,21 +52,21 @@ public class WorkYear {
         return balance(start, endOfYear);
     }
 
-    public BalanceSheet balanceUpUntilToday(){
+    public BalanceSheet balanceUpUntilToday() {
         LocalDate today = new LocalDate();
         LocalDate startOfYear = startOfYear();
         LocalDate until = today;
-        if (today.isBefore(startOfYear)){
+        if (today.isBefore(startOfYear)) {
             until = startOfYear;
         }
         return balance(startOfYear, until);
     }
 
     public BalanceSheet balanceFor(LocalDate start, LocalDate end) {
-        if(start.isBefore(startOfYear())){
+        if (start.isBefore(startOfYear())) {
             start = startOfYear();
         }
-        if(!end.isBefore(startOfNexYear())){
+        if (!end.isBefore(startOfNexYear())) {
             end = startOfNexYear();
         }
         return balance(start, end);
@@ -131,7 +132,7 @@ public class WorkYear {
         personalTimeOff.dayOffAt(day.buildDay());
     }
 
-    protected void dayOfUsingOvertime(DateTimeBuilder day){
+    protected void dayOfUsingOvertime(DateTimeBuilder day) {
         //this is a noop, just let the workday to its thing
     }
 
@@ -171,7 +172,7 @@ public class WorkYear {
     }
 
     private LocalDate startOfNexYear() {
-        return januaryFirst(year+1);
+        return januaryFirst(year + 1);
     }
 
     private LocalDate januaryFirst(int year) {

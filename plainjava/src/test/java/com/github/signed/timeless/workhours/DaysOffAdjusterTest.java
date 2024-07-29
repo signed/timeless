@@ -1,13 +1,12 @@
 package com.github.signed.timeless.workhours;
 
-import static com.github.signed.timeless.MockitoWrapper.verifyZeroInteractions;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-
+import com.github.signed.timeless.storage.DateTimeMother;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
-import com.github.signed.timeless.storage.DateTimeMother;
+import static com.github.signed.timeless.MockitoWrapper.verifyZeroInteractions;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class DaysOffAdjusterTest {
 

@@ -1,12 +1,11 @@
 package com.github.signed.timeless.workhours;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.joda.time.LocalDate;
-
 import java6.util.Optional;
 import java6.util.function.Consumer;
+import org.joda.time.LocalDate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DaysOffAdjuster implements WorkHoursPerDayAdjuster {
 

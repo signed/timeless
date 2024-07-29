@@ -1,16 +1,12 @@
 package com.github.signed.timeless.workhours;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.joda.time.Duration.ZERO;
-import static org.joda.time.Duration.standardDays;
-import static org.joda.time.Duration.standardHours;
-import static org.joda.time.Duration.standardMinutes;
-
+import com.github.signed.timeless.holidays.HolidayMother;
 import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
 
-import com.github.signed.timeless.holidays.HolidayMother;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.joda.time.Duration.*;
 
 class WorkHoursPerDayBuilderTest {
 

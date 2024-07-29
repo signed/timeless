@@ -1,13 +1,13 @@
 package com.github.signed.timeless.balance;
 
+import org.joda.time.Duration;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.joda.time.Duration;
-
-public class BalanceSheet implements Iterable<BalanceRow>{
+public class BalanceSheet implements Iterable<BalanceRow> {
     private final List<BalanceRow> balanceRows;
 
     BalanceSheet(List<BalanceRow> balanceRows) {
@@ -15,7 +15,7 @@ public class BalanceSheet implements Iterable<BalanceRow>{
         Collections.sort(balanceRows);
     }
 
-    public Duration requiredToWork(){
+    public Duration requiredToWork() {
         Duration requiredToWork = Duration.ZERO;
         for (BalanceRow balanceRow : balanceRows) {
             requiredToWork = requiredToWork.plus(balanceRow.requiredToWork());
@@ -23,7 +23,7 @@ public class BalanceSheet implements Iterable<BalanceRow>{
         return requiredToWork;
     }
 
-    public Duration timeWorked(){
+    public Duration timeWorked() {
         Duration timeWorked = Duration.ZERO;
         for (BalanceRow balanceRow : balanceRows) {
             timeWorked = timeWorked.plus(balanceRow.timeWorked());
@@ -31,7 +31,7 @@ public class BalanceSheet implements Iterable<BalanceRow>{
         return timeWorked;
     }
 
-    Iterable<WeeklyBalance> weeklyBalance(){
+    Iterable<WeeklyBalance> weeklyBalance() {
         int currentWeekOfYear = Integer.MIN_VALUE;
         ArrayList<WeeklyBalance> weeklyBalances = new ArrayList<>();
         List<BalanceRow> currentWeekBalanceRows = new ArrayList<>();
@@ -40,7 +40,7 @@ public class BalanceSheet implements Iterable<BalanceRow>{
             int weekOfWeekyear = balanceRow.day().getWeekOfWeekyear();
             if (currentWeekOfYear != weekOfWeekyear) {
                 currentWeekOfYear = weekOfWeekyear;
-                if(!currentWeekBalanceRows.isEmpty()){
+                if (!currentWeekBalanceRows.isEmpty()) {
                     weeklyBalances.add(new WeeklyBalance(currentWeekBalanceRows));
                     currentWeekBalanceRows = new ArrayList<>();
                 }
@@ -48,7 +48,7 @@ public class BalanceSheet implements Iterable<BalanceRow>{
             currentWeekBalanceRows.add(balanceRow);
         }
 
-        if(!currentWeekBalanceRows.isEmpty()){
+        if (!currentWeekBalanceRows.isEmpty()) {
             weeklyBalances.add(new WeeklyBalance(currentWeekBalanceRows));
         }
 

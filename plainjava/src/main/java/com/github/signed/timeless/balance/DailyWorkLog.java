@@ -1,21 +1,15 @@
 package com.github.signed.timeless.balance;
 
-import static java8.util.stream.StreamSupport.stream;
-
-import java.util.List;
-
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.Duration;
-import org.joda.time.Interval;
-import org.joda.time.LocalDate;
-
 import com.github.signed.timeless.ConsecutiveTime;
-
 import java8.util.function.BinaryOperator;
 import java8.util.function.Function;
 import java8.util.stream.Collectors;
 import java8.util.stream.Stream;
+import org.joda.time.*;
+
+import java.util.List;
+
+import static java8.util.stream.StreamSupport.stream;
 
 class DailyWorkLog {
 
@@ -29,7 +23,7 @@ class DailyWorkLog {
         this.thisWorkDay = new Interval(start, end);
     }
 
-    List<Interval> intervalsWorked(){
+    List<Interval> intervalsWorked() {
         return adjusted().collect(Collectors.<Interval>toList());
     }
 

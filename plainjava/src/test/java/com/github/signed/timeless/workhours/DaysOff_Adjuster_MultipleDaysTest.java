@@ -1,14 +1,13 @@
 package com.github.signed.timeless.workhours;
 
-import static com.github.signed.timeless.MockitoWrapper.verifyZeroInteractions;
-import static org.mockito.Mockito.verify;
-
+import com.github.signed.timeless.storage.DateTimeMother;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import com.github.signed.timeless.storage.DateTimeMother;
+import static com.github.signed.timeless.MockitoWrapper.verifyZeroInteractions;
+import static org.mockito.Mockito.verify;
 
 class DaysOff_Adjuster_MultipleDaysTest {
 
@@ -24,7 +23,7 @@ class DaysOff_Adjuster_MultipleDaysTest {
     }
 
     @Test
-    void day_before_start_day_you_have_to_work(){
+    void day_before_start_day_you_have_to_work() {
         daysOffAdjuster.adjustHoursToWorkFor(start.minusDays(1), builder);
 
         verifyZeroInteractions(builder);

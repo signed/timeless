@@ -1,11 +1,10 @@
 package com.github.signed.timeless.workhours;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import com.github.signed.timeless.HoursRequired;
 import org.joda.time.LocalDate;
 
-import com.github.signed.timeless.HoursRequired;
+import java.util.HashSet;
+import java.util.Set;
 
 public class WorkHoursPerDayCompendium implements HoursRequired {
 

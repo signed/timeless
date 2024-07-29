@@ -1,16 +1,18 @@
 package com.github.signed.timeless.storage;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.any;
-
+import com.github.signed.timeless.Punch;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.joda.time.DateTime;
 
-import com.github.signed.timeless.Punch;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.any;
 
 public class PunchMatcher extends TypeSafeMatcher<Punch> {
+
+    private Matcher<Boolean> type = any(Boolean.class);
+    private Matcher<DateTime> dateTimeMatcher = any(DateTime.class);
 
     public static PunchMatcher PunchIn() {
         PunchMatcher punchMatcher = new PunchMatcher();
@@ -23,9 +25,6 @@ public class PunchMatcher extends TypeSafeMatcher<Punch> {
         punchMatcher.type = is(false);
         return punchMatcher;
     }
-
-    private Matcher<Boolean> type = any(Boolean.class);
-    private Matcher<DateTime> dateTimeMatcher = any(DateTime.class);
 
     public PunchMatcher at(DateTime dateTime) {
         dateTimeMatcher = is(dateTime);

@@ -1,15 +1,14 @@
 package com.github.signed.timeless.contract;
 
-import static org.joda.time.DateTimeConstants.SATURDAY;
-import static org.joda.time.DateTimeConstants.SUNDAY;
-
+import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
+import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
-import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
-import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
+import static org.joda.time.DateTimeConstants.SATURDAY;
+import static org.joda.time.DateTimeConstants.SUNDAY;
 
-public class WorkHours implements WorkHoursPerDayAdjuster{
+public class WorkHours implements WorkHoursPerDayAdjuster {
 
     @Override
     public void adjustHoursToWorkFor(LocalDate date, WorkHoursPerDayBuilder workHoursPerDayBuilder) {

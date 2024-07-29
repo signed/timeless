@@ -11,11 +11,11 @@ import java.io.PrintStream;
 
 class Application {
 
+    private final BalanceSheetConsoleUi consoleUi = new BalanceSheetConsoleUi();
+
     public static void main(String[] args) {
         new Application().run();
     }
-
-    private final BalanceSheetConsoleUi consoleUi = new BalanceSheetConsoleUi();
 
     private void run() {
         WorkYear workYear = new WorkYear(2024) {

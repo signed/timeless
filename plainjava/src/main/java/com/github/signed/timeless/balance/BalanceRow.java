@@ -1,11 +1,10 @@
 package com.github.signed.timeless.balance;
 
+import com.github.signed.timeless.workhours.WorkHoursPerDay;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
-import com.github.signed.timeless.workhours.WorkHoursPerDay;
-
-class BalanceRow implements Comparable<BalanceRow>{
+class BalanceRow implements Comparable<BalanceRow> {
     private final LocalDate day;
     private final WorkHoursPerDay workHoursPerDay;
     private final DailyWorkLog dailyWorkLog;
@@ -16,11 +15,11 @@ class BalanceRow implements Comparable<BalanceRow>{
         this.dailyWorkLog = dailyWorkLog;
     }
 
-    public Duration balance(){
+    public Duration balance() {
         return dailyWorkLog.timeWorked().minus(workHoursPerDay.duration());
     }
 
-    public LocalDate day(){
+    public LocalDate day() {
         return day;
     }
 
@@ -33,11 +32,11 @@ class BalanceRow implements Comparable<BalanceRow>{
         return workHoursPerDay.duration();
     }
 
-    public Duration timeWorked(){
+    public Duration timeWorked() {
         return dailyWorkLog.timeWorked();
     }
 
-    public DailyWorkLog dailyWorkLog(){
+    public DailyWorkLog dailyWorkLog() {
         return dailyWorkLog;
     }
 }

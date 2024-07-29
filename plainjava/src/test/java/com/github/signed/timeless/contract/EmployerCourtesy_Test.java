@@ -1,15 +1,14 @@
 package com.github.signed.timeless.contract;
 
+import com.github.signed.timeless.storage.DateTimeMother;
+import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
 import static com.github.signed.timeless.MockitoWrapper.verifyZeroInteractions;
 import static com.github.signed.timeless.storage.DateTimeMother.AnyChristmasEve;
 import static com.github.signed.timeless.storage.DateTimeMother.AnyNewYearsEve;
 import static org.mockito.Mockito.verify;
-
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import com.github.signed.timeless.storage.DateTimeMother;
-import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 
 class EmployerCourtesy_Test {
 

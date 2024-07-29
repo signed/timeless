@@ -1,10 +1,18 @@
 package com.github.signed.timeless;
 
-import java.util.Comparator;
-
 import org.joda.time.DateTime;
 
+import java.util.Comparator;
+
 public class Punch {
+
+    private final boolean isIn;
+    private final DateTime dateTime;
+
+    private Punch(boolean isIn, DateTime dateTime) {
+        this.isIn = isIn;
+        this.dateTime = dateTime;
+    }
 
     public static Comparator<Punch> compareByTimeStamp() {
         return new Comparator<>() {
@@ -18,16 +26,9 @@ public class Punch {
     public static Punch PunchIn(DateTime dateTime) {
         return new Punch(true, dateTime);
     }
+
     public static Punch PunchOut(DateTime dateTime) {
         return new Punch(false, dateTime);
-    }
-
-    private final boolean isIn;
-    private final DateTime dateTime;
-
-    private Punch(boolean isIn, DateTime dateTime) {
-        this.isIn = isIn;
-        this.dateTime = dateTime;
     }
 
     public DateTime dateTime() {

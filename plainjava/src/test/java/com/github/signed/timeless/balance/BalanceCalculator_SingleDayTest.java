@@ -1,19 +1,18 @@
 package com.github.signed.timeless.balance;
 
+import com.github.signed.timeless.Constants;
+import com.github.signed.timeless.HoursRequired;
+import com.github.signed.timeless.storage.DateTimeBuilder;
+import com.github.signed.timeless.storage.WorkLogBuilder;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
 import static com.github.signed.timeless.storage.DateTimeBuilder.AnyDateTime;
 import static com.github.signed.timeless.workhours.WorkHoursPerDay.unreducedWorkHours;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.joda.time.Duration.standardHours;
 import static org.mockito.Mockito.when;
-
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import com.github.signed.timeless.Constants;
-import com.github.signed.timeless.HoursRequired;
-import com.github.signed.timeless.storage.DateTimeBuilder;
-import com.github.signed.timeless.storage.WorkLogBuilder;
 
 class BalanceCalculator_SingleDayTest {
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder();
