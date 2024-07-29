@@ -14,7 +14,6 @@ public class DateTimeBuilder {
     private int month;
     private int dayOfMonth;
     private int hour;
-    private int hourAdjust = 0;
     private int dayAdjust = 0;
     private int minutes;
 
@@ -171,23 +170,12 @@ public class DateTimeBuilder {
         return this;
     }
 
-    public DateTimeBuilder am() {
-        this.hourAdjust = 0;
-        return this;
-    }
-
-    public DateTimeBuilder pm() {
-        this.hourAdjust = 12;
-        return this;
-    }
-
     public DateTimeBuilder copy() {
         DateTimeBuilder that = new DateTimeBuilder();
         that.year = this.year;
         that.month = this.month;
         that.dayOfMonth = this.dayOfMonth;
         that.hour = this.hour;
-        that.hourAdjust = this.hourAdjust;
         that.minutes = this.minutes;
         return that;
     }
@@ -197,6 +185,6 @@ public class DateTimeBuilder {
     }
 
     public DateTime buildUtc() {
-        return new DateTime(year, month, dayOfMonth, hour + hourAdjust, minutes, inputTimeZone).withZone(DateTimeZone.UTC).plusDays(dayAdjust);
+        return new DateTime(year, month, dayOfMonth, hour, minutes, inputTimeZone).withZone(DateTimeZone.UTC).plusDays(dayAdjust);
     }
 }
