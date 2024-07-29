@@ -9,8 +9,8 @@ public class WorkHoursPerDay {
         return unreducedWorkHours(Duration.ZERO);
     }
 
-    public static WorkHoursPerDay unreducedWorkHours(Duration initialDuration) {
-        return new WorkHoursPerDay(initialDuration);
+    public static WorkHoursPerDay unreducedWorkHours(Duration duration) {
+        return new WorkHoursPerDay(duration);
     }
 
     private final Duration duration;
