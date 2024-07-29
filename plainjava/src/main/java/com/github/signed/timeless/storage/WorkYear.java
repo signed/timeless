@@ -20,6 +20,10 @@ import java.util.Set;
 
 public class WorkYear {
 
+    private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters) {
+        return new HashSet<>(Arrays.asList(adjusters));
+    }
+
     private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final DaysOffAdjuster sickLeave = new DaysOffAdjuster();
     private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();
@@ -27,14 +31,11 @@ public class WorkYear {
     private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final int year;
+
     public WorkYear(int year) {
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(personalTimeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
         balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
         this.year = year;
-    }
-
-    private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters) {
-        return new HashSet<>(Arrays.asList(adjusters));
     }
 
     public BalanceSheet balanceAtEndOfYear() {
