@@ -3,9 +3,7 @@ package com.github.signed.timeless.storage;
 import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
-import com.github.signed.timeless.contract.EmployerCourtesy;
-import com.github.signed.timeless.contract.WorkHours;
-import com.github.signed.timeless.holidays.Holidays;
+import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.workhours.DaysOffAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
@@ -20,10 +18,6 @@ import java.util.Set;
 
 public class WorkYear {
 
-    private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters) {
-        return new HashSet<>(Arrays.asList(adjusters));
-    }
-
     private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final DaysOffAdjuster sickLeave = new DaysOffAdjuster();
     private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();
@@ -31,11 +25,15 @@ public class WorkYear {
     private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final int year;
-
     public WorkYear(int year) {
-        WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(personalTimeOff, new WorkHours(), new Holidays(), sickLeave, conferenceDays, new EmployerCourtesy()));
+        var contract = new Contract();
+        WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(contract, personalTimeOff, sickLeave, conferenceDays));
         balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
         this.year = year;
+    }
+
+    private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters) {
+        return new HashSet<>(Arrays.asList(adjusters));
     }
 
     public BalanceSheet balanceAtEndOfYear() {
@@ -185,4 +183,5 @@ public class WorkYear {
         year(DateTimeBuilder.Year(this.year));
         return balanceCalculator.balanceFor(workLogBuilder.timeCard());
     }
+
 }

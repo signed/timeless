@@ -14,6 +14,7 @@ public class TimeCard {
 
     private final Interval intervalCovered;
     private final List<ConsecutiveTime> consecutiveTimes;
+
     public TimeCard(Interval intervalCovered, List<Punch> punches) {
         this.intervalCovered = intervalCovered;
         List<Punch> sortedPunches = new ArrayList<>(punches);

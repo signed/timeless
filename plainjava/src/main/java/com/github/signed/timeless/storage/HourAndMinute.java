@@ -4,6 +4,7 @@ public class HourAndMinute {
 
     public final int hour;
     public final int minute;
+
     public HourAndMinute(int hour, int minute) {
         this.hour = hour;
         this.minute = minute;
