@@ -2,13 +2,10 @@ package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
-import org.hamcrest.CoreMatchers;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static com.github.signed.timeless.storage.DateTimeMother.AnyLocalDate;
@@ -36,4 +33,6 @@ class ContractsOnRecordTest {
         new ContractsOnRecord(List.of(oneHourPerDayContract)).adjustHoursToWorkFor(AnyLocalDate(), builder);
         assertThat(builder.build().duration(), equalTo(Duration.standardHours(1)));
     }
+
+
 }
