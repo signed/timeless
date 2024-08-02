@@ -27,7 +27,7 @@ public class WorkYear {
     private final int year;
 
     public WorkYear(int year) {
-        var contract = new Contract();
+        var contract = Contract.sampleContract();
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(contract, personalTimeOff, sickLeave, conferenceDays));
         balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
         this.year = year;
