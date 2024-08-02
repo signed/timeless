@@ -17,7 +17,7 @@ public class Contract implements WorkHoursPerDayAdjuster {
 
     private final List<WorkHoursPerDayAdjuster> adjusters;
 
-    private Contract(final List<WorkHoursPerDayAdjuster> adjusters) {
+    public Contract(final List<WorkHoursPerDayAdjuster> adjusters) {
         this.adjusters = adjusters;
     }
 
