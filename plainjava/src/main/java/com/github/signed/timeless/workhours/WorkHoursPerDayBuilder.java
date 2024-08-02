@@ -6,7 +6,7 @@ import org.joda.time.Duration;
 
 public class WorkHoursPerDayBuilder {
 
-    private Duration duration;
+    private Duration duration = Duration.ZERO;
     private long percentageToSubtract = 0L;
     private Optional<Holiday> maybeHoliday = Optional.empty();
 
