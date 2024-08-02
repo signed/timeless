@@ -15,6 +15,7 @@ public class ContractsOnRecord implements WorkHoursPerDayAdjuster {
 
     @Override
     public void adjustHoursToWorkFor(LocalDate date, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        contracts.forEach(contract -> contract.adjustHoursToWorkFor(date, workHoursPerDayBuilder));
+        final var first = contracts.stream().filter(contract -> contract.active(date)).findFirst();
+        first.ifPresent(contract -> contract.adjustHoursToWorkFor(date, workHoursPerDayBuilder));
     }
 }
