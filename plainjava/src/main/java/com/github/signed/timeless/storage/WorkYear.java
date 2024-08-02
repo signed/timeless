@@ -25,6 +25,7 @@ public class WorkYear {
     private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final int year;
+
     public WorkYear(int year) {
         var contract = new Contract();
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(contract, personalTimeOff, sickLeave, conferenceDays));
