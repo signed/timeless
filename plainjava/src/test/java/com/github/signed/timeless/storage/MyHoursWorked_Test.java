@@ -2,6 +2,7 @@ package com.github.signed.timeless.storage;
 
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
+import com.github.signed.timeless.contract.Contract;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ class MyHoursWorked_Test {
 
     @Test
     void sampleUsage() {
-        WorkYear workYear = new WorkYear(2024) {
+        WorkYear workYear = new WorkYear(Contract.sampleContract(), 2024) {
             @Override
             public void july(DateTimeBuilder july) {
                 daysOffStarting(july.the(1).copy(), july.the(10).copy());

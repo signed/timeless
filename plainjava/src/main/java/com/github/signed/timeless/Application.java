@@ -2,6 +2,7 @@ package com.github.signed.timeless;
 
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
+import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.WorkYear;
 import org.joda.time.Duration;
@@ -40,7 +41,7 @@ class Application {
     private static class SampleYear extends WorkYear {
 
         public SampleYear() {
-            super(2024);
+            super(Contract.sampleContract(), 2024);
         }
 
         @Override

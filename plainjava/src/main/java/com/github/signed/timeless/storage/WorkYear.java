@@ -26,8 +26,7 @@ public class WorkYear {
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final int year;
 
-    public WorkYear(int year) {
-        var contract = Contract.sampleContract();
+    public WorkYear(final Contract contract, int year) {
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(contract, personalTimeOff, sickLeave, conferenceDays));
         balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
         this.year = year;
