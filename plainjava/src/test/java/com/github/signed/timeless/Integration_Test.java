@@ -22,7 +22,7 @@ import static org.hamcrest.core.Is.is;
 import static org.joda.time.Duration.standardHours;
 
 class Integration_Test {
-    private final WeeklyWorkHours weeklyWorkHours = new WeeklyWorkHours();
+    private final WeeklyWorkHours weeklyWorkHours = WeeklyWorkHours.fortyHourWeek();
     private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final Holidays holidays = new Holidays();
     private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();

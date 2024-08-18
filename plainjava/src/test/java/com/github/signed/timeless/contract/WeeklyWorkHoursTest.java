@@ -18,7 +18,7 @@ import static org.mockito.Mockito.mock;
 
 class WeeklyWorkHoursTest {
 
-    private final WeeklyWorkHours weeklyWorkHours = new WeeklyWorkHours();
+    private final WeeklyWorkHours weeklyWorkHours = WeeklyWorkHours.fortyHourWeek();
     private LocalDate day;
 
     @Test

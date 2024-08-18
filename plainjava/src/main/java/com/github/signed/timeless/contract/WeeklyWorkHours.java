@@ -10,6 +10,20 @@ import static org.joda.time.DateTimeConstants.SUNDAY;
 
 public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
 
+    public static WeeklyWorkHours fortyHourWeek() {
+        return fiveDayWorkWeekOf(40);
+    }
+
+    public static WeeklyWorkHours fiveDayWorkWeekOf(int hours) {
+        return new WeeklyWorkHours(hours);
+    }
+
+    private final Duration workday;
+
+    private WeeklyWorkHours(final int hours) {
+        workday = Duration.standardHours(hours).dividedBy(5);
+    }
+
     @Override
     public void adjustHoursToWorkFor(LocalDate date, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
         workHoursPerDayBuilder.hoursToWork(hoursToWorkAt(date));
@@ -19,10 +33,7 @@ public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
         if (day.dayOfWeek().get() == SATURDAY || day.dayOfWeek().get() == SUNDAY) {
             return Duration.ZERO;
         }
-        return workday();
+        return workday;
     }
 
-    private Duration workday() {
-        return Duration.standardHours(8);
-    }
 }
