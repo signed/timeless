@@ -4,6 +4,7 @@ import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.Contract;
+import com.github.signed.timeless.contract.ContractsOnRecord;
 import com.github.signed.timeless.workhours.DaysOffAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
@@ -26,8 +27,8 @@ public class WorkYear {
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final int year;
 
-    public WorkYear(final Contract contract, int year) {
-        WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(contract, personalTimeOff, sickLeave, conferenceDays));
+    public WorkYear(final ContractsOnRecord contracts, int year) {
+        WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(contracts, personalTimeOff, sickLeave, conferenceDays));
         balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
         this.year = year;
     }

@@ -3,12 +3,14 @@ package com.github.signed.timeless;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
 import com.github.signed.timeless.contract.Contract;
+import com.github.signed.timeless.contract.ContractsOnRecord;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.WorkYear;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
 import java.io.PrintStream;
+import java.util.List;
 
 class Application {
 
@@ -19,7 +21,8 @@ class Application {
     }
 
     private void run() {
-        WorkYear workYear = new SampleYear();
+        final var contracts = new ContractsOnRecord(List.of(Contract.sampleContract()));
+        WorkYear workYear = new SampleYear(contracts);
 
         printBalance(workYear.balanceFor(new LocalDate(2024, 7, 1), new LocalDate()));
     }
@@ -40,8 +43,8 @@ class Application {
 
     private static class SampleYear extends WorkYear {
 
-        public SampleYear() {
-            super(Contract.sampleContract(), 2024);
+        public SampleYear(ContractsOnRecord contracts) {
+            super(contracts, 2024);
         }
 
         @Override

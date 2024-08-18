@@ -3,11 +3,13 @@ package com.github.signed.timeless.storage;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
 import com.github.signed.timeless.contract.Contract;
+import com.github.signed.timeless.contract.ContractsOnRecord;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import java.io.PrintStream;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,7 +19,8 @@ class MyHoursWorked_Test {
 
     @Test
     void sampleUsage() {
-        WorkYear workYear = new WorkYear(Contract.sampleContract(), 2024) {
+        final var contracts = new ContractsOnRecord(List.of(Contract.sampleContract()));
+        WorkYear workYear = new WorkYear(contracts, 2024) {
             @Override
             public void july(DateTimeBuilder july) {
                 daysOffStarting(july.the(1).copy(), july.the(10).copy());
