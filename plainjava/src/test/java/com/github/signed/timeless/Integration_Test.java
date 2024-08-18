@@ -3,7 +3,7 @@ package com.github.signed.timeless;
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.EmployerCourtesy;
-import com.github.signed.timeless.contract.WorkHours;
+import com.github.signed.timeless.contract.WeeklyWorkHours;
 import com.github.signed.timeless.holidays.Holidays;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.DateTimeMother;
@@ -22,7 +22,7 @@ import static org.hamcrest.core.Is.is;
 import static org.joda.time.Duration.standardHours;
 
 class Integration_Test {
-    private final WorkHours workHours = new WorkHours();
+    private final WeeklyWorkHours weeklyWorkHours = new WeeklyWorkHours();
     private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final Holidays holidays = new Holidays();
     private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();
@@ -59,7 +59,7 @@ class Integration_Test {
 
     private HoursRequired completeCompendium() {
         HashSet<WorkHoursPerDayAdjuster> adjusters = new HashSet<>();
-        adjusters.add(workHours);
+        adjusters.add(weeklyWorkHours);
         adjusters.add(personalTimeOff);
         adjusters.add(holidays);
         adjusters.add(conferenceDays);

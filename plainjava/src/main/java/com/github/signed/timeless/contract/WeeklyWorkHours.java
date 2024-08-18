@@ -8,7 +8,7 @@ import org.joda.time.LocalDate;
 import static org.joda.time.DateTimeConstants.SATURDAY;
 import static org.joda.time.DateTimeConstants.SUNDAY;
 
-public class WorkHours implements WorkHoursPerDayAdjuster {
+public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
 
     @Override
     public void adjustHoursToWorkFor(LocalDate date, WorkHoursPerDayBuilder workHoursPerDayBuilder) {

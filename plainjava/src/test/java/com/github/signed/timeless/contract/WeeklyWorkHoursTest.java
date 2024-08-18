@@ -16,9 +16,9 @@ import static org.joda.time.Duration.ZERO;
 import static org.joda.time.Duration.standardHours;
 import static org.mockito.Mockito.mock;
 
-class WorkHoursTest {
+class WeeklyWorkHoursTest {
 
-    private final WorkHours workHours = new WorkHours();
+    private final WeeklyWorkHours weeklyWorkHours = new WeeklyWorkHours();
     private LocalDate day;
 
     @Test
@@ -46,7 +46,7 @@ class WorkHoursTest {
     private Duration hoursToWorkAt(LocalDate day) {
         WorkHoursPerDayBuilder builder = mock(WorkHoursPerDayBuilder.class);
         ArgumentCaptor<Duration> captor = ArgumentCaptor.forClass(Duration.class);
-        workHours.adjustHoursToWorkFor(day, builder);
+        weeklyWorkHours.adjustHoursToWorkFor(day, builder);
         Mockito.verify(builder).hoursToWork(captor.capture());
         return captor.getValue();
     }
