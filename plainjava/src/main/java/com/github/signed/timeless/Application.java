@@ -24,7 +24,7 @@ class Application {
         final var contracts = new ContractsOnRecord(List.of(Contract.sampleContract()));
         WorkYear workYear = new SampleYear(contracts);
 
-        printBalance(workYear.balanceFor(new LocalDate(2024, 7, 1), new LocalDate()));
+        printBalance(workYear.balanceFor(new LocalDate(2024, 7, 1), new LocalDate(2024, 7, 17)));
     }
 
     private void printBalance(BalanceSheet balanceSheet) {
