@@ -12,14 +12,12 @@ import static com.github.signed.timeless.storage.DateTimeMother.AnySaturday;
 import static com.github.signed.timeless.storage.DateTimeMother.AnySunday;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.joda.time.Duration.ZERO;
-import static org.joda.time.Duration.standardHours;
+import static org.joda.time.Duration.*;
 import static org.mockito.Mockito.mock;
 
 class WeeklyWorkHoursTest {
-
-    private final WeeklyWorkHours weeklyWorkHours = WeeklyWorkHours.fortyHourWeek();
     private LocalDate day;
+    private int hoursPerWeek = 40;
 
     @Test
     void saturdayIsWorkFree() {
@@ -34,18 +32,19 @@ class WeeklyWorkHoursTest {
     }
 
     @Test
-    void anyOtherDayOfTheWeekItIsEightHoursOfWorkTime() {
+    void anyOtherDayOfTheWeekOnFifthOfTheWeeklyWorkHours() {
         day = DateTimeMother.AnyWorkday();
-        assertThat(hoursToWorkAt(day), is(normalWorkDay()));
-    }
+        hoursPerWeek = 40;
+        assertThat(hoursToWorkAt(day), is(standardHours(8)));
 
-    private Duration normalWorkDay() {
-        return standardHours(8);
+        hoursPerWeek = 39;
+        assertThat(hoursToWorkAt(day), is(standardHours(7).plus(standardMinutes(48))));
     }
 
     private Duration hoursToWorkAt(LocalDate day) {
         WorkHoursPerDayBuilder builder = mock(WorkHoursPerDayBuilder.class);
         ArgumentCaptor<Duration> captor = ArgumentCaptor.forClass(Duration.class);
+        final WeeklyWorkHours weeklyWorkHours = WeeklyWorkHours.fiveDayWorkWeekOf(hoursPerWeek);
         weeklyWorkHours.adjustHoursToWorkFor(day, builder);
         Mockito.verify(builder).hoursToWork(captor.capture());
         return captor.getValue();
