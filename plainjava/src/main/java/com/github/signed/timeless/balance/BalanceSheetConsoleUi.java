@@ -18,6 +18,15 @@ import static java8.util.stream.Collectors.joining;
 
 public class BalanceSheetConsoleUi {
 
+    public static final PeriodFormatter Formatter = new PeriodFormatterBuilder()
+            .minimumPrintedDigits(2).appendHours().appendSuffix("H")
+            .appendSeparatorIfFieldsBefore(" ")
+            .appendMinutes().appendSuffix("M").toFormatter();
+
+    public static String balanceToString(Duration balance) {
+        return String.format("%10s", balance.toPeriod().toString(Formatter));
+    }
+
     private final DateTimeZone uiTimeZone = frontendTimeZone();
 
     private Predicate<BalanceRow> printPredicate = balanceRows -> true;
@@ -48,10 +57,5 @@ public class BalanceSheetConsoleUi {
         }
 
         System.out.println(dayAsString + ": " + balanceToString(balanceRow.balance()) + "\t\t" + StreamSupport.stream(workBlocks).collect(joining("  ")));
-    }
-
-    private String balanceToString(Duration balance) {
-        PeriodFormatter formatter = new PeriodFormatterBuilder().minimumPrintedDigits(2).appendHours().appendSuffix("H").appendSeparatorIfFieldsBefore(" ").appendMinutes().appendSuffix("M").toFormatter();
-        return String.format("%10s", balance.toPeriod().toString(formatter));
     }
 }
