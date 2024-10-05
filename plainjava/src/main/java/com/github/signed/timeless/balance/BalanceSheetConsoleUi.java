@@ -21,7 +21,8 @@ public class BalanceSheetConsoleUi {
     public static final PeriodFormatter Formatter = new PeriodFormatterBuilder()
             .minimumPrintedDigits(2).appendHours().appendSuffix("H")
             .appendSeparatorIfFieldsBefore(" ")
-            .appendMinutes().appendSuffix("M").toFormatter();
+            .printZeroAlways().appendMinutes().appendSuffix("M")
+            .toFormatter();
 
     public static String balanceToString(Duration balance) {
         return String.format("%10s", balance.toPeriod().toString(Formatter));

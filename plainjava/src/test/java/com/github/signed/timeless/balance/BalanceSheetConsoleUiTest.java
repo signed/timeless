@@ -30,6 +30,14 @@ class BalanceSheetConsoleUiTest {
         assertThat(negativeBalanceString(), equalTo(" -01H -01M"));
     }
 
+    @Test
+    void includeZeroMinutesForExactHourBalance() {
+        balance = Duration.standardHours(1);
+
+        assertThat(positiveBalanceString(), equalTo("   01H 00M"));
+        assertThat(negativeBalanceString(), equalTo("  -01H 00M"));
+    }
+
     private String negativeBalanceString() {
         return BalanceSheetConsoleUi.balanceToString(balance.negated());
     }
