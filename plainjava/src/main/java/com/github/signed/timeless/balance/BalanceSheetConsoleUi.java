@@ -18,14 +18,24 @@ import static java8.util.stream.Collectors.joining;
 
 public class BalanceSheetConsoleUi {
 
-    public static final PeriodFormatter Formatter = new PeriodFormatterBuilder()
-            .minimumPrintedDigits(2).appendHours().appendSuffix("H")
-            .appendSeparatorIfFieldsBefore(" ")
+    private static final PeriodFormatter HourFormatter = new PeriodFormatterBuilder()
+            .minimumPrintedDigits(2).printZeroNever().appendHours().appendSuffix("H")
+            .toFormatter();
+    private static final PeriodFormatter MinuteFormatter = new PeriodFormatterBuilder()
+            .minimumPrintedDigits(2)
             .printZeroIfSupported().appendMinutes().appendSuffix("M")
             .toFormatter();
 
     public static String balanceToString(Duration balance) {
-        return String.format("%10s", balance.toPeriod().toString(Formatter));
+        final var period = balance.toPeriod();
+        var balanceString = String.join(" ",
+                fourCharacters(period.toString(HourFormatter)),
+                fourCharacters(period.toString(MinuteFormatter)));
+        return String.format("%10s", balanceString);
+    }
+
+    private static String fourCharacters(String input) {
+        return String.format("%4s", input);
     }
 
     private final DateTimeZone uiTimeZone = frontendTimeZone();
