@@ -20,20 +20,10 @@ public class BalanceSheetConsoleUi {
 
     private final DateTimeZone uiTimeZone = frontendTimeZone();
 
-    private Predicate<BalanceRow> printPredicate = new Predicate<>() {
-        @Override
-        public boolean test(BalanceRow balanceRows) {
-            return true;
-        }
-    };
+    private Predicate<BalanceRow> printPredicate = balanceRows -> true;
 
     public void onlyDisplayWithNegativeBalance() {
-        this.printPredicate = new Predicate<>() {
-            @Override
-            public boolean test(BalanceRow balanceRows) {
-                return balanceRows.balance().compareTo(Duration.ZERO) < 0;
-            }
-        };
+        this.printPredicate = balanceRows -> balanceRows.balance().compareTo(Duration.ZERO) < 0;
     }
 
     public void print(BalanceSheet balanceSheet) {
@@ -44,7 +34,7 @@ public class BalanceSheetConsoleUi {
                 }
             }
             System.out.println("weekly balance: " + balanceToString(weeklyBalance.balance()));
-            System.out.println("");
+            System.out.println();
         }
     }
 
