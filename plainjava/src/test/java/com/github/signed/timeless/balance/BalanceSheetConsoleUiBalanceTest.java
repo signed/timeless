@@ -1,5 +1,6 @@
 package com.github.signed.timeless.balance;
 
+import org.hamcrest.Matchers;
 import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,8 @@ class BalanceSheetConsoleUiBalanceTest {
     @Test
     void balanceBelowOneHourOnlyPrintMinutes() {
         balance = Duration.standardMinutes(59);
-        assertThat(positiveBalanceString(), equalTo("+59"));
+        assertThat(positiveBalanceString(), equalTo("+   59"));
+        assertThat(negativeBalanceString(), equalTo("-   59"));
     }
 
     @Test
@@ -38,12 +40,18 @@ class BalanceSheetConsoleUiBalanceTest {
         assertThat(negativeBalanceString(), equalTo("-01:00"));
     }
 
-    private String negativeBalanceString() {
-        return BalanceSheetConsoleUi.balanceToString(balance.negated());
+    private String positiveBalanceString() {
+        return callBalanceToString(balance.abs());
     }
 
-    private String positiveBalanceString() {
-        return BalanceSheetConsoleUi.balanceToString(balance);
+    private String negativeBalanceString() {
+        return callBalanceToString(balance.abs().negated());
+    }
+
+    private String callBalanceToString(final Duration duration) {
+        final var result = BalanceSheetConsoleUi.balanceToString(duration);
+        assertThat(result, Matchers.hasLength(6));
+        return result;
     }
 
 }

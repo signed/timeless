@@ -54,6 +54,7 @@ class Application {
             on(july.the(14)).workedFrom("11:11-12:10", "16:43-19:55");
             on(july.the(15)).workedFrom("13:39-22:54");
             on(july.the(16)).workedFrom("12:00-13:40");
+            on(july.the(17)).workedFrom("12:00-20:30");
         }
 
     }

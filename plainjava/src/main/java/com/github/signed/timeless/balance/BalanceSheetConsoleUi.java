@@ -32,7 +32,7 @@ public class BalanceSheetConsoleUi {
             .toFormatter();
 
     public static String balanceToString(Duration balance) {
-        boolean isNegative = balance.isShorterThan(Duration.ZERO);
+
         final var absBalance = balance.abs();
         if (Duration.ZERO.equals(absBalance)) {
             return "      ";
@@ -41,9 +41,12 @@ public class BalanceSheetConsoleUi {
         final var period = absBalance.toPeriod();
         final var hour = period.toString(HourFormatter);
         final var minute = period.toString(MinuteFormatter);
-        return Stream.of(hour, minute)
+        boolean isNegative = balance.isShorterThan(Duration.ZERO);
+        final var sign = isNegative ? "-" : "+";
+        final var collect = Stream.of(hour, minute)
                 .skip(hoursFor(absBalance))
-                .collect(Collectors.joining(":", isNegative ? "-" : "+", ""));
+                .collect(Collectors.joining(":"));
+        return String.format("%s%5s", sign, collect);
     }
 
     private static int hoursFor(Duration absBalance) {
