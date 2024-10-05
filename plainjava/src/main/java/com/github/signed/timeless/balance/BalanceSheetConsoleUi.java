@@ -5,11 +5,13 @@ import java8.util.stream.StreamSupport;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
 import org.joda.time.Interval;
+import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,16 @@ public class BalanceSheetConsoleUi {
         return String.format("%10s", balanceString);
     }
 
+    private static final PeriodFormatter hoursWorkedFormatter = new PeriodFormatterBuilder().minimumPrintedDigits(2).printZeroIfSupported().appendHours().appendLiteral(":").appendMinutes().toFormatter();
+    public static String hoursWorkedToString(final Duration timeWorked) {
+
+        if (Duration.ZERO.equals(timeWorked)) {
+            return "     ";
+        }
+        final var period = timeWorked.toPeriod();
+        return period.toString(hoursWorkedFormatter);
+    }
+
     private static String fourCharacters(String input) {
         return String.format("%4s", input);
     }
@@ -53,7 +65,8 @@ public class BalanceSheetConsoleUi {
                     printWorkDay(balanceRow);
                 }
             }
-            System.out.println("weekly balance: " + balanceToString(weeklyBalance.balance()));
+            final var weeklyBalanceLine = "weekly balance:         " + balanceToString(weeklyBalance.balance());
+            System.out.println(weeklyBalanceLine);
             System.out.println();
         }
     }
@@ -66,7 +79,9 @@ public class BalanceSheetConsoleUi {
             DateTimeFormatter workLogFormatter = new DateTimeFormatterBuilder().appendHourOfDay(2).appendLiteral(":").appendMinuteOfHour(2).toFormatter();
             workBlocks.add(consecutiveTime.getStart().toDateTime(uiTimeZone).toString(workLogFormatter) + "-" + consecutiveTime.getEnd().toDateTime(uiTimeZone).toString(workLogFormatter));
         }
+        final var hours = hoursWorkedToString(balanceRow.timeWorked());
 
-        System.out.println(dayAsString + ": " + balanceToString(balanceRow.balance()) + "\t\t" + StreamSupport.stream(workBlocks).collect(joining("  ")));
+        final var line = MessageFormat.format("{0}:  {1}  {2}\t\t{3}", dayAsString, hours, balanceToString(balanceRow.balance()), StreamSupport.stream(workBlocks).collect(joining("  ")));
+        System.out.println(line);
     }
 }
