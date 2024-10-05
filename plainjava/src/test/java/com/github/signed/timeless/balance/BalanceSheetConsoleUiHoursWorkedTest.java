@@ -7,7 +7,7 @@ import static com.github.signed.timeless.balance.BalanceSheetConsoleUi.hoursWork
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-class BalanceSheetConsoleUi_HoursWorkedTest {
+class BalanceSheetConsoleUiHoursWorkedTest {
 
     @Test
     void printPlaceholderMatchingLengthOfHoursWorkedInCaseNotWorkIsLoggedForThatDay() {
