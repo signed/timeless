@@ -12,7 +12,11 @@ import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.github.signed.timeless.Constants.frontendTimeZone;
 import static java8.util.stream.Collectors.joining;
@@ -20,22 +24,35 @@ import static java8.util.stream.Collectors.joining;
 public class BalanceSheetConsoleUi {
 
     private static final PeriodFormatter HourFormatter = new PeriodFormatterBuilder()
-            .minimumPrintedDigits(2).printZeroNever().appendHours().appendSuffix("H")
+            .minimumPrintedDigits(2).printZeroNever().appendHours()
             .toFormatter();
     private static final PeriodFormatter MinuteFormatter = new PeriodFormatterBuilder()
             .minimumPrintedDigits(2)
-            .printZeroIfSupported().appendMinutes().appendSuffix("M")
+            .printZeroIfSupported().appendMinutes()
             .toFormatter();
 
     public static String balanceToString(Duration balance) {
-        final var period = balance.toPeriod();
-        var balanceString = String.join(" ",
-                fourCharacters(period.toString(HourFormatter)),
-                fourCharacters(period.toString(MinuteFormatter)));
-        return String.format("%10s", balanceString);
+        boolean isNegative = balance.isShorterThan(Duration.ZERO);
+        final var absBalance = balance.abs();
+        if (Duration.ZERO.equals(absBalance)) {
+            return "      ";
+        }
+
+        final var period = absBalance.toPeriod();
+        final var hour = period.toString(HourFormatter);
+        final var minute = period.toString(MinuteFormatter);
+        return Stream.of(hour, minute)
+                .skip(hoursFor(absBalance))
+                .collect(Collectors.joining(":", isNegative ? "-" : "+", ""));
+    }
+
+    private static int hoursFor(Duration absBalance) {
+        final var atLeastAnHour = !Duration.standardHours(1).isLongerThan(absBalance);
+        return atLeastAnHour ? 0 : 1;
     }
 
     private static final PeriodFormatter hoursWorkedFormatter = new PeriodFormatterBuilder().minimumPrintedDigits(2).printZeroIfSupported().appendHours().appendLiteral(":").appendMinutes().toFormatter();
+
     public static String hoursWorkedToString(final Duration timeWorked) {
 
         if (Duration.ZERO.equals(timeWorked)) {
