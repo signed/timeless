@@ -12,9 +12,7 @@ import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -85,9 +83,11 @@ public class BalanceSheetConsoleUi {
                 }
             }
             final var weeklyBalanceLine = "weekly balance:         " + balanceToString(weeklyBalance.balance());
+
             System.out.println(weeklyBalanceLine);
             System.out.println();
         }
+        System.out.println(" total balance:         " + balanceToString(balanceSheet.balance()));
     }
 
     private void printWorkDay(BalanceRow balanceRow) {

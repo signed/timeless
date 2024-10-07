@@ -40,6 +40,16 @@ class BalanceSheetConsoleUiBalanceTest {
         assertThat(negativeBalanceString(), equalTo("-01:00"));
     }
 
+    @Test
+    void keepRenderingBalanceInHoursEvenIfItIsMoreThan24Hours() {
+        balance = Duration.standardHours(25);
+
+        assertThat(positiveBalanceString(), equalTo("+25:00"));
+
+        balance = Duration.standardDays(1).plus(Duration.standardMinutes(1));
+        assertThat(positiveBalanceString(), equalTo("+24:01"));
+    }
+
     private String positiveBalanceString() {
         return callBalanceToString(balance.abs());
     }
