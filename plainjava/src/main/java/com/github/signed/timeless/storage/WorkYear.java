@@ -3,11 +3,11 @@ package com.github.signed.timeless.storage;
 import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
-import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.contract.ContractsOnRecord;
 import com.github.signed.timeless.workhours.DaysOffAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
+import java6.util.function.Supplier;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
@@ -136,8 +136,13 @@ public class WorkYear {
         //this is a noop, just let the workday to its thing
     }
 
+    @Deprecated
     protected void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
-        personalTimeOff.consecutiveDaysOf(start.buildDay(), end.buildDay());
+        daysOffStarting(() -> start, () -> end);
+    }
+
+    protected void daysOffStarting(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
+        personalTimeOff.consecutiveDaysOf(start.get().buildDay(), end.get().buildDay());
     }
 
     protected void wasSickOn(DateTimeBuilder day) {

@@ -23,7 +23,7 @@ class MyHoursWorked_Test {
         WorkYear workYear = new WorkYear(contracts, 2024) {
             @Override
             public void july(DateTimeBuilder july) {
-                daysOffStarting(july.the(1).copy(), july.the(10).copy());
+                daysOffStarting(() -> july.the(1), () -> july.the(10));
                 on(july.the(11)).workedFrom("17:30-22:16");
                 on(july.the(14)).workedFrom("11:11-12:10", "16:43-19:55");
                 on(july.the(15)).workedFrom("13:39-22:54");
