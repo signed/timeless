@@ -147,10 +147,10 @@ public class WorkYear {
 
     @Deprecated
     protected void wasSickOn(DateTimeBuilder day) {
-        dayOfSickStarting(day);
+        dayOfSick(day);
     }
 
-    protected void dayOfSickStarting(DateTimeBuilder day) {
+    protected void dayOfSick(DateTimeBuilder day) {
         sickLeave.dayOffAt(day.buildDay());
     }
 
