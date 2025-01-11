@@ -169,45 +169,20 @@ public class WorkYear {
         return workLogBuilder.on(day);
     }
 
-    @Deprecated
-    protected void halfADayOfOn(DateTimeBuilder day) {
-        halfADayOffOn(day);
-    }
-
     protected void halfADayOffOn(DateTimeBuilder day) {
         personalTimeOff.halfADayOffAt(day.buildDay());
-    }
-
-    @Deprecated
-    protected void dayOfOn(DateTimeBuilder day) {
-        dayOffOn(day);
     }
 
     protected void dayOffOn(DateTimeBuilder day) {
         personalTimeOff.dayOffAt(day.buildDay());
     }
 
-    @Deprecated
-    protected void dayOfUsingOvertime(DateTimeBuilder day) {
-        dayOffUsingOvertime(day);
-    }
-
     protected void dayOffUsingOvertime(DateTimeBuilder day) {
         //this is a noop, just let the workday to its thing
     }
 
-    @Deprecated
-    protected void daysOffStarting(DateTimeBuilder start, DateTimeBuilder end) {
-        daysOffStarting(() -> start, () -> end);
-    }
-
     protected void daysOffStarting(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
         personalTimeOff.consecutiveDaysOf(start.get().buildDay(), end.get().buildDay());
-    }
-
-    @Deprecated
-    protected void wasSickOn(DateTimeBuilder day) {
-        dayOffSick(day);
     }
 
     protected void dayOffSick(DateTimeBuilder day) {
