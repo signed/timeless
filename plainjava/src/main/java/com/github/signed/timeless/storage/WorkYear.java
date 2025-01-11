@@ -72,44 +72,89 @@ public class WorkYear {
         return balance(start, end);
     }
 
+    public void january(DateTimeBuilder january, DateTimeBuilder february) {
+        january(january);
+    }
+
+
     public void january(DateTimeBuilder january) {
         //did not work
+    }
+
+    public void february(DateTimeBuilder february, DateTimeBuilder march) {
+        february(february);
     }
 
     public void february(DateTimeBuilder february) {
         //did not work
     }
 
+    public void march(DateTimeBuilder march, DateTimeBuilder april) {
+        march(march);
+    }
+
     public void march(DateTimeBuilder march) {
         //did not work
+    }
+
+    public void april(DateTimeBuilder april, DateTimeBuilder may) {
+        april(april);
     }
 
     public void april(DateTimeBuilder april) {
         //did not work
     }
 
+    public void may(DateTimeBuilder may, DateTimeBuilder june) {
+        may(may);
+    }
+
     public void may(DateTimeBuilder may) {
         //did not work
+    }
+
+    public void june(DateTimeBuilder june, DateTimeBuilder july) {
+        june(june);
     }
 
     public void june(DateTimeBuilder june) {
         //did not work
     }
 
+    public void july(DateTimeBuilder july, DateTimeBuilder august) {
+        july(july);
+    }
+
     public void july(DateTimeBuilder july) {
         //did not work
+    }
+
+    public void august(DateTimeBuilder august, DateTimeBuilder september) {
+        august(august);
     }
 
     public void august(DateTimeBuilder august) {
         //did not work
     }
 
+    public void september(DateTimeBuilder september, DateTimeBuilder october) {
+        september(september);
+    }
+
     public void september(DateTimeBuilder september) {
         //did not work
     }
 
+    public void october(DateTimeBuilder october, DateTimeBuilder november) {
+        october(october);
+    }
+
     public void october(DateTimeBuilder october) {
         //did not work
+    }
+
+    public void november(DateTimeBuilder november, DateTimeBuilder december) {
+        november(november);
     }
 
     public void november(DateTimeBuilder november) {
@@ -182,17 +227,17 @@ public class WorkYear {
     }
 
     private void year(DateTimeBuilder year) {
-        january(year.january());
-        february(year.february());
-        march(year.march());
-        april(year.april());
-        may(year.may());
-        june(year.june());
-        july(year.july());
-        august(year.august());
-        september(year.september());
-        october(year.october());
-        november(year.november());
+        january(year.january(), year.copy().february());
+        february(year.february(), year.copy().march());
+        march(year.march(), year.copy().april());
+        april(year.april(), year.copy().may());
+        may(year.may(), year.copy().june());
+        june(year.june(), year.copy().july());
+        july(year.july(), year.copy().august());
+        august(year.august(), year.copy().september());
+        september(year.september(), year.copy().october());
+        october(year.october(), year.copy().november());
+        november(year.november(), year.copy().december());
         december(year.december());
     }
 
