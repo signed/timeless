@@ -145,8 +145,17 @@ public class WorkYear {
         personalTimeOff.consecutiveDaysOf(start.get().buildDay(), end.get().buildDay());
     }
 
+    @Deprecated
     protected void wasSickOn(DateTimeBuilder day) {
+        dayOfSickStarting(day);
+    }
+
+    protected void dayOfSickStarting(DateTimeBuilder day) {
         sickLeave.dayOffAt(day.buildDay());
+    }
+
+    protected void daysOffSick(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
+        sickLeave.consecutiveDaysOf(start.get().buildDay(), end.get().buildDay());
     }
 
     private void visitedConference(DateTimeBuilder day) {
