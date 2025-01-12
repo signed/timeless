@@ -47,9 +47,8 @@ public class WorkYear {
     }
 
     public BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
-        LocalDate endOfYear = startOfNexYear();
-
-        return balance(start, endOfYear);
+        LocalDate lastDayInYear = startOfNexYear().minusDays(1);
+        return balance(start, lastDayInYear);
     }
 
     public BalanceSheet balanceUpUntilToday() {
@@ -185,15 +184,15 @@ public class WorkYear {
         personalTimeOff.consecutiveDaysOf(start.get().buildDay(), end.get().buildDay());
     }
 
-    protected void dayOffSick(DateTimeBuilder day) {
+    protected void dayOffSick(DateTimeBuilder day, String... multipleIgnoredFromTillsToKeepProperHistory) {
         sickLeave.dayOffAt(day.buildDay());
     }
 
-    protected void daysOffSick(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
+    protected void daysOffSick(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end, String... multipleIgnoredFromTillsToKeepProperHistory) {
         sickLeave.consecutiveDaysOf(start.get().buildDay(), end.get().buildDay());
     }
 
-    private void visitedConference(DateTimeBuilder day) {
+    private void attendedConference(DateTimeBuilder day) {
         conferenceDays.dayOffAt(day.buildDay());
     }
 
