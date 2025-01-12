@@ -10,6 +10,7 @@ import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
+import java.io.PrintStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,21 +77,24 @@ public class BalanceSheetConsoleUi {
     }
 
     public void print(BalanceSheet balanceSheet) {
+        final var out = System.out;
         for (WeeklyBalance weeklyBalance : balanceSheet.weeklyBalance()) {
+            var weekRows = new ArrayList<String>();
             for (BalanceRow balanceRow : weeklyBalance) {
                 if (printPredicate.test(balanceRow)) {
-                    printWorkDay(balanceRow);
+                    weekRows.add(workdayToString(balanceRow));
                 }
             }
+            weekRows.forEach(out::println);
             final var weeklyBalanceLine = "weekly balance:         " + balanceToString(weeklyBalance.balance());
 
-            System.out.println(weeklyBalanceLine);
-            System.out.println();
+            out.println(weeklyBalanceLine);
+            out.println();
         }
-        System.out.println(" total balance:         " + balanceToString(balanceSheet.balance()));
+        out.println(" total balance:         " + balanceToString(balanceSheet.balance()));
     }
 
-    private void printWorkDay(BalanceRow balanceRow) {
+    private String workdayToString(BalanceRow balanceRow) {
         String dayAsString = balanceRow.day().toString("E yyyy.MM.dd");
 
         List<String> workBlocks = new ArrayList<>();
@@ -100,7 +104,6 @@ public class BalanceSheetConsoleUi {
         }
         final var hours = hoursWorkedToString(balanceRow.timeWorked());
 
-        final var line = MessageFormat.format("{0}:  {1}  {2}\t\t{3}", dayAsString, hours, balanceToString(balanceRow.balance()), StreamSupport.stream(workBlocks).collect(joining("  ")));
-        System.out.println(line);
+        return MessageFormat.format("{0}:  {1}  {2}\t\t{3}", dayAsString, hours, balanceToString(balanceRow.balance()), StreamSupport.stream(workBlocks).collect(joining("  ")));
     }
 }
