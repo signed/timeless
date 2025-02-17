@@ -2,23 +2,19 @@ package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
-import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
 
+import static com.github.signed.timeless.specialdays.SpecialDays.christmas;
+import static com.github.signed.timeless.specialdays.SpecialDays.newYearsEve;
+
 public class EmployerCourtesy implements WorkHoursPerDayAdjuster {
+
     @Override
     public void adjustHoursToWorkFor(LocalDate date, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        if (isChristmas(date) || isNewYearsEve(date)) {
+        var christmas = christmas();
+        var newYearsEve = newYearsEve();
+        if (christmas.test(date) || newYearsEve.test(date)) {
             workHoursPerDayBuilder.reduceByHalfAWorkDay();
         }
     }
-
-    private boolean isChristmas(LocalDate day) {
-        return day.monthOfYear().get() == DateTimeConstants.DECEMBER && day.dayOfMonth().get() == 24;
-    }
-
-    private boolean isNewYearsEve(LocalDate day) {
-        return day.monthOfYear().get() == DateTimeConstants.DECEMBER && day.dayOfMonth().get() == 31;
-    }
-
 }
