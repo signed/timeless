@@ -1,6 +1,5 @@
-package com.github.signed.timeless.holidays;
+package com.github.signed.timeless.specialdays;
 
-import com.github.signed.timeless.workhours.EasterSundayCalculator;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;

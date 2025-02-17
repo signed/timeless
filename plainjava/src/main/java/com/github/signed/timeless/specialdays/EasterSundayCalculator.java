@@ -1,4 +1,4 @@
-package com.github.signed.timeless.workhours;
+package com.github.signed.timeless.specialdays;
 
 import org.joda.time.LocalDate;
 

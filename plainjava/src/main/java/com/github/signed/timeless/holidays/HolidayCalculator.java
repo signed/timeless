@@ -1,6 +1,6 @@
 package com.github.signed.timeless.holidays;
 
-import com.github.signed.timeless.workhours.EasterSundayCalculator;
+import com.github.signed.timeless.specialdays.EasterSundayCalculator;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
