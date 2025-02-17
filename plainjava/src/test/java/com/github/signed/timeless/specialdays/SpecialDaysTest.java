@@ -21,11 +21,15 @@ class SpecialDaysTest {
 
     private static Stream<Arguments> shroveMondays() {
         return Stream.of(
-                Arguments.of(new LocalDate(2025, 3, 3)),
-                Arguments.of(new LocalDate(2026, 2, 16)),
-                Arguments.of(new LocalDate(2027, 2, 8)),
-                Arguments.of(new LocalDate(2028, 2, 28))
+                Arguments.of(date(2025, 3, 3)),
+                Arguments.of(date(2026, 2, 16)),
+                Arguments.of(date(2027, 2, 8)),
+                Arguments.of(date(2028, 2, 28))
         );
+    }
+
+    private static LocalDate date(int year, int monthOfYear, int dayOfMonth) {
+        return new LocalDate(year, monthOfYear, dayOfMonth);
     }
 
 }
