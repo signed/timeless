@@ -64,7 +64,7 @@ class Integration_Test {
         adjusters.add(holidays);
         adjusters.add(conferenceDays);
         adjusters.add(sickLeave);
-        adjusters.add(new EmployerCourtesy());
+        adjusters.add(EmployerCourtesy.halfDayOffOn());
         return new WorkHoursPerDayCompendium(adjusters);
     }
 }

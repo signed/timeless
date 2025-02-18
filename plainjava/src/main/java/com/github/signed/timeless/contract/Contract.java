@@ -15,7 +15,7 @@ public class Contract implements WorkHoursPerDayAdjuster {
 
     public static Contract sampleContract() {
         // actual holidays depend on your place of work that is specified in the contract
-        return new Contract(infinity(), Arrays.asList(WeeklyWorkHours.fortyHourWeek(), new EmployerCourtesy(), new Holidays()));
+        return new Contract(infinity(), Arrays.asList(WeeklyWorkHours.fortyHourWeek(), EmployerCourtesy.halfDayOffOn(), new Holidays()));
     }
 
     private static Interval fromTill(LocalDate firstDay, LocalDate lastDay, DateTimeZone zone) {

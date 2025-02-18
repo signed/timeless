@@ -12,7 +12,7 @@ import static org.mockito.Mockito.verify;
 
 class EmployerCourtesy_Test {
 
-    private final EmployerCourtesy employerCourtesy = new EmployerCourtesy();
+    private final EmployerCourtesy employerCourtesy = EmployerCourtesy.halfDayOffOn();
     private final WorkHoursPerDayBuilder builder = Mockito.mock(WorkHoursPerDayBuilder.class);
 
     @Test

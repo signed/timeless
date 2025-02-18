@@ -14,23 +14,22 @@ import static com.github.signed.timeless.specialdays.SpecialDays.newYearsEve;
 
 public class EmployerCourtesy implements WorkHoursPerDayAdjuster {
 
-    public static List<SpecialDay> sampleSpecialDays() {
-        var christmas = christmas();
-        var newYearsEve = newYearsEve();
-        return Arrays.asList(christmas, newYearsEve);
+    public static EmployerCourtesy halfDayOffOn() {
+        final var days = Arrays.asList(christmas(), newYearsEve());
+        return new EmployerCourtesy(days, WorkHoursPerDayBuilder::reduceByHalfAWorkDay);
     }
 
+    private final List<SpecialDay> days;
     private final WorkHoursAdjuster adjuster;
-    private final List<SpecialDay> specialDays;
 
-    public EmployerCourtesy() {
-        adjuster = WorkHoursPerDayBuilder::reduceByHalfAWorkDay;
-        specialDays = sampleSpecialDays();
+    private EmployerCourtesy(final List<SpecialDay> days, final WorkHoursAdjuster adjuster) {
+        this.days = days;
+        this.adjuster = adjuster;
     }
 
     @Override
     public void adjustHoursToWorkFor(LocalDate date, WorkHoursPerDayBuilder workHoursPerDayBuilder) {
-        final var flup = specialDays.stream().anyMatch(it -> it.test(date));
+        final var flup = days.stream().anyMatch(it -> it.test(date));
         if (flup) {
             adjuster.accept(workHoursPerDayBuilder);
         }
