@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 
+import static com.github.signed.timeless.specialdays.SpecialDays.christmas;
+import static com.github.signed.timeless.specialdays.SpecialDays.newYearsEve;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.joda.time.Duration.standardHours;
@@ -64,7 +66,7 @@ class Integration_Test {
         adjusters.add(holidays);
         adjusters.add(conferenceDays);
         adjusters.add(sickLeave);
-        adjusters.add(EmployerCourtesy.halfDayOffOn());
+        adjusters.add(EmployerCourtesy.halfDayOffOn(christmas(), newYearsEve()));
         return new WorkHoursPerDayCompendium(adjusters);
     }
 }

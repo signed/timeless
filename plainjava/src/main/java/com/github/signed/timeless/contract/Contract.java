@@ -11,11 +11,15 @@ import org.joda.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.github.signed.timeless.contract.EmployerCourtesy.halfDayOffOn;
+import static com.github.signed.timeless.specialdays.SpecialDays.christmas;
+import static com.github.signed.timeless.specialdays.SpecialDays.newYearsEve;
+
 public class Contract implements WorkHoursPerDayAdjuster {
 
     public static Contract sampleContract() {
         // actual holidays depend on your place of work that is specified in the contract
-        return new Contract(infinity(), Arrays.asList(WeeklyWorkHours.fortyHourWeek(), EmployerCourtesy.halfDayOffOn(), new Holidays()));
+        return new Contract(infinity(), Arrays.asList(WeeklyWorkHours.fortyHourWeek(), halfDayOffOn(christmas(), newYearsEve()), new Holidays()));
     }
 
     private static Interval fromTill(LocalDate firstDay, LocalDate lastDay, DateTimeZone zone) {

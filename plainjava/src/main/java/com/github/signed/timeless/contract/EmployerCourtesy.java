@@ -14,9 +14,8 @@ import static com.github.signed.timeless.specialdays.SpecialDays.newYearsEve;
 
 public class EmployerCourtesy implements WorkHoursPerDayAdjuster {
 
-    public static EmployerCourtesy halfDayOffOn() {
-        final var days = Arrays.asList(christmas(), newYearsEve());
-        return new EmployerCourtesy(days, WorkHoursPerDayBuilder::reduceByHalfAWorkDay);
+    public static EmployerCourtesy halfDayOffOn(SpecialDay ...days) {
+        return new EmployerCourtesy(Arrays.asList(days), WorkHoursPerDayBuilder::reduceByHalfAWorkDay);
     }
 
     private final List<SpecialDay> days;

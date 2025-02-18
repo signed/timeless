@@ -6,13 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static com.github.signed.timeless.MockitoWrapper.verifyZeroInteractions;
+import static com.github.signed.timeless.specialdays.SpecialDays.christmas;
+import static com.github.signed.timeless.specialdays.SpecialDays.newYearsEve;
 import static com.github.signed.timeless.storage.DateTimeMother.AnyChristmasEve;
 import static com.github.signed.timeless.storage.DateTimeMother.AnyNewYearsEve;
 import static org.mockito.Mockito.verify;
 
 class EmployerCourtesy_Test {
 
-    private final EmployerCourtesy employerCourtesy = EmployerCourtesy.halfDayOffOn();
+    private final EmployerCourtesy employerCourtesy = EmployerCourtesy.halfDayOffOn(christmas(), newYearsEve());
     private final WorkHoursPerDayBuilder builder = Mockito.mock(WorkHoursPerDayBuilder.class);
 
     @Test
