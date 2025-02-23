@@ -31,7 +31,7 @@ public class BalanceSheet implements Iterable<BalanceRow> {
         return timeWorked;
     }
 
-    Iterable<WeeklyBalance> weeklyBalance() {
+    List<WeeklyBalance> weeklyBalance() {
         int currentWeekOfYear = Integer.MIN_VALUE;
         ArrayList<WeeklyBalance> weeklyBalances = new ArrayList<>();
         List<BalanceRow> currentWeekBalanceRows = new ArrayList<>();
