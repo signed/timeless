@@ -1,0 +1,19 @@
+# https://docs.gradle.org/current/userguide/version_catalogs.html#sec:version-catalog-declaration
+[versions]
+joda-time = "2.12.7"
+version-catalog-update = "1.0.0"
+streamsupport = "1.7.4"
+junit = "5.11.2"
+mockito = "5.14.1"
+hamcrest = "2.2"
+
+[libraries]
+joda-time = { module = "joda-time:joda-time", version.ref = "joda-time" }
+streamsupport = { module = "net.sourceforge.streamsupport:streamsupport", version.ref = "streamsupport" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit = { module = 'org.junit.jupiter:junit-jupiter' }
+mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
+
+[plugins]
+version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-update" }

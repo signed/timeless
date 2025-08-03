@@ -4,14 +4,14 @@ plugins {
 
 dependencies {
     implementation(
-            'joda-time:joda-time:2.12.7'
-            , 'net.sourceforge.streamsupport:streamsupport:1.7.4'
+            libs.joda.time,
+            libs.streamsupport
     )
     testImplementation(
-            platform('org.junit:junit-bom:5.11.2')
-            ,'org.junit.jupiter:junit-jupiter'
-            , 'org.mockito:mockito-core:5.14.1'
-            , 'org.hamcrest:hamcrest:2.2'
+            platform(libs.junit.bom),
+            libs.junit,
+            libs.mockito,
+            libs.hamcrest
     )
     testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 
