@@ -39,6 +39,10 @@ public class WorkLogBuilder {
         return workedFrom(multipleFromTills);
     }
 
+    public WorkLogBuilder businessTrip(String... multipleFromTills) {
+        return workedFrom(multipleFromTills);
+    }
+
     public WorkLogBuilder teamBuilding(String occasion, String... multipleFromTills) {
         //ignore right now
         return this;
