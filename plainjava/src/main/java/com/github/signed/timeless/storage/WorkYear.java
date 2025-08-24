@@ -168,16 +168,18 @@ public class WorkYear {
         return workLogBuilder.on(day);
     }
 
-    protected void halfADayOffOn(DateTimeBuilder day) {
+    protected WorkLogBuilder halfADayOffOn(DateTimeBuilder day) {
         personalTimeOff.halfADayOffAt(day.buildDay());
+        return workLogBuilder.on(day);
     }
 
-    protected void dayOffOn(DateTimeBuilder day) {
+    protected WorkLogBuilder dayOffOn(DateTimeBuilder day) {
         personalTimeOff.dayOffAt(day.buildDay());
+        return workLogBuilder.on(day);
     }
 
-    protected void dayOffUsingOvertime(DateTimeBuilder day) {
-        //this is a noop, just let the workday to its thing
+    protected WorkLogBuilder dayOffUsingOvertime(DateTimeBuilder day) {
+        return workLogBuilder.on(day);
     }
 
     protected void daysOffStarting(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
@@ -192,8 +194,9 @@ public class WorkYear {
         sickLeave.consecutiveDaysOf(start.get().buildDay(), end.get().buildDay());
     }
 
-    private void attendedConference(DateTimeBuilder day) {
+    protected WorkLogBuilder attendedConference(DateTimeBuilder day) {
         conferenceDays.dayOffAt(day.buildDay());
+        return workLogBuilder.on(day);
     }
 
     private LocalDate startOfYear() {
