@@ -14,17 +14,22 @@ import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 public class WorkYear {
 
+    private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters) {
+        return new HashSet<>(Arrays.asList(adjusters));
+    }
+
     private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final DaysOffAdjuster sickLeave = new DaysOffAdjuster();
     private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();
-    private final BalanceCalculator balanceCalculator;
     private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
     private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
+    private final BalanceCalculator balanceCalculator;
     private final int year;
 
     public WorkYear(final ContractsOnRecord contracts, int year) {
@@ -33,37 +38,30 @@ public class WorkYear {
         this.year = year;
     }
 
-    private static Set<WorkHoursPerDayAdjuster> adjusters(WorkHoursPerDayAdjuster... adjusters) {
-        return new HashSet<>(Arrays.asList(adjusters));
-    }
-
     public BalanceSheet balanceAtEndOfYear() {
         return balanceAtEndOfYearStarting(startThisYear());
     }
 
     public BalanceSheet balanceUntil(LocalDate until) {
         LocalDate startOfYear = startOfYear();
-        return balance(startOfYear, until);
+        return balanceFor(startOfYear, until);
     }
 
     public BalanceSheet balanceAtEndOfYearStarting(LocalDate start) {
         LocalDate lastDayInYear = startOfNexYear().minusDays(1);
-        return balance(start, lastDayInYear);
+        return balanceFor(start, lastDayInYear);
     }
 
     public BalanceSheet balanceUpUntilToday() {
-        LocalDate today = new LocalDate();
-        LocalDate startOfYear = startOfYear();
-        LocalDate until = today;
-        if (today.isBefore(startOfYear)) {
-            until = startOfYear;
-        }
-        return balance(startOfYear, until);
+        return balanceFor(startOfYear(), new LocalDate());
     }
 
     public BalanceSheet balanceFor(LocalDate start, LocalDate end) {
         if (start.isBefore(startOfYear())) {
             start = startOfYear();
+        }
+        if (end.isBefore(startOfYear())) {
+            end = startOfYear();
         }
         if (!end.isBefore(startOfNexYear())) {
             end = startOfNexYear();
