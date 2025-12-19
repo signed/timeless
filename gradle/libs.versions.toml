@@ -2,10 +2,10 @@
 [versions]
 hamcrest = "3.0"
 joda-time = "2.14.0"
-junit = "5.13.4"
-mockito = "5.19.0"
+junit = "6.0.1"
+mockito = "5.21.0"
 streamsupport = "1.7.4"
-version-catalog-update = "1.0.0"
+version-catalog-update = "1.0.1"
 
 [libraries]
 hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
