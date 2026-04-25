@@ -14,7 +14,6 @@ import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -176,12 +175,17 @@ public class WorkYear {
         return workLogBuilder.on(day);
     }
 
+    protected void daysOffStarting(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
+        personalTimeOff.consecutiveDaysOf(start.get().buildDay(), end.get().buildDay());
+    }
+
     protected WorkLogBuilder dayOffUsingOvertime(DateTimeBuilder day) {
+        // do nothing for now
         return workLogBuilder.on(day);
     }
 
-    protected void daysOffStarting(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
-        personalTimeOff.consecutiveDaysOf(start.get().buildDay(), end.get().buildDay());
+    protected void daysOffOvertime(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
+        // do nothing for now
     }
 
     protected void dayOffSick(DateTimeBuilder day, String... multipleIgnoredFromTillsToKeepProperHistory) {
