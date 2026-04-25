@@ -184,7 +184,7 @@ public class WorkYear {
         return workLogBuilder.on(day);
     }
 
-    protected void daysOffOvertime(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
+    protected void daysOffUsingOvertime(Supplier<DateTimeBuilder> start, Supplier<DateTimeBuilder> end) {
         // do nothing for now
     }
 
