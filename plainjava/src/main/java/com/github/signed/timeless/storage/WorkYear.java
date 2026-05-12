@@ -27,9 +27,10 @@ public class WorkYear {
     private final DaysOffAdjuster sickLeave = new DaysOffAdjuster();
     private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();
     private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
-    private final WorkLogBuilder workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
     private final BalanceCalculator balanceCalculator;
     private final int year;
+    // has to be set up for each individual balance call
+    private WorkLogBuilder workLogBuilder;
 
     public WorkYear(final ContractsOnRecord contracts, int year) {
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(contracts, personalTimeOff, sickLeave, conferenceDays));
@@ -233,9 +234,14 @@ public class WorkYear {
     }
 
     private BalanceSheet balance(LocalDate start, LocalDate inclusiveEnd) {
-        workLogBuilder.forInterval(new Interval(start.toDateTimeAtStartOfDay(inputTimeZone), inclusiveEnd.plusDays(1).toDateTimeAtStartOfDay(inputTimeZone)));
-        year(DateTimeBuilder.Year(this.year));
-        return balanceCalculator.balanceFor(workLogBuilder.timeCard());
+        try {
+            workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
+            workLogBuilder.forInterval(new Interval(start.toDateTimeAtStartOfDay(inputTimeZone), inclusiveEnd.plusDays(1).toDateTimeAtStartOfDay(inputTimeZone)));
+            year(DateTimeBuilder.Year(this.year));
+            return balanceCalculator.balanceFor(workLogBuilder.timeCard());
+        } finally {
+            workLogBuilder = null;
+        }
     }
 
 }
