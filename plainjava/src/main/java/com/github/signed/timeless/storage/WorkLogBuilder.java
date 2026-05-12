@@ -90,4 +90,11 @@ public class WorkLogBuilder {
     private DateTimeBuilder day() {
         return day.copy().withInputTimeZone(inputTimeZone);
     }
+
+    /**
+     * Just to give some context
+     */
+    public WorkLogBuilder details(String context) {
+        return this;
+    }
 }
