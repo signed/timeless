@@ -19,7 +19,7 @@ import static org.joda.time.Duration.ZERO;
 
 public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
 
-    record WeeklyWorkSchedule(Map<Integer, Duration> schedule) {
+    private record WeeklyWorkSchedule(Map<Integer, Duration> schedule) {
         public Duration hoursToWorkAt(int dayOfWeekConstant) {
             return schedule.get(dayOfWeekConstant);
         }
@@ -30,7 +30,15 @@ public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
     }
 
     public static WeeklyWorkHours fiveDayWorkWeekOf(int hours) {
-        var hoursToWorkDaily = Duration.standardHours(hours).dividedBy(5);
+        return createWeeklyWorkHours(hours, 5);
+    }
+
+    public static WeeklyWorkHours sevenDayWorkWeekOf(int hours) {
+        return createWeeklyWorkHours(hours, 7);
+    }
+
+    private static WeeklyWorkHours createWeeklyWorkHours(int hours, int workdaysPerWeek) {
+        var hoursToWorkDaily = Duration.standardHours(hours).dividedBy(workdaysPerWeek);
         var weeklyWorkSchedule = weekendsAreFreeDailyHours(hoursToWorkDaily);
         return new WeeklyWorkHours(weeklyWorkSchedule);
     }
