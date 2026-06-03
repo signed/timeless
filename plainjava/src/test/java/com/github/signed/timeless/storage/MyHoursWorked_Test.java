@@ -4,6 +4,7 @@ import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
 import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.contract.ContractsOnRecord;
+import com.github.signed.timeless.time.Month;
 import org.joda.time.Duration;
 import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.PrintStream;
 import java.util.List;
 
+import static com.github.signed.timeless.time.Month.July;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -31,7 +33,7 @@ class MyHoursWorked_Test {
             }
         };
 
-        final var balanceSheet = workYear.balanceFor(LocalDate.of(2024, 7, 1), LocalDate.of(2024, 7, 16));
+        final var balanceSheet = workYear.balanceFor(LocalDate.of(2024, July, 1), LocalDate.of(2024, July, 16));
         printBalance(balanceSheet);
         assertThat(balanceSheet.balance(), is(Duration.standardHours(12).plus(Duration.standardMinutes(8)).multipliedBy(-1)));
     }

@@ -1,6 +1,7 @@
 package com.github.signed.timeless.specialdays;
 
 import com.github.signed.timeless.time.LocalDate;
+import com.github.signed.timeless.time.Month;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -8,6 +9,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static com.github.signed.timeless.specialdays.SpecialDays.shroveMonday;
+import static com.github.signed.timeless.time.Month.February;
+import static com.github.signed.timeless.time.Month.March;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -21,14 +24,14 @@ class SpecialDaysTest {
 
     private static Stream<Arguments> shroveMondays() {
         return Stream.of(
-                Arguments.of(date(2025, 3, 3)),
-                Arguments.of(date(2026, 2, 16)),
-                Arguments.of(date(2027, 2, 8)),
-                Arguments.of(date(2028, 2, 28))
+                Arguments.of(date(2025, March, 3)),
+                Arguments.of(date(2026, February, 16)),
+                Arguments.of(date(2027, February, 8)),
+                Arguments.of(date(2028, February, 28))
         );
     }
 
-    private static LocalDate date(int year, int monthOfYear, int dayOfMonth) {
+    private static LocalDate date(int year, Month monthOfYear, int dayOfMonth) {
         return LocalDate.of(year, monthOfYear, dayOfMonth);
     }
 

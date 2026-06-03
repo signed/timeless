@@ -12,12 +12,6 @@ public interface LocalDate extends Comparable<LocalDate> {
         return of(new org.joda.time.LocalDate());
     }
 
-    //todo get rid of
-    static LocalDate of(int year, int monthInt, int day) {
-        var month = FromJodaTime.toMonth(monthInt);
-        return of(year, month, day);
-    }
-
     static LocalDate of(int year, Month month, int day) {
         var jodaMonth = ToJodaTime.toDateTimeConstant(month);
         return of(new org.joda.time.LocalDate(year, jodaMonth, day));
