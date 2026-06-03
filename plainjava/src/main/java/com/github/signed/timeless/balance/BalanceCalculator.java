@@ -4,8 +4,9 @@ import com.github.signed.timeless.ConsecutiveTime;
 import com.github.signed.timeless.HoursRequired;
 import com.github.signed.timeless.TimeCard;
 import com.github.signed.timeless.workhours.WorkHoursPerDay;
+import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Interval;
+import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 
 import java.util.ArrayList;
@@ -36,7 +37,9 @@ public class BalanceCalculator {
     }
 
     private List<ConsecutiveTime> worked(TimeCard timeCard, LocalDate day) {
-        Interval workday = new Interval(day.toDateTimeAtStartOfDay(dateTimeZone), day.plusDays(1).toDateTimeAtStartOfDay(dateTimeZone));
+        var start = day.toDateTimeAtStartOfDay(dateTimeZone);
+        var end = day.plusDays(1).toDateTimeAtStartOfDay(dateTimeZone);
+        Interval workday = Interval.of(start, end);
         return timeCard.consecutiveTimesOverlapping(workday);
     }
 

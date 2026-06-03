@@ -9,7 +9,7 @@ import java8.util.stream.Stream;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
-import org.joda.time.Interval;
+import com.github.signed.timeless.time.Interval;
 
 
 import java.util.List;
@@ -25,7 +25,7 @@ class DailyWorkLog {
         DateTime start = day.toDateTimeAtStartOfDay(dateTimeZone);
         DateTime end = start.plusDays(1);
         this.consecutiveTimes = consecutiveTimes;
-        this.thisWorkDay = new Interval(start, end);
+        this.thisWorkDay = Interval.of(start, end);
     }
 
     List<Interval> intervalsWorked() {

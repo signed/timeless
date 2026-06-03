@@ -2,7 +2,7 @@ package com.github.signed.timeless.storage;
 
 import com.github.signed.timeless.Punch;
 import org.joda.time.DateTime;
-import org.joda.time.Interval;
+import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ class PunchesBuilder {
         List<Punch> sortedPunches = sortedPunches();
         DateTime start = fromInternal(sortedPunches).toDateTimeAtStartOfDay(backendTimeZone());
         DateTime end = untilInternal(sortedPunches).plusDays(1).toDateTimeAtStartOfDay(backendTimeZone());
-        return new Interval(start, end);
+        return Interval.of(start, end);
     }
 
     public List<Punch> punches() {

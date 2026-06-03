@@ -1,6 +1,6 @@
 package com.github.signed.timeless;
 
-import org.joda.time.Interval;
+import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 
 import java.util.ArrayList;

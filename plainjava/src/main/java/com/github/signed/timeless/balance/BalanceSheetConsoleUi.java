@@ -4,7 +4,7 @@ import java6.util.function.Predicate;
 import java8.util.stream.StreamSupport;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
-import org.joda.time.Interval;
+import com.github.signed.timeless.time.Interval;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.PeriodFormatter;

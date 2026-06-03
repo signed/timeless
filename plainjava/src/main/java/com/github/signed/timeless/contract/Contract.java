@@ -5,7 +5,7 @@ import com.github.signed.timeless.holidays.Holidays;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Interval;
+import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 
 import java.util.Arrays;
@@ -25,11 +25,11 @@ public class Contract implements WorkHoursPerDayAdjuster {
     private static Interval fromTill(LocalDate firstDay, LocalDate lastDay, DateTimeZone zone) {
         final var start = firstDay.toDateTimeAtStartOfDay(zone);
         final var end = lastDay.plusDays(1).toDateTimeAtStartOfDay(zone);
-        return new Interval(start, end);
+        return Interval.of(start, end);
     }
 
     public static Interval infinity() {
-        return new Interval(Long.MIN_VALUE, Long.MAX_VALUE);
+        return Interval.infinity();
     }
 
     private final Interval term;

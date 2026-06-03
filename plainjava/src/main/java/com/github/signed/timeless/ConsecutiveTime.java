@@ -1,13 +1,13 @@
 package com.github.signed.timeless;
 
-import org.joda.time.Interval;
+import com.github.signed.timeless.time.Interval;
 
 public class ConsecutiveTime {
 
     private final Interval interval;
 
     ConsecutiveTime(Punch start, Punch stop) {
-        this.interval = new Interval(start.dateTime(), stop.dateTime());
+        this.interval = Interval.of(start.dateTime(), stop.dateTime());
     }
 
     public Interval overlap(Interval interval) {

@@ -9,9 +9,10 @@ import com.github.signed.timeless.workhours.DaysOffAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 import java6.util.function.Supplier;
+import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Interval;
+import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 
 import java.util.Arrays;
@@ -237,7 +238,9 @@ public class WorkYear {
     private BalanceSheet balance(LocalDate start, LocalDate inclusiveEnd) {
         try {
             workLogBuilder = new WorkLogBuilder().inLocalTime(inputTimeZone);
-            workLogBuilder.forInterval(new Interval(start.toDateTimeAtStartOfDay(inputTimeZone), inclusiveEnd.plusDays(1).toDateTimeAtStartOfDay(inputTimeZone)));
+            var startDateTime = start.toDateTimeAtStartOfDay(inputTimeZone);
+            var endDateTime = inclusiveEnd.plusDays(1).toDateTimeAtStartOfDay(inputTimeZone);
+            workLogBuilder.forInterval(Interval.of(startDateTime, endDateTime));
             year(DateTimeBuilder.Year(this.year));
             return balanceCalculator.balanceFor(workLogBuilder.timeCard());
         } finally {

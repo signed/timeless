@@ -5,7 +5,7 @@ import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 import org.joda.time.Duration;
-import org.joda.time.Interval;
+import com.github.signed.timeless.time.Interval;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,7 +52,7 @@ class ContractsOnRecordTest {
     private static Contract ondDayContract(LocalDate day, int hours) {
         final var start = day.toDateTimeAtStartOfDay(Constants.frontendTimeZone());
         final var end = day.plusDays(1).toDateTimeAtStartOfDay(Constants.frontendTimeZone());
-        final var term = new Interval(start, end);
+        final var term = Interval.of(start, end);
         return new Contract(term, List.of((date, workHoursPerDayBuilder) -> workHoursPerDayBuilder.hoursToWork(Duration.standardHours(hours))));
     }
 
