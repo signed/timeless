@@ -6,7 +6,7 @@ import org.joda.time.DateTimeZone;
 /**
  * Mirrors import com.github.signed.timeless.time.LocalDate;
  */
-public interface LocalDate {
+public interface LocalDate extends Comparable<LocalDate> {
 
     static LocalDate now() {
         return of(new org.joda.time.LocalDate());

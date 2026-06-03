@@ -62,11 +62,6 @@ public class LocalDateJodaTime implements LocalDate {
     }
 
     @Override
-    public int compareTo(LocalDate other) {
-        return day.compareTo(other.joda());
-    }
-
-    @Override
     public Month monthOfYear() {
         return FromJodaTime.toMonth(day);
     }
@@ -97,6 +92,11 @@ public class LocalDateJodaTime implements LocalDate {
             return this.day.equals(jodaTime.day);
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(LocalDate other) {
+        return day.compareTo(other.joda());
     }
 
 }
