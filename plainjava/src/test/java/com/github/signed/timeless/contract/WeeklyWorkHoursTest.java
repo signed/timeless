@@ -3,7 +3,7 @@ package com.github.signed.timeless.contract;
 import com.github.signed.timeless.storage.DateTimeMother;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 import org.joda.time.Duration;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;

@@ -1,11 +1,11 @@
 package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.Constants;
-import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
+import com.github.signed.timeless.time.LocalDate;
+import com.github.signed.timeless.time.Month;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 import org.joda.time.Duration;
 import org.joda.time.Interval;
-import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -34,9 +34,9 @@ class ContractsOnRecordTest {
 
     @Test
     void onlyApplyTheActiveContract() {
-        final var first = new LocalDate(2025, 7, 1);
+        final var first = LocalDate.of(2025, Month.July, 1);
         final var oneHour = ondDayContract(first, 1);
-        final var second = new LocalDate(2025, 7, 2);
+        final var second = LocalDate.of(2025, Month.July, 2);
         final var twoHoursNextDay = ondDayContract(second, 2);
         final var contracts = new ContractsOnRecord(List.of(oneHour, twoHoursNextDay));
 

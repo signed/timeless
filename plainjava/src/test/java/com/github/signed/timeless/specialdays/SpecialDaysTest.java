@@ -1,6 +1,6 @@
 package com.github.signed.timeless.specialdays;
 
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -29,7 +29,7 @@ class SpecialDaysTest {
     }
 
     private static LocalDate date(int year, int monthOfYear, int dayOfMonth) {
-        return new LocalDate(year, monthOfYear, dayOfMonth);
+        return LocalDate.of(year, monthOfYear, dayOfMonth);
     }
 
 }

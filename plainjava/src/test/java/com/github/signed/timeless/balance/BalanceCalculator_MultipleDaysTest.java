@@ -3,7 +3,7 @@ package com.github.signed.timeless.balance;
 import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.HoursRequired;
 import com.github.signed.timeless.storage.WorkLogBuilder;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

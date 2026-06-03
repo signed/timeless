@@ -1,7 +1,7 @@
 package com.github.signed.timeless;
 
 import org.joda.time.Interval;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +33,7 @@ public class TimeCard {
     }
 
     public LocalDate from() {
-        return intervalCovered.getStart().toLocalDate();
+        return LocalDate.of(intervalCovered.getStart().toLocalDate());
     }
 
     public boolean covers(LocalDate day) {

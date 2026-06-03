@@ -2,7 +2,7 @@ package com.github.signed.timeless;
 
 import com.github.signed.timeless.storage.DateTimeMother;
 import com.github.signed.timeless.storage.WorkLogBuilder;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

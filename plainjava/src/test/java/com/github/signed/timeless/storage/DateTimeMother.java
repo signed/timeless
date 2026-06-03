@@ -1,6 +1,7 @@
 package com.github.signed.timeless.storage;
 
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
+import com.github.signed.timeless.time.Month;
 
 public class DateTimeMother {
 
@@ -9,11 +10,11 @@ public class DateTimeMother {
     }
 
     public static LocalDate AnyLocalDate(){
-        return new LocalDate(2017, 3, 4);
+        return LocalDate.of(2017, Month.March, 4);
     }
 
     public static LocalDate AnyMondayAtTheStartOfAFiveDayWorkWeek() {
-        return new LocalDate(2015, 11, 16);
+        return LocalDate.of(2015, Month.November, 16);
     }
 
     public static LocalDate AnySunday() {
@@ -21,7 +22,7 @@ public class DateTimeMother {
     }
 
     public static LocalDate AnySaturday() {
-        return new LocalDate(2015, 12, 26);
+        return LocalDate.of(2015, Month.December, 26);
     }
 
     public static LocalDate AnyChristmasEve() {
@@ -29,11 +30,11 @@ public class DateTimeMother {
     }
 
     public static LocalDate AnyChristmasEveOnAWorkDay() {
-        return new LocalDate(1968, 12, 24);
+        return LocalDate.of(1968, Month.December, 24);
     }
 
     private static LocalDate AnyChristmasEveOnAWeekend() {
-        return new LocalDate(1967, 12, 24);
+        return LocalDate.of(1967, Month.December, 24);
     }
 
     public static LocalDate AnyNewYearsEve() {
@@ -41,11 +42,11 @@ public class DateTimeMother {
     }
 
     private static LocalDate AnyNewYearsEveOnAWorkDay() {
-        return new LocalDate(1968, 12, 31);
+        return LocalDate.of(1968, Month.December, 31);
     }
 
     private static LocalDate AnyNewYearsEveOnAWeekend() {
-        return new LocalDate(1967, 12, 31);
+        return LocalDate.of(1967, Month.December, 31);
     }
 
     public static LocalDate AnyDayNotChristmasEveOrNewYearsEve() {
@@ -53,6 +54,6 @@ public class DateTimeMother {
     }
 
     public static LocalDate AnyWorkdayFridayWhereNextMondayIsAWorkday() {
-        return new LocalDate(2016, 2, 12);
+        return LocalDate.of(2016, Month.February, 12);
     }
 }

@@ -1,6 +1,7 @@
 package com.github.signed.timeless.specialdays;
 
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
+import com.github.signed.timeless.time.Month;
 
 /**
  * Calculation as attributed to Spencer Jones
@@ -26,7 +27,12 @@ public class EasterSundayCalculator {
         int dividend = (h + m - 7 * n + 114);
         int p = dividend / 31;
         int q = dividend % 31;
-
-        return new LocalDate(year, p, q + 1);
+        var month = switch (p) {
+            case 2 -> Month.February;
+            case 3 -> Month.March;
+            case 4 -> Month.April;
+            default -> throw new IllegalArgumentException();
+        };
+        return LocalDate.of(year, month, q + 1);
     }
 }

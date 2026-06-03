@@ -1,6 +1,6 @@
 package com.github.signed.timeless.specialdays;
 
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -22,7 +22,7 @@ class EasterSundayCalculator_Test {
     @ParameterizedTest
     @MethodSource("data")
     void calculateEasterSunday(int year, int month, int dayOfMonth) {
-        LocalDate easterSunday = new LocalDate(year, month, dayOfMonth);
+        LocalDate easterSunday = LocalDate.of(year, month, dayOfMonth);
         assertThat(new EasterSundayCalculator().easterSundayFor(year), is(easterSunday));
     }
 }

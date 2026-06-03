@@ -2,7 +2,7 @@ package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 import java.util.List;
 

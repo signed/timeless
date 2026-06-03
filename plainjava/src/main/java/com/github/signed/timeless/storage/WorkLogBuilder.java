@@ -6,7 +6,7 @@ import java6.util.Optional;
 import java6.util.function.Supplier;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 import java.util.List;
 

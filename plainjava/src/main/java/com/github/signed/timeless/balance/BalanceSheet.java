@@ -37,7 +37,7 @@ public class BalanceSheet implements Iterable<BalanceRow> {
         List<BalanceRow> currentWeekBalanceRows = new ArrayList<>();
 
         for (BalanceRow balanceRow : balanceRows) {
-            int weekOfWeekyear = balanceRow.day().getWeekOfWeekyear();
+            int weekOfWeekyear = balanceRow.day().weekOfWeekyear();
             if (currentWeekOfYear != weekOfWeekyear) {
                 currentWeekOfYear = weekOfWeekyear;
                 if (!currentWeekBalanceRows.isEmpty()) {

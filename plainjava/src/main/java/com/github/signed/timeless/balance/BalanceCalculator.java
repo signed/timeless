@@ -6,7 +6,7 @@ import com.github.signed.timeless.TimeCard;
 import com.github.signed.timeless.workhours.WorkHoursPerDay;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;

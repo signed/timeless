@@ -1,6 +1,6 @@
 package com.github.signed.timeless.workhours;
 
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 public interface WorkHoursPerDayAdjuster {
 

@@ -3,7 +3,7 @@ package com.github.signed.timeless.storage;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 import static org.joda.time.DateTimeConstants.*;
 
@@ -26,7 +26,7 @@ public class DateTimeBuilder {
     }
 
     public static DateTimeBuilder At(LocalDate day) {
-        return new DateTimeBuilder().year(day.getYear()).month(day.getMonthOfYear()).the(day.getDayOfMonth());
+        return new DateTimeBuilder().year(day.getYear()).month(day.monthOfYear().toJodaInt()).the(day.dayOfMonth());
     }
 
     public DateTimeBuilder withInputTimeZone(DateTimeZone inputTimeZone) {
@@ -136,7 +136,7 @@ public class DateTimeBuilder {
     }
 
     public DateTimeBuilder on(LocalDate day) {
-        return year(day.getYear()).month(day.getMonthOfYear()).the(day.getDayOfMonth());
+        return year(day.getYear()).month(day.monthOfYear().toJodaInt()).the(day.dayOfMonth());
     }
 
     private DateTimeBuilder month(int month) {
@@ -181,7 +181,7 @@ public class DateTimeBuilder {
     }
 
     public LocalDate buildDay() {
-        return buildUtc().toLocalDate();
+        return LocalDate.of(buildUtc().toLocalDate());
     }
 
     public DateTime buildUtc() {

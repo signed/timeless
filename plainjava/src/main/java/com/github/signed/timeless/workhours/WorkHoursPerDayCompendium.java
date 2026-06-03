@@ -1,7 +1,7 @@
 package com.github.signed.timeless.workhours;
 
 import com.github.signed.timeless.HoursRequired;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 import java.util.HashSet;
 import java.util.Set;

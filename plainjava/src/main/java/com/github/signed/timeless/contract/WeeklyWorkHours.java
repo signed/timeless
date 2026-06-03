@@ -1,26 +1,20 @@
 package com.github.signed.timeless.contract;
 
+import com.github.signed.timeless.time.DayOfWeek;
+import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 import org.joda.time.Duration;
-import org.joda.time.LocalDate;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.joda.time.DateTimeConstants.FRIDAY;
-import static org.joda.time.DateTimeConstants.MONDAY;
-import static org.joda.time.DateTimeConstants.SATURDAY;
-import static org.joda.time.DateTimeConstants.SUNDAY;
-import static org.joda.time.DateTimeConstants.THURSDAY;
-import static org.joda.time.DateTimeConstants.TUESDAY;
-import static org.joda.time.DateTimeConstants.WEDNESDAY;
 import static org.joda.time.Duration.ZERO;
 
 public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
 
-    private record WeeklyWorkSchedule(Map<Integer, Duration> schedule) {
-        public Duration hoursToWorkAt(int dayOfWeekConstant) {
+    private record WeeklyWorkSchedule(Map<DayOfWeek, Duration> schedule) {
+        public Duration hoursToWorkAt(DayOfWeek dayOfWeekConstant) {
             return schedule.get(dayOfWeekConstant);
         }
     }
@@ -44,14 +38,14 @@ public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
     }
 
     private static WeeklyWorkSchedule weekendsAreFreeDailyHours(final Duration dailyWorkHours) {
-        var internal = new HashMap<Integer, Duration>();
-        internal.put(MONDAY, dailyWorkHours);
-        internal.put(TUESDAY, dailyWorkHours);
-        internal.put(WEDNESDAY, dailyWorkHours);
-        internal.put(THURSDAY, dailyWorkHours);
-        internal.put(FRIDAY, dailyWorkHours);
-        internal.put(SATURDAY, ZERO);
-        internal.put(SUNDAY, ZERO);
+        var internal = new HashMap<DayOfWeek, Duration>();
+        internal.put(DayOfWeek.Monday, dailyWorkHours);
+        internal.put(DayOfWeek.Tuesday, dailyWorkHours);
+        internal.put(DayOfWeek.Wednesday, dailyWorkHours);
+        internal.put(DayOfWeek.Thursday, dailyWorkHours);
+        internal.put(DayOfWeek.Friday, dailyWorkHours);
+        internal.put(DayOfWeek.Saturday, ZERO);
+        internal.put(DayOfWeek.Sunday, ZERO);
         return new WeeklyWorkSchedule(internal);
     }
 
@@ -67,6 +61,6 @@ public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
     }
 
     private Duration hoursToWorkAt(LocalDate day) {
-        return weeklyWorkSchedule.hoursToWorkAt(day.dayOfWeek().get());
+        return weeklyWorkSchedule.hoursToWorkAt(day.dayOfWeek());
     }
 }

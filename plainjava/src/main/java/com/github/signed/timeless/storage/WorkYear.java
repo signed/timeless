@@ -4,6 +4,7 @@ import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.ContractsOnRecord;
+import com.github.signed.timeless.time.Month;
 import com.github.signed.timeless.workhours.DaysOffAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
@@ -11,7 +12,7 @@ import java6.util.function.Supplier;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -53,7 +54,7 @@ public class WorkYear {
     }
 
     public BalanceSheet balanceUpUntilToday() {
-        return balanceFor(startOfYear(), new LocalDate());
+        return balanceFor(startOfYear(), LocalDate.now());
     }
 
     public BalanceSheet balanceFor(LocalDate start, LocalDate end) {
@@ -203,7 +204,7 @@ public class WorkYear {
     }
 
     private LocalDate startOfYear() {
-        return new LocalDate(year, 1, 1);
+        return LocalDate.of(year, Month.January, 1);
     }
 
     private void year(DateTimeBuilder year) {
@@ -230,7 +231,7 @@ public class WorkYear {
     }
 
     private LocalDate januaryFirst(int year) {
-        return new LocalDate(year, DateTimeConstants.JANUARY, 1);
+        return LocalDate.of(year, Month.January, 1);
     }
 
     private BalanceSheet balance(LocalDate start, LocalDate inclusiveEnd) {

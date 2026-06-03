@@ -86,4 +86,17 @@ public class LocalDateJodaTime implements LocalDate {
         return day.getYear();
     }
 
+    @Override
+    public int hashCode() {
+        return day.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof LocalDateJodaTime jodaTime) {
+            return this.day.equals(jodaTime.day);
+        }
+        return false;
+    }
+
 }

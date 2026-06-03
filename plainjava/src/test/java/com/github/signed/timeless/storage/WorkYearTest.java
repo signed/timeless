@@ -4,7 +4,7 @@ import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.contract.ContractMother;
 import com.github.signed.timeless.contract.ContractsOnRecord;
 import org.joda.time.Duration;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -22,7 +22,7 @@ class WorkYearTest {
         var contracts = new ContractsOnRecord(List.of(Contract.sampleContract()));
 
         var futureWorkYear = new WorkYear(contracts, 2026);
-        var balanceRows = futureWorkYear.balanceUntil(new LocalDate(2025, 1, 1));
+        var balanceRows = futureWorkYear.balanceUntil(LocalDate.of(2025, 1, 1));
         assertThat(balanceRows, notNullValue());
     }
 
@@ -38,8 +38,8 @@ class WorkYearTest {
                 on(january.the(2)).workedFrom("10:00-16:00");
             }
         };
-        assertThat(workYear.balanceUntil(new LocalDate(2026, 1, 1)).balance(), equalTo(Duration.ZERO));;
-        assertThat(workYear.balanceUntil(new LocalDate(2026, 1, 2)).balance(), equalTo(standardHours(1)));;
+        assertThat(workYear.balanceUntil(LocalDate.of(2026, 1, 1)).balance(), equalTo(Duration.ZERO));;
+        assertThat(workYear.balanceUntil(LocalDate.of(2026, 1, 2)).balance(), equalTo(standardHours(1)));;
     }
 
 }

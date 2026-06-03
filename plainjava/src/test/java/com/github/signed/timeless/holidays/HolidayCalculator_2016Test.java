@@ -1,6 +1,6 @@
 package com.github.signed.timeless.holidays;
 
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -70,7 +70,7 @@ class HolidayCalculator_2016Test {
     }
 
     private LocalDate _2016(int monthOfYear, int dayOfMonth) {
-        return new LocalDate(2016, monthOfYear, dayOfMonth);
+        return LocalDate.of(2016, monthOfYear, dayOfMonth);
     }
 
     private LocalDate dateOfHoliday(int index) {

@@ -5,7 +5,7 @@ import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
 import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.contract.ContractsOnRecord;
 import org.joda.time.Duration;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import java.io.PrintStream;
@@ -31,7 +31,7 @@ class MyHoursWorked_Test {
             }
         };
 
-        final var balanceSheet = workYear.balanceFor(new LocalDate(2024, 7, 1), new LocalDate(2024, 7, 16));
+        final var balanceSheet = workYear.balanceFor(LocalDate.of(2024, 7, 1), LocalDate.of(2024, 7, 16));
         printBalance(balanceSheet);
         assertThat(balanceSheet.balance(), is(Duration.standardHours(12).plus(Duration.standardMinutes(8)).multipliedBy(-1)));
     }

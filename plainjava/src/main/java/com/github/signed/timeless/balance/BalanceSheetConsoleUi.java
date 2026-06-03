@@ -104,7 +104,7 @@ public class BalanceSheetConsoleUi {
     }
 
     private String workdayToString(BalanceRow balanceRow) {
-        String dayAsString = balanceRow.day().toString("E yyyy.MM.dd");
+        String dayAsString = balanceRow.day().asString();
 
         List<String> workBlocks = new ArrayList<>();
         for (Interval consecutiveTime : balanceRow.dailyWorkLog().intervalsWorked()) {

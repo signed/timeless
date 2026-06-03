@@ -2,7 +2,7 @@ package com.github.signed.timeless.workhours;
 
 import java6.util.Optional;
 import java6.util.function.Consumer;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 import java.util.HashMap;
 import java.util.Map;

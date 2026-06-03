@@ -6,8 +6,9 @@ import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.contract.ContractsOnRecord;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.WorkYear;
+import com.github.signed.timeless.time.Month;
 import org.joda.time.Duration;
-import org.joda.time.LocalDate;
+import com.github.signed.timeless.time.LocalDate;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -24,7 +25,7 @@ class Application {
         final var contracts = new ContractsOnRecord(List.of(Contract.sampleContract()));
         WorkYear workYear = new SampleYear(contracts);
 
-        printBalance(workYear.balanceFor(new LocalDate(2024, 7, 1), new LocalDate(2024, 7, 17)));
+        printBalance(workYear.balanceFor(LocalDate.of(2024, Month.July, 1), LocalDate.of(2024, Month.July, 17)));
     }
 
     private void printBalance(BalanceSheet balanceSheet) {
