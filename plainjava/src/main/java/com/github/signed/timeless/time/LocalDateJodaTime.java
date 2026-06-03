@@ -2,37 +2,24 @@ package com.github.signed.timeless.time;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
+import org.joda.time.DateTimeZone;
 
 public class LocalDateJodaTime implements LocalDate {
     private static int toDateTimeConstant(Month month) {
-        switch (month) {
-            case January:
-                return DateTimeConstants.JANUARY;
-            case February:
-                return DateTimeConstants.FEBRUARY;
-            case March:
-                return DateTimeConstants.MARCH;
-            case April:
-                return DateTimeConstants.APRIL;
-            case May:
-                return DateTimeConstants.MAY;
-            case June:
-                return DateTimeConstants.JUNE;
-            case July:
-                return DateTimeConstants.JULY;
-            case August:
-                return DateTimeConstants.AUGUST;
-            case September:
-                return DateTimeConstants.SEPTEMBER;
-            case October:
-                return DateTimeConstants.OCTOBER;
-            case November:
-                return DateTimeConstants.NOVEMBER;
-            case December:
-                return DateTimeConstants.DECEMBER;
-            default:
-                throw new IllegalArgumentException("Invalid month: " + month);
-        }
+        return switch (month) {
+            case January -> DateTimeConstants.JANUARY;
+            case February -> DateTimeConstants.FEBRUARY;
+            case March -> DateTimeConstants.MARCH;
+            case April -> DateTimeConstants.APRIL;
+            case May -> DateTimeConstants.MAY;
+            case June -> DateTimeConstants.JUNE;
+            case July -> DateTimeConstants.JULY;
+            case August -> DateTimeConstants.AUGUST;
+            case September -> DateTimeConstants.SEPTEMBER;
+            case October -> DateTimeConstants.OCTOBER;
+            case November -> DateTimeConstants.NOVEMBER;
+            case December -> DateTimeConstants.DECEMBER;
+        };
     }
 
     private final org.joda.time.LocalDate day;
@@ -50,4 +37,15 @@ public class LocalDateJodaTime implements LocalDate {
     public boolean isDayOfMonth(int dayOfMonth) {
         return day.dayOfMonth().get() == dayOfMonth;
     }
+
+    @Override
+    public LocalDate plusDays(int days) {
+        return new LocalDateJodaTime(day.plusDays(days));
+    }
+
+    @Override
+    public DateTime toDateTimeAtStartOfDay(DateTimeZone zone) {
+        return day.toDateTimeAtStartOfDay(zone);
+    }
+
 }
