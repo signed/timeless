@@ -1,8 +1,8 @@
 # https://docs.gradle.org/current/userguide/version_catalogs.html#sec:version-catalog-declaration
 [versions]
 hamcrest = "3.0"
-joda-time = "2.14.1"
-junit = "6.0.3"
+joda-time = "2.14.2"
+junit = "6.1.0"
 mockito = "5.23.0"
 streamsupport = "1.7.4"
 version-catalog-update = "1.1.0"
