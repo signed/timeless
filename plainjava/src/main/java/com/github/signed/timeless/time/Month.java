@@ -13,4 +13,8 @@ public enum Month {
     October,
     November,
     December;
+
+    public int toJodaInt() {
+        return ToJodaTime.toDateTimeConstant(this);
+    }
 }

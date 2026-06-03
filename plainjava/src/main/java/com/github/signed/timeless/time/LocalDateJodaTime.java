@@ -1,26 +1,9 @@
 package com.github.signed.timeless.time;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
 
 public class LocalDateJodaTime implements LocalDate {
-    private static int toDateTimeConstant(Month month) {
-        return switch (month) {
-            case January -> DateTimeConstants.JANUARY;
-            case February -> DateTimeConstants.FEBRUARY;
-            case March -> DateTimeConstants.MARCH;
-            case April -> DateTimeConstants.APRIL;
-            case May -> DateTimeConstants.MAY;
-            case June -> DateTimeConstants.JUNE;
-            case July -> DateTimeConstants.JULY;
-            case August -> DateTimeConstants.AUGUST;
-            case September -> DateTimeConstants.SEPTEMBER;
-            case October -> DateTimeConstants.OCTOBER;
-            case November -> DateTimeConstants.NOVEMBER;
-            case December -> DateTimeConstants.DECEMBER;
-        };
-    }
 
     private final org.joda.time.LocalDate day;
 
@@ -30,7 +13,7 @@ public class LocalDateJodaTime implements LocalDate {
 
     @Override
     public boolean is(Month month) {
-        return day.monthOfYear().get() == toDateTimeConstant(month);
+        return day.monthOfYear().get() == ToJodaTime.toDateTimeConstant(month);
     }
 
     @Override
@@ -44,8 +27,63 @@ public class LocalDateJodaTime implements LocalDate {
     }
 
     @Override
+    public LocalDate minusDays(int days) {
+        return new LocalDateJodaTime(day.minusDays(days));
+    }
+
+    @Override
     public DateTime toDateTimeAtStartOfDay(DateTimeZone zone) {
         return day.toDateTimeAtStartOfDay(zone);
+    }
+
+    @Override
+    public DayOfWeek dayOfWeek() {
+        return FromJodaTime.toDayOfWeek(day);
+    }
+
+    @Override
+    public boolean isBefore(LocalDate localDate) {
+        return day.isBefore(localDate.joda());
+    }
+
+    @Override
+    public org.joda.time.LocalDate joda() {
+        return day;
+    }
+
+    @Override
+    public String asString() {
+        return day.toString("E yyyy.MM.dd");
+    }
+
+    @Override
+    public int weekOfWeekyear() {
+        return day.getWeekOfWeekyear();
+    }
+
+    @Override
+    public int compareTo(LocalDate other) {
+        return day.compareTo(other.joda());
+    }
+
+    @Override
+    public Month monthOfYear() {
+        return FromJodaTime.toMonth(day);
+    }
+
+    @Override
+    public int dayOfMonth() {
+        return day.getDayOfMonth();
+    }
+
+    @Override
+    public LocalDate plusMonths(int numberOfMonths) {
+        return new LocalDateJodaTime(day.plusMonths(numberOfMonths));
+    }
+
+    @Override
+    public int getYear() {
+        return day.getYear();
     }
 
 }
