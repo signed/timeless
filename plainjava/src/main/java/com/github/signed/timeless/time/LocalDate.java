@@ -7,19 +7,18 @@ import org.joda.time.DateTimeZone;
  * Mirrors import com.github.signed.timeless.time.LocalDate;
  */
 public interface LocalDate extends Comparable<LocalDate> {
+     LocalDateFactory factory = new JodaTimeFactory();
 
     static LocalDate now() {
-        return of(new org.joda.time.LocalDate());
+        return factory.now();
     }
 
     static LocalDate of(int year, Month month, int day) {
-        var jodaMonth = ToJodaTime.toDateTimeConstant(month);
-        return of(new org.joda.time.LocalDate(year, jodaMonth, day));
+        return factory.of(year, month, day);
     }
 
-    //todo get rid of
     static LocalDate of(org.joda.time.LocalDate localDate) {
-        return new LocalDateJodaTime(localDate);
+        return factory.of(localDate);
     }
 
     boolean is(Month month);
