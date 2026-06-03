@@ -1,25 +1,18 @@
 package com.github.signed.timeless.balance;
 
+import com.github.signed.timeless.time.Interval;
 import java6.util.function.Predicate;
 import java8.util.stream.StreamSupport;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Duration;
-import com.github.signed.timeless.time.Interval;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
-import java.io.PrintStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -109,7 +102,7 @@ public class BalanceSheetConsoleUi {
         List<String> workBlocks = new ArrayList<>();
         for (Interval consecutiveTime : balanceRow.dailyWorkLog().intervalsWorked()) {
             DateTimeFormatter workLogFormatter = new DateTimeFormatterBuilder().appendHourOfDay(2).appendLiteral(":").appendMinuteOfHour(2).toFormatter();
-            workBlocks.add(consecutiveTime.getStart().toDateTime(uiTimeZone).toString(workLogFormatter) + "-" + consecutiveTime.getEnd().toDateTime(uiTimeZone).toString(workLogFormatter));
+            workBlocks.add(consecutiveTime.getStart().toDateTime(uiTimeZone).asString(workLogFormatter) + "-" + consecutiveTime.getEnd().toDateTime(uiTimeZone).asString(workLogFormatter));
         }
         final var hours = hoursWorkedToString(balanceRow.timeWorked());
 

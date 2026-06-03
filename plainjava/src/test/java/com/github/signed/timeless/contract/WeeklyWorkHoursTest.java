@@ -1,9 +1,9 @@
 package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.storage.DateTimeMother;
+import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 import org.joda.time.Duration;
-import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
@@ -12,7 +12,9 @@ import static com.github.signed.timeless.storage.DateTimeMother.AnySaturday;
 import static com.github.signed.timeless.storage.DateTimeMother.AnySunday;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.joda.time.Duration.*;
+import static org.joda.time.Duration.ZERO;
+import static org.joda.time.Duration.standardHours;
+import static org.joda.time.Duration.standardMinutes;
 import static org.mockito.Mockito.mock;
 
 class WeeklyWorkHoursTest {

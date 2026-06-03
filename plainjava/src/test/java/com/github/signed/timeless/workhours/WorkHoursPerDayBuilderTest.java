@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.joda.time.Duration.*;
+import static org.joda.time.Duration.ZERO;
+import static org.joda.time.Duration.standardDays;
+import static org.joda.time.Duration.standardHours;
+import static org.joda.time.Duration.standardMinutes;
 
 class WorkHoursPerDayBuilderTest {
 

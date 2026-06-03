@@ -2,11 +2,11 @@ package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.holidays.Holidays;
+import com.github.signed.timeless.time.Interval;
+import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 import org.joda.time.DateTimeZone;
-import com.github.signed.timeless.time.Interval;
-import com.github.signed.timeless.time.LocalDate;
 
 import java.util.Arrays;
 import java.util.List;

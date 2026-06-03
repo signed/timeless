@@ -1,6 +1,6 @@
 package com.github.signed.timeless;
 
-import org.joda.time.DateTime;
+import com.github.signed.timeless.time.DateTime;
 
 import java.util.Comparator;
 

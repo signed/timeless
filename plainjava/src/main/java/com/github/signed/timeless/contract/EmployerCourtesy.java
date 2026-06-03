@@ -1,16 +1,13 @@
 package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.specialdays.SpecialDay;
+import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.workhours.WorkHoursAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
-import com.github.signed.timeless.time.LocalDate;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static com.github.signed.timeless.specialdays.SpecialDays.christmas;
-import static com.github.signed.timeless.specialdays.SpecialDays.newYearsEve;
 
 public class EmployerCourtesy implements WorkHoursPerDayAdjuster {
 

@@ -1,7 +1,7 @@
 package com.github.signed.timeless.storage;
 
 import com.github.signed.timeless.Punch;
-import org.joda.time.DateTime;
+import com.github.signed.timeless.time.DateTime;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 
@@ -16,11 +16,11 @@ class PunchesBuilder {
     private final List<Punch> punches = new ArrayList<>();
 
     private static LocalDate fromInternal(List<Punch> punches) {
-        return LocalDate.of(punches.get(0).dateTime().toLocalDate());
+        return punches.get(0).dateTime().toLocalDate();
     }
 
     private static LocalDate untilInternal(List<Punch> punches) {
-        return LocalDate.of(punches.get(punches.size() - 1).dateTime().toLocalDate());
+        return punches.get(punches.size() - 1).dateTime().toLocalDate();
     }
 
     public void punchInAt(DateTimeBuilder dateTime) {

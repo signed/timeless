@@ -1,8 +1,8 @@
 package com.github.signed.timeless.balance;
 
+import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.workhours.WorkHoursPerDay;
 import org.joda.time.Duration;
-import com.github.signed.timeless.time.LocalDate;
 
 class BalanceRow implements Comparable<BalanceRow> {
     private final LocalDate day;

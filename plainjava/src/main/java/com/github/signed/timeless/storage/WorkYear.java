@@ -4,16 +4,14 @@ import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.ContractsOnRecord;
+import com.github.signed.timeless.time.Interval;
+import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
 import com.github.signed.timeless.workhours.DaysOffAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 import java6.util.function.Supplier;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
-import com.github.signed.timeless.time.Interval;
-import com.github.signed.timeless.time.LocalDate;
 
 import java.util.Arrays;
 import java.util.HashSet;

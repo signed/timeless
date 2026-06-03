@@ -1,6 +1,5 @@
 package com.github.signed.timeless.time;
 
-import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.ReadableInterval;
 
@@ -13,17 +12,17 @@ public class IntervalJodaTime implements Interval {
 
     @Override
     public boolean contains(DateTime dateTimeAtStartOfDay) {
-        return interval.contains(dateTimeAtStartOfDay);
+        return interval.contains(dateTimeAtStartOfDay.toJoda());
     }
 
     @Override
     public DateTime getStart() {
-        return interval.getStart();
+        return new DateTimeJodaTime(interval.getStart());
     }
 
     @Override
     public DateTime getEnd() {
-        return interval.getEnd();
+        return new DateTimeJodaTime(interval.getEnd());
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.github.signed.timeless.holidays;
 
-import com.github.signed.timeless.time.FromJodaTime;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,6 @@ import static com.github.signed.timeless.time.Month.November;
 import static com.github.signed.timeless.time.Month.October;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.joda.time.DateTimeConstants.*;
 
 class HolidayCalculator_2015Test {
 

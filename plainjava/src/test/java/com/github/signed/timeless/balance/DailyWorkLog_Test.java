@@ -2,8 +2,8 @@ package com.github.signed.timeless.balance;
 
 import com.github.signed.timeless.ConsecutiveTime;
 import com.github.signed.timeless.storage.DateTimeMother;
-import org.joda.time.Duration;
 import com.github.signed.timeless.time.LocalDate;
+import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

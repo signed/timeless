@@ -1,8 +1,8 @@
 package com.github.signed.timeless.workhours;
 
+import com.github.signed.timeless.time.LocalDate;
 import java6.util.Optional;
 import java6.util.function.Consumer;
-import com.github.signed.timeless.time.LocalDate;
 
 import java.util.HashMap;
 import java.util.Map;

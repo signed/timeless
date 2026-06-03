@@ -1,11 +1,11 @@
 package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.Constants;
+import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
 import org.joda.time.Duration;
-import com.github.signed.timeless.time.Interval;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

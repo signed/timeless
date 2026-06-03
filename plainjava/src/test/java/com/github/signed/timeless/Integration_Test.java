@@ -8,11 +8,11 @@ import com.github.signed.timeless.holidays.Holidays;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.DateTimeMother;
 import com.github.signed.timeless.storage.WorkLogBuilder;
+import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.workhours.DaysOffAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 import org.joda.time.Duration;
-import com.github.signed.timeless.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;

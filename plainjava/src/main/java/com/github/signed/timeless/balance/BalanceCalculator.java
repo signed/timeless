@@ -3,11 +3,10 @@ package com.github.signed.timeless.balance;
 import com.github.signed.timeless.ConsecutiveTime;
 import com.github.signed.timeless.HoursRequired;
 import com.github.signed.timeless.TimeCard;
-import com.github.signed.timeless.workhours.WorkHoursPerDay;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
+import com.github.signed.timeless.workhours.WorkHoursPerDay;
+import org.joda.time.DateTimeZone;
 
 import java.util.ArrayList;
 import java.util.List;

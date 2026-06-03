@@ -1,12 +1,11 @@
 package com.github.signed.timeless.time;
 
-import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.ReadableInterval;
 
 public interface Interval {
     static Interval of(DateTime start, DateTime end) {
-        return new IntervalJodaTime(new org.joda.time.Interval(start, end));
+        return new IntervalJodaTime(new org.joda.time.Interval(start.toJoda(), end.toJoda()));
     }
 
     static Interval infinity() {

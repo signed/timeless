@@ -7,8 +7,6 @@ import com.github.signed.timeless.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.joda.time.DateTimeConstants.*;
-
 class HolidayCalculator implements HolidayAlmanac {
 
     private final EasterSundayCalculator calculator = new EasterSundayCalculator();

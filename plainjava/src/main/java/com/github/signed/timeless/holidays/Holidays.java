@@ -1,8 +1,8 @@
 package com.github.signed.timeless.holidays;
 
+import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
-import com.github.signed.timeless.time.LocalDate;
 
 import java.util.Arrays;
 import java.util.List;

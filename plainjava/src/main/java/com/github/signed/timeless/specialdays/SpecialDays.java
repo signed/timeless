@@ -1,7 +1,6 @@
 package com.github.signed.timeless.specialdays;
 
 import com.github.signed.timeless.time.Month;
-import org.joda.time.DateTimeConstants;
 
 public class SpecialDays {
     private static final EasterSundayCalculator easterSunday = new EasterSundayCalculator();

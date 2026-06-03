@@ -33,7 +33,7 @@ public class TimeCard {
     }
 
     public LocalDate from() {
-        return LocalDate.of(intervalCovered.getStart().toLocalDate());
+        return intervalCovered.getStart().toLocalDate();
     }
 
     public boolean covers(LocalDate day) {

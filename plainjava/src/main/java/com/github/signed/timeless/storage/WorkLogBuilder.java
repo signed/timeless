@@ -2,11 +2,11 @@ package com.github.signed.timeless.storage;
 
 import com.github.signed.timeless.Punch;
 import com.github.signed.timeless.TimeCard;
+import com.github.signed.timeless.time.Interval;
+import com.github.signed.timeless.time.LocalDate;
 import java6.util.Optional;
 import java6.util.function.Supplier;
 import org.joda.time.DateTimeZone;
-import com.github.signed.timeless.time.Interval;
-import com.github.signed.timeless.time.LocalDate;
 
 import java.util.List;
 

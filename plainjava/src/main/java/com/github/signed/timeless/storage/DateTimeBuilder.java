@@ -1,11 +1,21 @@
 package com.github.signed.timeless.storage;
 
-import org.joda.time.DateTime;
+import com.github.signed.timeless.time.DateTime;
+import com.github.signed.timeless.time.LocalDate;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
-import com.github.signed.timeless.time.LocalDate;
 
-import static org.joda.time.DateTimeConstants.*;
+import static org.joda.time.DateTimeConstants.APRIL;
+import static org.joda.time.DateTimeConstants.AUGUST;
+import static org.joda.time.DateTimeConstants.DECEMBER;
+import static org.joda.time.DateTimeConstants.FEBRUARY;
+import static org.joda.time.DateTimeConstants.JANUARY;
+import static org.joda.time.DateTimeConstants.JUNE;
+import static org.joda.time.DateTimeConstants.MARCH;
+import static org.joda.time.DateTimeConstants.MAY;
+import static org.joda.time.DateTimeConstants.NOVEMBER;
+import static org.joda.time.DateTimeConstants.OCTOBER;
+import static org.joda.time.DateTimeConstants.SEPTEMBER;
 
 public class DateTimeBuilder {
 
@@ -181,10 +191,10 @@ public class DateTimeBuilder {
     }
 
     public LocalDate buildDay() {
-        return LocalDate.of(buildUtc().toLocalDate());
+        return buildUtc().toLocalDate();
     }
 
     public DateTime buildUtc() {
-        return new DateTime(year, month, dayOfMonth, hour, minutes, inputTimeZone).withZone(DateTimeZone.UTC).plusDays(dayAdjust);
+        return DateTime.of(year, month, dayOfMonth, hour, minutes, inputTimeZone).withZone(DateTimeZone.UTC).plusDays(dayAdjust);
     }
 }
