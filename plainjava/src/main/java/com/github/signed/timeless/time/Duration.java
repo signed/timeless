@@ -23,8 +23,6 @@ public interface Duration extends Comparable<Duration> {
 
     Duration minus(Duration toSubtract);
 
-    org.joda.time.Period toPeriod();
-
     Duration abs();
 
     boolean isShorterThan(Duration other);
@@ -38,4 +36,6 @@ public interface Duration extends Comparable<Duration> {
     String asBalanceString();
 
     String asHoursWorkedString();
+
+    String asString();
 }

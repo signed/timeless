@@ -6,7 +6,6 @@ import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.contract.ContractsOnRecord;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.WorkYear;
-import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
 
@@ -33,13 +32,9 @@ class Application {
 
         PrintStream out = System.out;
         out.println();
-        out.println("required to work: " + asString(balanceSheet.requiredToWork()));
-        out.println("time worked     : " + asString(balanceSheet.timeWorked()));
-        out.println("balance         : " + asString(balanceSheet.balance()));
-    }
-
-    private String asString(Duration duration) {
-        return duration.toPeriod().toString();
+        out.println("required to work: " + balanceSheet.requiredToWork().asString());
+        out.println("time worked     : " + balanceSheet.timeWorked().asString());
+        out.println("balance         : " + balanceSheet.balance().asString());
     }
 
     private static class SampleYear extends WorkYear {

@@ -52,11 +52,6 @@ public class DurationJodaTime implements Duration {
     }
 
     @Override
-    public Period toPeriod() {
-        return duration.toPeriod();
-    }
-
-    @Override
     public DurationJodaTime abs() {
         return new DurationJodaTime(duration.abs());
     }
@@ -122,6 +117,11 @@ public class DurationJodaTime implements Duration {
     private static int hoursFor(Duration absBalance) {
         final var atLeastAnHour = !Duration.standardHours(1).isLongerThan(absBalance);
         return atLeastAnHour ? 0 : 1;
+    }
+
+    @Override
+    public String asString() {
+        return duration.toPeriod().toString();
     }
 
     @Override

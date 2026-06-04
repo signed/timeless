@@ -42,14 +42,10 @@ class MyHoursWorked_Test {
 
         PrintStream out = System.out;
         out.println();
-        out.println("required to work: " + asString(balanceSheet.requiredToWork()));
-        out.println("time worked     : " + asString(balanceSheet.timeWorked()));
-        out.println("balance         : " + asString(balanceSheet.balance()));
-        out.println("total balance   : " + asString(balanceSheet.balance()));
-    }
-
-    private String asString(Duration duration) {
-        return duration.toPeriod().toString();
+        out.println("required to work: " + balanceSheet.requiredToWork().asString());
+        out.println("time worked     : " + balanceSheet.timeWorked().asString());
+        out.println("balance         : " + balanceSheet.balance().asString());
+        out.println("total balance   : " + balanceSheet.balance().asString());
     }
 
 }
