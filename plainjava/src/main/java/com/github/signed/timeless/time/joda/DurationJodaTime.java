@@ -57,7 +57,7 @@ public class DurationJodaTime implements Duration {
     }
 
     @Override
-    public Duration abs() {
+    public DurationJodaTime abs() {
         return new DurationJodaTime(duration.abs());
     }
 
@@ -102,7 +102,7 @@ public class DurationJodaTime implements Duration {
     @Override
     public String asBalanceString() {
         final var absBalance = abs();
-        final var period = absBalance.toPeriod();
+        final var period = absBalance.duration.toPeriod();
         final var hour = period.toString(HourFormatter);
         final var minute = period.toString(MinuteFormatter);
         boolean isNegative = isShorterThan(Duration.ZERO());
@@ -115,7 +115,7 @@ public class DurationJodaTime implements Duration {
 
     @Override
     public String asHoursWorkedString() {
-        final var period = toPeriod();
+        final var period = duration.toPeriod();
         return period.toString(hoursWorkedFormatter);
     }
 
