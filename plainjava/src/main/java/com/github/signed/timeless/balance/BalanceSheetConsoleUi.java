@@ -14,12 +14,6 @@ import java.io.PrintStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -83,7 +77,10 @@ public class BalanceSheetConsoleUi {
     }
 
     public void print(BalanceSheet balanceSheet) {
-        final var out = System.out;
+        printTo(System.out, balanceSheet);
+    }
+
+    public void printTo(PrintStream out, BalanceSheet balanceSheet) {
         final var weeks = balanceSheet.weeklyBalance();
         final var weeksToPrint = 3;
         final var toPrint = weeks.subList(Math.max(weeks.size() - weeksToPrint, 0), weeks.size());
