@@ -5,8 +5,6 @@ import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.Interval;
 import java6.util.function.Predicate;
 import java8.util.stream.StreamSupport;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.DateTimeFormatterBuilder;
 
 import java.io.PrintStream;
 import java.text.MessageFormat;
@@ -72,11 +70,13 @@ public class BalanceSheetConsoleUi {
 
         List<String> workBlocks = new ArrayList<>();
         for (Interval consecutiveTime : balanceRow.dailyWorkLog().intervalsWorked()) {
-            DateTimeFormatter workLogFormatter = new DateTimeFormatterBuilder().appendHourOfDay(2).appendLiteral(":").appendMinuteOfHour(2).toFormatter();
-            workBlocks.add(consecutiveTime.getStart().toDateTime(uiTimeZone).asString(workLogFormatter) + "-" + consecutiveTime.getEnd().toDateTime(uiTimeZone).asString(workLogFormatter));
+            var from = consecutiveTime.getStart().toDateTime(uiTimeZone);
+            var till = consecutiveTime.getEnd().toDateTime(uiTimeZone);
+            workBlocks.add(from.asWorkLogString() + "-" + till.asWorkLogString());
         }
         final var hours = hoursWorkedToString(balanceRow.timeWorked());
 
         return MessageFormat.format("{0}:  {1}  {2}\t\t{3}", dayAsString, hours, balanceToString(balanceRow.balance()), StreamSupport.stream(workBlocks).collect(joining("  ")));
     }
+
 }

@@ -1,8 +1,10 @@
 package com.github.signed.timeless.time;
 
 import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimeFormatterBuilder;
 
 public class DateTimeJodaTime implements DateTime {
+    private static final DateTimeFormatter workLogFormatter = new DateTimeFormatterBuilder().appendHourOfDay(2).appendLiteral(":").appendMinuteOfHour(2).toFormatter();
 
     private final org.joda.time.DateTime dateTime;
 
@@ -19,11 +21,6 @@ public class DateTimeJodaTime implements DateTime {
     public DateTime toDateTime(DateTimeZone timeZone) {
         var jodaTimeDateTimeZone = ToJodaTime.toJodaTime(timeZone);
         return new DateTimeJodaTime(dateTime.toDateTime(jodaTimeDateTimeZone));
-    }
-
-    @Override
-    public String asString(DateTimeFormatter workLogFormatter) {
-        return dateTime.toString(workLogFormatter);
     }
 
     @Override
@@ -64,4 +61,10 @@ public class DateTimeJodaTime implements DateTime {
     public int hashCode() {
         return dateTime.hashCode();
     }
+
+    @Override
+    public String asWorkLogString() {
+        return dateTime.toString(workLogFormatter);
+    }
+
 }

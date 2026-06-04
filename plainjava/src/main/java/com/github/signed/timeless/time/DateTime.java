@@ -1,7 +1,5 @@
 package com.github.signed.timeless.time;
 
-import org.joda.time.format.DateTimeFormatter;
-
 public interface DateTime extends Comparable<DateTime> {
     static DateTime of(int year, Month month, int dayOfMonth, int hour, int minutes, DateTimeZone dateTimeZone) {
         var jodaMonth = ToJodaTime.toDateTimeConstant(month);
@@ -13,8 +11,6 @@ public interface DateTime extends Comparable<DateTime> {
 
     DateTime toDateTime(DateTimeZone timeZone);
 
-    String asString(DateTimeFormatter workLogFormatter);
-
     DateTime plusDays(int days);
 
     LocalDate toLocalDate();
@@ -22,4 +18,6 @@ public interface DateTime extends Comparable<DateTime> {
     DateTime withZone(DateTimeZone utc);
 
     boolean isBefore(DateTime other);
+
+    String asWorkLogString();
 }
