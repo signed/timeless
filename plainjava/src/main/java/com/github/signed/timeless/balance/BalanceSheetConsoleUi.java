@@ -7,8 +7,6 @@ import java6.util.function.Predicate;
 import java8.util.stream.StreamSupport;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
-import org.joda.time.format.PeriodFormatter;
-import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.io.PrintStream;
 import java.text.MessageFormat;
@@ -25,19 +23,17 @@ public class BalanceSheetConsoleUi {
         if (Duration.ZERO().equals(absBalance)) {
             return "      ";
         }
-        return balance.asString();
+        return balance.asBalanceString();
     }
-
-    private static final PeriodFormatter hoursWorkedFormatter = new PeriodFormatterBuilder().minimumPrintedDigits(2).printZeroIfSupported().appendHours().appendLiteral(":").appendMinutes().toFormatter();
 
     public static String hoursWorkedToString(final Duration timeWorked) {
 
         if (Duration.ZERO().equals(timeWorked)) {
             return "     ";
         }
-        final var period = timeWorked.toPeriod();
-        return period.toString(hoursWorkedFormatter);
+        return timeWorked.asHoursWorkedString();
     }
+
 
     private final DateTimeZone uiTimeZone = inputTimeZone();
 

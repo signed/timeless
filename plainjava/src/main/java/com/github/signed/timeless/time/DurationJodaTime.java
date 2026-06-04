@@ -15,6 +15,7 @@ public class DurationJodaTime implements Duration {
             .minimumPrintedDigits(2)
             .printZeroIfSupported().appendMinutes()
             .toFormatter();
+    private static final PeriodFormatter hoursWorkedFormatter = new PeriodFormatterBuilder().minimumPrintedDigits(2).printZeroIfSupported().appendHours().appendLiteral(":").appendMinutes().toFormatter();
 
     private final org.joda.time.Duration duration;
 
@@ -91,7 +92,7 @@ public class DurationJodaTime implements Duration {
     }
 
     @Override
-    public String asString() {
+    public String asBalanceString() {
         final var absBalance = abs();
         final var period = absBalance.toPeriod();
         final var hour = period.toString(HourFormatter);
@@ -102,6 +103,12 @@ public class DurationJodaTime implements Duration {
                 .skip(hoursFor(absBalance))
                 .collect(Collectors.joining(":"));
         return String.format("%s%5s", sign, collect);
+    }
+
+    @Override
+    public String asHoursWorkedString() {
+        final var period = toPeriod();
+        return period.toString(hoursWorkedFormatter);
     }
 
     private static int hoursFor(Duration absBalance) {

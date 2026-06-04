@@ -37,5 +37,7 @@ public interface Duration extends Comparable<Duration> {
 
     Duration negated();
 
-    String asString();
+    String asBalanceString();
+
+    String asHoursWorkedString();
 }
