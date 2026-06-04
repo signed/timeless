@@ -1,7 +1,9 @@
 package com.github.signed.timeless.storage;
 
 import com.github.signed.timeless.time.DateTime;
+import com.github.signed.timeless.time.FromJodaTime;
 import com.github.signed.timeless.time.LocalDate;
+import com.github.signed.timeless.time.Month;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
 
@@ -21,7 +23,7 @@ public class DateTimeBuilder {
 
     private DateTimeZone inputTimeZone = DateTimeZone.UTC;
     private int year;
-    private int month;
+    private Month month;
     private int dayOfMonth;
     private int hour;
     private int dayAdjust = 0;
@@ -150,7 +152,7 @@ public class DateTimeBuilder {
     }
 
     private DateTimeBuilder month(int month) {
-        this.month = month;
+        this.month = FromJodaTime.toMonth(month);
         return this;
     }
 
