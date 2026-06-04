@@ -77,4 +77,8 @@ public class DurationJodaTime implements Duration {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return duration.toString();
+    }
 }
