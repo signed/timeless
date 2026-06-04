@@ -50,8 +50,8 @@ class ContractsOnRecordTest {
     }
 
     private static Contract ondDayContract(LocalDate day, int hours) {
-        final var start = day.toDateTimeAtStartOfDay(Constants.frontendTimeZone());
-        final var end = day.plusDays(1).toDateTimeAtStartOfDay(Constants.frontendTimeZone());
+        final var start = day.toDateTimeAtStartOfDay(Constants.inputTimeZone());
+        final var end = day.plusDays(1).toDateTimeAtStartOfDay(Constants.inputTimeZone());
         final var term = Interval.of(start, end);
         return new Contract(term, List.of((date, workHoursPerDayBuilder) -> workHoursPerDayBuilder.hoursToWork(Duration.standardHours(hours))));
     }

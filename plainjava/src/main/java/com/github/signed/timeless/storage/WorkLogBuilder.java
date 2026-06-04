@@ -1,19 +1,20 @@
 package com.github.signed.timeless.storage;
 
+import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.Punch;
 import com.github.signed.timeless.TimeCard;
+import com.github.signed.timeless.time.DateTimeZone;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 import java6.util.Optional;
 import java6.util.function.Supplier;
-import org.joda.time.DateTimeZone;
 
 import java.util.List;
 
 public class WorkLogBuilder {
 
     private final PunchesBuilder punches = new PunchesBuilder();
-    private DateTimeZone inputTimeZone = DateTimeZone.UTC;
+    private DateTimeZone inputTimeZone = DateTimeZone.Utc;
     private DateTimeBuilder day;
     private Optional<Interval> maybeInterval = Optional.empty();
 
@@ -27,7 +28,7 @@ public class WorkLogBuilder {
     }
 
     public WorkLogBuilder inLocalTime() {
-        return inLocalTime(DateTimeZone.getDefault());
+        return inLocalTime(Constants.inputTimeZone());
     }
 
     public WorkLogBuilder inLocalTime(DateTimeZone inputTimeZone) {

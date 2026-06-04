@@ -1,10 +1,10 @@
 package com.github.signed.timeless.balance;
 
+import com.github.signed.timeless.time.DateTimeZone;
 import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.Interval;
 import java6.util.function.Predicate;
 import java8.util.stream.StreamSupport;
-import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.PeriodFormatter;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.github.signed.timeless.Constants.frontendTimeZone;
+import static com.github.signed.timeless.Constants.inputTimeZone;
 import static java8.util.stream.Collectors.joining;
 
 public class BalanceSheetConsoleUi {
@@ -68,7 +68,7 @@ public class BalanceSheetConsoleUi {
         return String.format("%4s", input);
     }
 
-    private final DateTimeZone uiTimeZone = frontendTimeZone();
+    private final DateTimeZone uiTimeZone = inputTimeZone();
 
     private Predicate<BalanceRow> printPredicate = balanceRows -> true;
 

@@ -1,7 +1,5 @@
 package com.github.signed.timeless.time;
 
-import org.joda.time.DateTimeZone;
-
 /**
  * Mirrors import com.github.signed.timeless.time.LocalDate;
  */

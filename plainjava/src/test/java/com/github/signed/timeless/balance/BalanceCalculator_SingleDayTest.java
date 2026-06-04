@@ -39,7 +39,7 @@ class BalanceCalculator_SingleDayTest {
     }
 
     private BalanceSheet balanceSheet() {
-        return new BalanceCalculator(hoursRequired, Constants.frontendTimeZone()).balanceFor(workLogBuilder.timeCard());
+        return new BalanceCalculator(hoursRequired, Constants.inputTimeZone()).balanceFor(workLogBuilder.timeCard());
     }
 
 }

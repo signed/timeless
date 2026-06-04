@@ -4,6 +4,7 @@ import com.github.signed.timeless.Constants;
 import com.github.signed.timeless.balance.BalanceCalculator;
 import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.contract.ContractsOnRecord;
+import com.github.signed.timeless.time.DateTimeZone;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
@@ -11,7 +12,6 @@ import com.github.signed.timeless.workhours.DaysOffAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayCompendium;
 import java6.util.function.Supplier;
-import org.joda.time.DateTimeZone;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,7 +26,7 @@ public class WorkYear {
     private final DaysOffAdjuster personalTimeOff = new DaysOffAdjuster();
     private final DaysOffAdjuster sickLeave = new DaysOffAdjuster();
     private final DaysOffAdjuster conferenceDays = new DaysOffAdjuster();
-    private final DateTimeZone inputTimeZone = DateTimeZone.getDefault();
+    private final DateTimeZone inputTimeZone = Constants.inputTimeZone();
     private final BalanceCalculator balanceCalculator;
     private final int year;
     // has to be set up for each individual balance call
@@ -34,7 +34,7 @@ public class WorkYear {
 
     public WorkYear(final ContractsOnRecord contracts, int year) {
         WorkHoursPerDayCompendium compendium = new WorkHoursPerDayCompendium(adjusters(contracts, personalTimeOff, sickLeave, conferenceDays));
-        balanceCalculator = new BalanceCalculator(compendium, Constants.frontendTimeZone());
+        balanceCalculator = new BalanceCalculator(compendium, Constants.inputTimeZone());
         this.year = year;
     }
 

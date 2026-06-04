@@ -1,6 +1,5 @@
 package com.github.signed.timeless.time;
 
-import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormatter;
 
 public class DateTimeJodaTime implements DateTime {
@@ -18,7 +17,8 @@ public class DateTimeJodaTime implements DateTime {
 
     @Override
     public DateTime toDateTime(DateTimeZone timeZone) {
-        return new DateTimeJodaTime(dateTime.toDateTime(timeZone));
+        var jodaTimeDateTimeZone = ToJodaTime.toJodaTime(timeZone);
+        return new DateTimeJodaTime(dateTime.toDateTime(jodaTimeDateTimeZone));
     }
 
     @Override
@@ -38,7 +38,8 @@ public class DateTimeJodaTime implements DateTime {
 
     @Override
     public DateTime withZone(DateTimeZone dateTimeZone) {
-        return new DateTimeJodaTime(dateTime.withZone(dateTimeZone));
+        var jodaTimeDateTimeZone = ToJodaTime.toJodaTime(dateTimeZone);
+        return new DateTimeJodaTime(dateTime.withZone(jodaTimeDateTimeZone));
     }
 
     @Override

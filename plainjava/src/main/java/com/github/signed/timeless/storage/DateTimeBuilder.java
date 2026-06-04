@@ -1,10 +1,10 @@
 package com.github.signed.timeless.storage;
 
 import com.github.signed.timeless.time.DateTime;
+import com.github.signed.timeless.time.DateTimeZone;
 import com.github.signed.timeless.time.FromJodaTime;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
-import org.joda.time.DateTimeZone;
 
 import static com.github.signed.timeless.time.Month.April;
 import static com.github.signed.timeless.time.Month.August;
@@ -21,7 +21,7 @@ import static com.github.signed.timeless.time.Month.September;
 
 public class DateTimeBuilder {
 
-    private DateTimeZone inputTimeZone = DateTimeZone.UTC;
+    private DateTimeZone inputTimeZone = DateTimeZone.Utc;
     private int year;
     private Month month;
     private int dayOfMonth;
@@ -201,6 +201,6 @@ public class DateTimeBuilder {
     }
 
     public DateTime buildUtc() {
-        return DateTime.of(year, month, dayOfMonth, hour, minutes, inputTimeZone).withZone(DateTimeZone.UTC).plusDays(dayAdjust);
+        return DateTime.of(year, month, dayOfMonth, hour, minutes, inputTimeZone).withZone(DateTimeZone.Utc).plusDays(dayAdjust);
     }
 }

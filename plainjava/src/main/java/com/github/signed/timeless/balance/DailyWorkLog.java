@@ -2,6 +2,7 @@ package com.github.signed.timeless.balance;
 
 import com.github.signed.timeless.ConsecutiveTime;
 import com.github.signed.timeless.time.DateTime;
+import com.github.signed.timeless.time.DateTimeZone;
 import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
@@ -9,7 +10,6 @@ import java8.util.function.BinaryOperator;
 import java8.util.function.Function;
 import java8.util.stream.Collectors;
 import java8.util.stream.Stream;
-import org.joda.time.DateTimeZone;
 
 import java.util.List;
 

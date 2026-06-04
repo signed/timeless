@@ -1,7 +1,5 @@
 package com.github.signed.timeless.time;
 
-import org.joda.time.DateTimeZone;
-
 public class LocalDateJodaTime implements LocalDate {
 
     private final org.joda.time.LocalDate day;
@@ -32,7 +30,8 @@ public class LocalDateJodaTime implements LocalDate {
 
     @Override
     public DateTime toDateTimeAtStartOfDay(DateTimeZone zone) {
-        return new DateTimeJodaTime(day.toDateTimeAtStartOfDay(zone));
+        var jodaTimeDateTimeZone = ToJodaTime.toJodaTime(zone);
+        return new DateTimeJodaTime(day.toDateTimeAtStartOfDay(jodaTimeDateTimeZone));
     }
 
     @Override

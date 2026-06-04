@@ -20,4 +20,10 @@ public class ToJodaTime {
         };
     }
 
+    static org.joda.time.DateTimeZone toJodaTime(DateTimeZone dateTimeZone) {
+        return switch (dateTimeZone) {
+            case Utc -> org.joda.time.DateTimeZone.UTC;
+            case EuropeBerlin -> org.joda.time.DateTimeZone.forID("Europe/Berlin");
+        };
+    }
 }

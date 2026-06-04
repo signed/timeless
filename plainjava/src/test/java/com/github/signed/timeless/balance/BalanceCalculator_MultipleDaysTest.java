@@ -29,7 +29,7 @@ class BalanceCalculator_MultipleDaysTest {
         workLogBuilder.on(monday.plusDays(1)).didNotWork();
         workLogBuilder.on(monday.plusDays(2)).workedFrom("10:00-11:00");
 
-        BalanceSheet balanceSheet = new BalanceCalculator(mock, Constants.frontendTimeZone()).balanceFor(workLogBuilder.timeCard());
+        BalanceSheet balanceSheet = new BalanceCalculator(mock, Constants.inputTimeZone()).balanceFor(workLogBuilder.timeCard());
 
         assertThat(balanceSheet.balance(), is(standardHours(1).negated()));
     }

@@ -1,13 +1,13 @@
 package com.github.signed.timeless;
 
-import org.joda.time.DateTimeZone;
+import com.github.signed.timeless.time.DateTimeZone;
 
 public class Constants {
     public static DateTimeZone backendTimeZone() {
-        return DateTimeZone.UTC;
+        return DateTimeZone.Utc;
     }
 
-    public static DateTimeZone frontendTimeZone() {
-        return DateTimeZone.forID("Europe/Berlin");
+    public static DateTimeZone inputTimeZone() {
+        return DateTimeZone.EuropeBerlin;
     }
 }
