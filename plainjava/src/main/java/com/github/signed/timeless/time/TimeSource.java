@@ -8,4 +8,8 @@ public interface TimeSource {
     LocalDate localDateNow();
 
     LocalDate localDateOf(int year, Month month, int day);
+
+    Interval intervalOf(DateTime start, DateTime end);
+
+    Interval intervalInfinity();
 }

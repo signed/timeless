@@ -1,14 +1,12 @@
 package com.github.signed.timeless.time;
 
-import com.github.signed.timeless.time.joda.IntervalJodaTime;
-
 public interface Interval {
     static Interval of(DateTime start, DateTime end) {
-        return new IntervalJodaTime(new org.joda.time.Interval(start.toJoda(), end.toJoda()));
+        return TimeSource.instance.intervalOf(start, end);
     }
 
     static Interval infinity() {
-        return new IntervalJodaTime(new org.joda.time.Interval(Long.MIN_VALUE, Long.MAX_VALUE));
+        return TimeSource.instance.intervalInfinity();
     }
 
     boolean contains(DateTime dateTimeAtStartOfDay);
