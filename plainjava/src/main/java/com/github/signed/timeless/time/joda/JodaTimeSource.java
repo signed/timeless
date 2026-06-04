@@ -16,7 +16,6 @@ public class JodaTimeSource implements TimeSource {
         return localDateOf(new org.joda.time.LocalDate(year, jodaMonth, day));
     }
 
-    @Override
     public LocalDate localDateOf(org.joda.time.LocalDate localDate) {
         return new LocalDateJodaTime(localDate);
     }

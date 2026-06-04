@@ -1,23 +1,16 @@
 package com.github.signed.timeless.time;
 
-import com.github.signed.timeless.time.joda.JodaTimeSource;
-
 /**
  * Mirrors import com.github.signed.timeless.time.LocalDate;
  */
 public interface LocalDate extends Comparable<LocalDate> {
-     TimeSource factory = new JodaTimeSource();
 
     static LocalDate now() {
-        return factory.localDateNow();
+        return TimeSource.instance.localDateNow();
     }
 
     static LocalDate of(int year, Month month, int day) {
-        return factory.localDateOf(year, month, day);
-    }
-
-    static LocalDate of(org.joda.time.LocalDate localDate) {
-        return factory.localDateOf(localDate);
+        return TimeSource.instance.localDateOf(year, month, day);
     }
 
     boolean is(Month month);
