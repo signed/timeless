@@ -39,10 +39,6 @@ public class BalanceSheetConsoleUi {
         return period.toString(hoursWorkedFormatter);
     }
 
-    private static String fourCharacters(String input) {
-        return String.format("%4s", input);
-    }
-
     private final DateTimeZone uiTimeZone = inputTimeZone();
 
     private Predicate<BalanceRow> printPredicate = balanceRows -> true;
