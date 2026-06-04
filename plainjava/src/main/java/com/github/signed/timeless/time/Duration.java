@@ -1,22 +1,20 @@
 package com.github.signed.timeless.time;
 
-import com.github.signed.timeless.time.joda.DurationJodaTime;
-
 public interface Duration extends Comparable<Duration> {
     static Duration ZERO() {
-        return new DurationJodaTime(org.joda.time.Duration.ZERO);
+        return TimeSource.instance.durationZero();
     }
 
-    static Duration standardMinutes(int i) {
-        return new DurationJodaTime(org.joda.time.Duration.standardMinutes(i));
+    static Duration standardMinutes(int minutes) {
+        return TimeSource.instance.durationMinutes(minutes);
     }
 
     static Duration standardHours(int hours) {
-        return new DurationJodaTime(org.joda.time.Duration.standardHours(hours));
+        return TimeSource.instance.durationHours(hours);
     }
 
-    static Duration standardDays(int i) {
-        return new DurationJodaTime(org.joda.time.Duration.standardDays(i));
+    static Duration standardDays(int days) {
+        return TimeSource.instance.durationDays(days);
     }
 
     Duration dividedBy(int divisor);

@@ -14,4 +14,12 @@ public interface TimeSource {
     Interval intervalInfinity();
 
     DateTime dateTimeOf(int year, Month month, int dayOfMonth, int hour, int minutes, DateTimeZone dateTimeZone);
+
+    Duration durationZero();
+
+    Duration durationMinutes(int minutes);
+
+    Duration durationHours(int hours);
+
+    Duration durationDays(int days);
 }

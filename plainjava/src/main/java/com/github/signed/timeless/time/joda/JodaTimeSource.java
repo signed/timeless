@@ -2,6 +2,7 @@ package com.github.signed.timeless.time.joda;
 
 import com.github.signed.timeless.time.DateTime;
 import com.github.signed.timeless.time.DateTimeZone;
+import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
@@ -39,7 +40,25 @@ public class JodaTimeSource implements TimeSource {
         return new DateTimeJodaTime(new org.joda.time.DateTime(year, jodaMonth, dayOfMonth, hour, minutes, jodaDateTimeZone));
     }
 
+    @Override
+    public Duration durationZero() {
+        return new DurationJodaTime(org.joda.time.Duration.ZERO);
+    }
 
+    @Override
+    public Duration durationMinutes(int minutes) {
+        return new DurationJodaTime(org.joda.time.Duration.standardMinutes(minutes));
+    }
+
+    @Override
+    public Duration durationHours(int hours) {
+        return new DurationJodaTime(org.joda.time.Duration.standardHours(hours));
+    }
+
+    @Override
+    public Duration durationDays(int days) {
+        return new DurationJodaTime(org.joda.time.Duration.standardDays(days));
+    }
 
     public LocalDate localDateOf(org.joda.time.LocalDate localDate) {
         return new LocalDateJodaTime(localDate);
