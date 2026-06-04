@@ -1,7 +1,7 @@
 package com.github.signed.timeless.time;
 
 public interface TimeSource {
-    LocalDate now();
+    LocalDate localDateNow();
 
     LocalDate of(int year, Month month, int day);
 

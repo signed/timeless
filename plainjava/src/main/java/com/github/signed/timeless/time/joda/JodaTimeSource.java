@@ -4,9 +4,9 @@ import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.TimeSource;
 import com.github.signed.timeless.time.Month;
 
-public class JodaTimeFactory implements TimeSource {
+public class JodaTimeSource implements TimeSource {
     @Override
-    public LocalDate now() {
+    public LocalDate localDateNow() {
         return of(new org.joda.time.LocalDate());
     }
 
