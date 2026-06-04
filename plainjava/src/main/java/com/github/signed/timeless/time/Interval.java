@@ -1,7 +1,6 @@
 package com.github.signed.timeless.time;
 
 import com.github.signed.timeless.time.joda.IntervalJodaTime;
-import org.joda.time.ReadableInterval;
 
 public interface Interval {
     static Interval of(DateTime start, DateTime end) {
@@ -23,6 +22,4 @@ public interface Interval {
     Interval overlap(Interval interval);
 
     boolean overlaps(Interval interval);
-
-    ReadableInterval toJoda();
 }

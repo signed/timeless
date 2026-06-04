@@ -3,7 +3,6 @@ package com.github.signed.timeless.time.joda;
 import com.github.signed.timeless.time.DateTime;
 import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.Interval;
-import org.joda.time.ReadableInterval;
 
 public class IntervalJodaTime implements Interval {
     private final org.joda.time.Interval interval;
@@ -34,16 +33,18 @@ public class IntervalJodaTime implements Interval {
 
     @Override
     public Interval overlap(Interval other) {
-        return new IntervalJodaTime(interval.overlap(other.toJoda()));
+        return new IntervalJodaTime(this.interval.overlap(intervalIn(other)));
     }
 
     @Override
     public boolean overlaps(Interval other) {
-        return interval.overlaps(other.toJoda());
+        return interval.overlaps(intervalIn(other));
     }
 
-    @Override
-    public ReadableInterval toJoda() {
-        return interval;
+    private org.joda.time.Interval intervalIn(Interval other) {
+        if (other instanceof IntervalJodaTime joda) {
+            return joda.interval;
+        }
+        throw new IllegalArgumentException();
     }
 }
