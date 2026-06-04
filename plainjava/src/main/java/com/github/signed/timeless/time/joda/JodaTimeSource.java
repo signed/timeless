@@ -4,8 +4,8 @@ import com.github.signed.timeless.time.DateTime;
 import com.github.signed.timeless.time.DateTimeZone;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
-import com.github.signed.timeless.time.TimeSource;
 import com.github.signed.timeless.time.Month;
+import com.github.signed.timeless.time.TimeSource;
 
 public class JodaTimeSource implements TimeSource {
     @Override
@@ -21,7 +21,10 @@ public class JodaTimeSource implements TimeSource {
 
     @Override
     public Interval intervalOf(DateTime start, DateTime end) {
-        return new IntervalJodaTime(new org.joda.time.Interval(start.toJoda(), end.toJoda()));
+        var jodaStart = DateTimeJodaTime.jodaDateTimeIn(start);
+        var jodaEnd= DateTimeJodaTime.jodaDateTimeIn(end);
+
+        return new IntervalJodaTime(new org.joda.time.Interval(jodaStart, jodaEnd));
     }
 
     @Override

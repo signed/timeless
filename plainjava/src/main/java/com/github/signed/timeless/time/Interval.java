@@ -9,7 +9,7 @@ public interface Interval {
         return TimeSource.instance.intervalInfinity();
     }
 
-    boolean contains(DateTime dateTimeAtStartOfDay);
+    boolean contains(DateTime dateTime);
 
     DateTime getStart();
 

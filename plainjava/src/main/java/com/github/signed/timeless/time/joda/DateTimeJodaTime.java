@@ -9,15 +9,17 @@ import org.joda.time.format.DateTimeFormatterBuilder;
 public class DateTimeJodaTime implements DateTime {
     private static final DateTimeFormatter workLogFormatter = new DateTimeFormatterBuilder().appendHourOfDay(2).appendLiteral(":").appendMinuteOfHour(2).toFormatter();
 
-    private final org.joda.time.DateTime dateTime;
+    static org.joda.time.DateTime jodaDateTimeIn(DateTime dateTime) {
+        if( dateTime instanceof DateTimeJodaTime joda ){
+            return joda.dateTime;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public final org.joda.time.DateTime dateTime;
 
     public DateTimeJodaTime(org.joda.time.DateTime dateTime) {
         this.dateTime = dateTime;
-    }
-
-    @Override
-    public org.joda.time.DateTime toJoda() {
-        return dateTime;
     }
 
     @Override
@@ -44,18 +46,18 @@ public class DateTimeJodaTime implements DateTime {
 
     @Override
     public boolean isBefore(DateTime other) {
-        return dateTime.isBefore(other.toJoda());
+        return dateTime.isBefore(dateTimeIn(other));
     }
 
     @Override
     public int compareTo(DateTime other) {
-        return dateTime.compareTo(other.toJoda());
+        return dateTime.compareTo(dateTimeIn(other));
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof DateTime otherDateTime) {
-            return dateTime.equals(otherDateTime.toJoda());
+        if (obj instanceof DateTimeJodaTime otherDateTime) {
+            return dateTime.equals(otherDateTime.dateTime);
         }
         return false;
     }
@@ -68,6 +70,13 @@ public class DateTimeJodaTime implements DateTime {
     @Override
     public String asWorkLogString() {
         return dateTime.toString(workLogFormatter);
+    }
+
+    public org.joda.time.DateTime dateTimeIn(Object other) {
+        if (other instanceof DateTimeJodaTime joda) {
+            return joda.dateTime;
+        }
+        throw new IllegalArgumentException();
     }
 
 }

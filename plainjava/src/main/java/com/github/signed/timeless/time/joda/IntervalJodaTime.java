@@ -4,6 +4,8 @@ import com.github.signed.timeless.time.DateTime;
 import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.Interval;
 
+import static com.github.signed.timeless.time.joda.DateTimeJodaTime.jodaDateTimeIn;
+
 public class IntervalJodaTime implements Interval {
     private final org.joda.time.Interval interval;
 
@@ -12,8 +14,8 @@ public class IntervalJodaTime implements Interval {
     }
 
     @Override
-    public boolean contains(DateTime dateTimeAtStartOfDay) {
-        return interval.contains(dateTimeAtStartOfDay.toJoda());
+    public boolean contains(DateTime dateTime) {
+        return interval.contains(jodaDateTimeIn(dateTime));
     }
 
     @Override

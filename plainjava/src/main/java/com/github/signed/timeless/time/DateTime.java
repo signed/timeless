@@ -5,8 +5,6 @@ public interface DateTime extends Comparable<DateTime> {
         return TimeSource.instance.dateTimeOf(year, month, dayOfMonth, hour, minutes, dateTimeZone);
     }
 
-    org.joda.time.DateTime toJoda();
-
     DateTime toDateTime(DateTimeZone timeZone);
 
     DateTime plusDays(int days);
