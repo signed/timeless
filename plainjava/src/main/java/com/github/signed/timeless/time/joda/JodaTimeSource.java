@@ -1,6 +1,7 @@
 package com.github.signed.timeless.time.joda;
 
 import com.github.signed.timeless.time.DateTime;
+import com.github.signed.timeless.time.DateTimeZone;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.TimeSource;
@@ -27,6 +28,14 @@ public class JodaTimeSource implements TimeSource {
     public Interval intervalInfinity() {
         return new IntervalJodaTime(new org.joda.time.Interval(Long.MIN_VALUE, Long.MAX_VALUE));
     }
+
+    @Override
+    public DateTime dateTimeOf(int year, Month month, int dayOfMonth, int hour, int minutes, DateTimeZone dateTimeZone) {
+        var jodaMonth = ToJodaTime.toDateTimeConstant(month);
+        var jodaDateTimeZone = ToJodaTime.toJodaTime(dateTimeZone);
+        return new DateTimeJodaTime(new org.joda.time.DateTime(year, jodaMonth, dayOfMonth, hour, minutes, jodaDateTimeZone));
+    }
+
 
 
     public LocalDate localDateOf(org.joda.time.LocalDate localDate) {

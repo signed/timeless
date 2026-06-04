@@ -1,13 +1,8 @@
 package com.github.signed.timeless.time;
 
-import com.github.signed.timeless.time.joda.DateTimeJodaTime;
-import com.github.signed.timeless.time.joda.ToJodaTime;
-
 public interface DateTime extends Comparable<DateTime> {
     static DateTime of(int year, Month month, int dayOfMonth, int hour, int minutes, DateTimeZone dateTimeZone) {
-        var jodaMonth = ToJodaTime.toDateTimeConstant(month);
-        var jodaDateTimeZone = ToJodaTime.toJodaTime(dateTimeZone);
-        return new DateTimeJodaTime(new org.joda.time.DateTime(year, jodaMonth, dayOfMonth, hour, minutes, jodaDateTimeZone));
+        return TimeSource.instance.dateTimeOf(year, month, dayOfMonth, hour, minutes, dateTimeZone);
     }
 
     org.joda.time.DateTime toJoda();
