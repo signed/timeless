@@ -1,6 +1,6 @@
 package com.github.signed.timeless.time;
 
-public interface LocalDateFactory {
+public interface TimeSource {
     LocalDate now();
 
     LocalDate of(int year, Month month, int day);

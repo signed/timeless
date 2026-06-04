@@ -6,7 +6,7 @@ import com.github.signed.timeless.time.joda.JodaTimeFactory;
  * Mirrors import com.github.signed.timeless.time.LocalDate;
  */
 public interface LocalDate extends Comparable<LocalDate> {
-     LocalDateFactory factory = new JodaTimeFactory();
+     TimeSource factory = new JodaTimeFactory();
 
     static LocalDate now() {
         return factory.now();
