@@ -13,11 +13,11 @@ public interface LocalDate extends Comparable<LocalDate> {
     }
 
     static LocalDate of(int year, Month month, int day) {
-        return factory.of(year, month, day);
+        return factory.localDateOf(year, month, day);
     }
 
     static LocalDate of(org.joda.time.LocalDate localDate) {
-        return factory.of(localDate);
+        return factory.localDateOf(localDate);
     }
 
     boolean is(Month month);

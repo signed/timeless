@@ -3,8 +3,8 @@ package com.github.signed.timeless.time;
 public interface TimeSource {
     LocalDate localDateNow();
 
-    LocalDate of(int year, Month month, int day);
+    LocalDate localDateOf(int year, Month month, int day);
 
     //todo get rid of
-    LocalDate of(org.joda.time.LocalDate localDate);
+    LocalDate localDateOf(org.joda.time.LocalDate localDate);
 }
