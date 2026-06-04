@@ -36,8 +36,6 @@ public interface LocalDate extends Comparable<LocalDate> {
 
     boolean isBefore(LocalDate localDate);
 
-    org.joda.time.LocalDate joda();
-
     String asString();
 
     int weekOfWeekyear();

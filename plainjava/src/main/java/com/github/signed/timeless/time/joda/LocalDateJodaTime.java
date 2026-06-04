@@ -47,12 +47,7 @@ public class LocalDateJodaTime implements LocalDate {
 
     @Override
     public boolean isBefore(LocalDate localDate) {
-        return day.isBefore(localDate.joda());
-    }
-
-    @Override
-    public org.joda.time.LocalDate joda() {
-        return day;
+        return day.isBefore(joda(localDate));
     }
 
     @Override
@@ -100,7 +95,14 @@ public class LocalDateJodaTime implements LocalDate {
 
     @Override
     public int compareTo(LocalDate other) {
-        return day.compareTo(other.joda());
+        return day.compareTo(joda(other));
+    }
+
+    private org.joda.time.LocalDate joda(Object object) {
+        if (object instanceof LocalDateJodaTime joda) {
+            return joda.day;
+        }
+        throw new IllegalArgumentException();
     }
 
 }
