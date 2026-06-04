@@ -1,8 +1,21 @@
 package com.github.signed.timeless.time;
 
 import org.joda.time.Period;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class DurationJodaTime implements Duration {
+    private static final PeriodFormatter HourFormatter = new PeriodFormatterBuilder()
+            .minimumPrintedDigits(2).printZeroNever().appendHours()
+            .toFormatter();
+    private static final PeriodFormatter MinuteFormatter = new PeriodFormatterBuilder()
+            .minimumPrintedDigits(2)
+            .printZeroIfSupported().appendMinutes()
+            .toFormatter();
+
     private final org.joda.time.Duration duration;
 
     public DurationJodaTime(org.joda.time.Duration duration) {
@@ -75,6 +88,25 @@ public class DurationJodaTime implements Duration {
             return duration.equals(jodaTime.toJoda());
         }
         return false;
+    }
+
+    @Override
+    public String asString() {
+        final var absBalance = abs();
+        final var period = absBalance.toPeriod();
+        final var hour = period.toString(HourFormatter);
+        final var minute = period.toString(MinuteFormatter);
+        boolean isNegative = isShorterThan(Duration.ZERO());
+        final var sign = isNegative ? "-" : "+";
+        final var collect = Stream.of(hour, minute)
+                .skip(hoursFor(absBalance))
+                .collect(Collectors.joining(":"));
+        return String.format("%s%5s", sign, collect);
+    }
+
+    private static int hoursFor(Duration absBalance) {
+        final var atLeastAnHour = !Duration.standardHours(1).isLongerThan(absBalance);
+        return atLeastAnHour ? 0 : 1;
     }
 
     @Override

@@ -36,4 +36,6 @@ public interface Duration extends Comparable<Duration> {
     Duration plus(Duration amount);
 
     Duration negated();
+
+    String asString();
 }

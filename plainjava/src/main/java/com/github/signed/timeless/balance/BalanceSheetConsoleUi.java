@@ -14,43 +14,18 @@ import java.io.PrintStream;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static com.github.signed.timeless.Constants.inputTimeZone;
 import static java8.util.stream.Collectors.joining;
 
 public class BalanceSheetConsoleUi {
 
-    private static final PeriodFormatter HourFormatter = new PeriodFormatterBuilder()
-            .minimumPrintedDigits(2).printZeroNever().appendHours()
-            .toFormatter();
-    private static final PeriodFormatter MinuteFormatter = new PeriodFormatterBuilder()
-            .minimumPrintedDigits(2)
-            .printZeroIfSupported().appendMinutes()
-            .toFormatter();
-
     public static String balanceToString(Duration balance) {
-
         final var absBalance = balance.abs();
         if (Duration.ZERO().equals(absBalance)) {
             return "      ";
         }
-
-        final var period = absBalance.toPeriod();
-        final var hour = period.toString(HourFormatter);
-        final var minute = period.toString(MinuteFormatter);
-        boolean isNegative = balance.isShorterThan(Duration.ZERO());
-        final var sign = isNegative ? "-" : "+";
-        final var collect = Stream.of(hour, minute)
-                .skip(hoursFor(absBalance))
-                .collect(Collectors.joining(":"));
-        return String.format("%s%5s", sign, collect);
-    }
-
-    private static int hoursFor(Duration absBalance) {
-        final var atLeastAnHour = !Duration.standardHours(1).isLongerThan(absBalance);
-        return atLeastAnHour ? 0 : 1;
+        return balance.asString();
     }
 
     private static final PeriodFormatter hoursWorkedFormatter = new PeriodFormatterBuilder().minimumPrintedDigits(2).printZeroIfSupported().appendHours().appendLiteral(":").appendMinutes().toFormatter();
