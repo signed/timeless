@@ -9,6 +9,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DurationJodaTime implements Duration {
+
+    public org.joda.time.Duration jodaDurationIn(Object object) {
+        if(object instanceof DurationJodaTime joda) {
+            return joda.duration;
+        }
+        throw new IllegalArgumentException();
+    }
+
     private static final PeriodFormatter HourFormatter = new PeriodFormatterBuilder()
             .minimumPrintedDigits(2).printZeroNever().appendHours()
             .toFormatter();
@@ -18,7 +26,7 @@ public class DurationJodaTime implements Duration {
             .toFormatter();
     private static final PeriodFormatter hoursWorkedFormatter = new PeriodFormatterBuilder().minimumPrintedDigits(2).printZeroIfSupported().appendHours().appendLiteral(":").appendMinutes().toFormatter();
 
-    private final org.joda.time.Duration duration;
+    public final org.joda.time.Duration duration;
 
     public DurationJodaTime(org.joda.time.Duration duration) {
         this.duration = duration;
@@ -36,10 +44,9 @@ public class DurationJodaTime implements Duration {
 
     @Override
     public Duration minus(Duration amount) {
-        return new DurationJodaTime(duration.minus(amount.toJoda()));
+        return new DurationJodaTime(duration.minus(jodaDurationIn(amount)));
     }
 
-    @Override
     public org.joda.time.Duration toJoda() {
         return duration;
     }
@@ -56,17 +63,17 @@ public class DurationJodaTime implements Duration {
 
     @Override
     public boolean isShorterThan(Duration other) {
-        return duration.isShorterThan(other.toJoda());
+        return duration.isShorterThan(jodaDurationIn(other));
     }
 
     @Override
     public boolean isLongerThan(Duration other) {
-        return duration.isLongerThan(other.toJoda());
+        return duration.isLongerThan(jodaDurationIn(other));
     }
 
     @Override
     public Duration plus(Duration amount) {
-        return new DurationJodaTime(this.duration.plus(amount.toJoda()));
+        return new DurationJodaTime(this.duration.plus(jodaDurationIn(amount)));
     }
 
     @Override
@@ -76,7 +83,7 @@ public class DurationJodaTime implements Duration {
 
     @Override
     public int compareTo(Duration other) {
-        return duration.compareTo(other.toJoda());
+        return duration.compareTo(jodaDurationIn(other));
     }
 
     @Override

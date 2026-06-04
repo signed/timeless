@@ -23,8 +23,6 @@ public interface Duration extends Comparable<Duration> {
 
     Duration minus(Duration toSubtract);
 
-    org.joda.time.Duration toJoda();
-
     org.joda.time.Period toPeriod();
 
     Duration abs();
