@@ -1,5 +1,6 @@
-package com.github.signed.timeless.time;
+package com.github.signed.timeless.time.joda;
 
+import com.github.signed.timeless.time.Duration;
 import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;

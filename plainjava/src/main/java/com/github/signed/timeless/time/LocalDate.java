@@ -1,5 +1,7 @@
 package com.github.signed.timeless.time;
 
+import com.github.signed.timeless.time.joda.JodaTimeFactory;
+
 /**
  * Mirrors import com.github.signed.timeless.time.LocalDate;
  */
@@ -28,7 +30,6 @@ public interface LocalDate extends Comparable<LocalDate> {
 
     int getYear();
 
-    //todo drive out joda time from the interface
     DateTime toDateTimeAtStartOfDay(DateTimeZone zone);
 
     DayOfWeek dayOfWeek();

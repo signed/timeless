@@ -1,4 +1,8 @@
-package com.github.signed.timeless.time;
+package com.github.signed.timeless.time.joda;
+
+import com.github.signed.timeless.time.LocalDate;
+import com.github.signed.timeless.time.LocalDateFactory;
+import com.github.signed.timeless.time.Month;
 
 public class JodaTimeFactory implements LocalDateFactory {
     @Override

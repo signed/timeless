@@ -1,5 +1,8 @@
-package com.github.signed.timeless.time;
+package com.github.signed.timeless.time.joda;
 
+import com.github.signed.timeless.time.DateTime;
+import com.github.signed.timeless.time.Duration;
+import com.github.signed.timeless.time.Interval;
 import org.joda.time.ReadableInterval;
 
 public class IntervalJodaTime implements Interval {

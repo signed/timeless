@@ -1,5 +1,7 @@
-package com.github.signed.timeless.time;
+package com.github.signed.timeless.time.joda;
 
+import com.github.signed.timeless.time.DayOfWeek;
+import com.github.signed.timeless.time.Month;
 import org.joda.time.DateTimeConstants;
 
 public class FromJodaTime {

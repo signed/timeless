@@ -2,7 +2,7 @@ package com.github.signed.timeless.storage;
 
 import com.github.signed.timeless.time.DateTime;
 import com.github.signed.timeless.time.DateTimeZone;
-import com.github.signed.timeless.time.FromJodaTime;
+import com.github.signed.timeless.time.joda.FromJodaTime;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
 

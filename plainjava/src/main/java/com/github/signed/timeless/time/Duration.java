@@ -1,5 +1,7 @@
 package com.github.signed.timeless.time;
 
+import com.github.signed.timeless.time.joda.DurationJodaTime;
+
 public interface Duration extends Comparable<Duration> {
     static Duration ZERO() {
         return new DurationJodaTime(org.joda.time.Duration.ZERO);
