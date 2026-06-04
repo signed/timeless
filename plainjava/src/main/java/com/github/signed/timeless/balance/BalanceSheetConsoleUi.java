@@ -76,7 +76,10 @@ public class BalanceSheetConsoleUi {
     }
 
     public void print(BalanceSheet balanceSheet) {
-        final var out = System.out;
+        printTo(System.out, balanceSheet);
+    }
+
+    public void printTo(PrintStream out, BalanceSheet balanceSheet) {
         final var weeks = balanceSheet.weeklyBalance();
         final var weeksToPrint = 3;
         final var toPrint = weeks.subList(Math.max(weeks.size() - weeksToPrint, 0), weeks.size());
