@@ -2,6 +2,7 @@ package com.github.signed.timeless.balance;
 
 import com.github.signed.timeless.ConsecutiveTime;
 import com.github.signed.timeless.time.DateTime;
+import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 import java8.util.function.BinaryOperator;
@@ -9,7 +10,6 @@ import java8.util.function.Function;
 import java8.util.stream.Collectors;
 import java8.util.stream.Stream;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Duration;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ class DailyWorkLog {
             public Duration apply(Interval consecutiveTime) {
                 return consecutiveTime.toDuration();
             }
-        }).reduce(Duration.ZERO, new BinaryOperator<>() {
+        }).reduce(Duration.ZERO(), new BinaryOperator<>() {
             @Override
             public Duration apply(Duration accumulator, Duration it) {
                 return accumulator.plus(it);

@@ -1,6 +1,5 @@
 package com.github.signed.timeless.time;
 
-import org.joda.time.Duration;
 import org.joda.time.ReadableInterval;
 
 public class IntervalJodaTime implements Interval {
@@ -27,7 +26,7 @@ public class IntervalJodaTime implements Interval {
 
     @Override
     public Duration toDuration() {
-        return interval.toDuration();
+        return new DurationJodaTime(interval.toDuration());
     }
 
     @Override

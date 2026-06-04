@@ -1,15 +1,15 @@
 package com.github.signed.timeless.workhours;
 
 import com.github.signed.timeless.holidays.HolidayMother;
-import org.joda.time.Duration;
+import com.github.signed.timeless.time.Duration;
 import org.junit.jupiter.api.Test;
 
+import static com.github.signed.timeless.time.Duration.ZERO;
+import static com.github.signed.timeless.time.Duration.standardDays;
+import static com.github.signed.timeless.time.Duration.standardHours;
+import static com.github.signed.timeless.time.Duration.standardMinutes;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.joda.time.Duration.ZERO;
-import static org.joda.time.Duration.standardDays;
-import static org.joda.time.Duration.standardHours;
-import static org.joda.time.Duration.standardMinutes;
 
 class WorkHoursPerDayBuilderTest {
 
@@ -36,7 +36,7 @@ class WorkHoursPerDayBuilderTest {
         builder.reduceByHalfAWorkDay();
         builder.reduceByHalfAWorkDay();
 
-        assertThat(durationToWork(), is(ZERO));
+        assertThat(durationToWork(), is(ZERO()));
     }
 
     @Test
@@ -44,7 +44,7 @@ class WorkHoursPerDayBuilderTest {
         builder.hoursToWork(standardMinutes(30));
         builder.reduceByCompleteWorkDay();
 
-        assertThat(durationToWork(), is(ZERO));
+        assertThat(durationToWork(), is(ZERO()));
     }
 
     @Test
@@ -53,7 +53,7 @@ class WorkHoursPerDayBuilderTest {
         builder.reduceByCompleteWorkDay();
         builder.reduceByHalfAWorkDay();
 
-        assertThat(durationToWork(), is(ZERO));
+        assertThat(durationToWork(), is(ZERO()));
     }
 
     @Test
@@ -61,15 +61,15 @@ class WorkHoursPerDayBuilderTest {
         builder.hoursToWork(standardDays(8));
         builder.holiday(HolidayMother.anyHoliday());
 
-        assertThat(durationToWork(), is(ZERO));
+        assertThat(durationToWork(), is(ZERO()));
     }
 
     @Test
     void operationsCanBePerformedInRandomOrder() {
         builder.reduceByHalfAWorkDay();
-        builder.hoursToWork(Duration.standardMinutes(30));
+        builder.hoursToWork(standardMinutes(30));
 
-        assertThat(durationToWork(), is(Duration.standardMinutes(15)));
+        assertThat(durationToWork(), is(standardMinutes(15)));
     }
 
     private Duration durationToWork() {

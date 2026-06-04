@@ -1,12 +1,12 @@
 package com.github.signed.timeless.workhours;
 
 import com.github.signed.timeless.holidays.Holiday;
+import com.github.signed.timeless.time.Duration;
 import java6.util.Optional;
-import org.joda.time.Duration;
 
 public class WorkHoursPerDayBuilder {
 
-    private Duration duration = Duration.ZERO;
+    private Duration duration = Duration.ZERO();
     private long percentageToSubtract = 0L;
     private Optional<Holiday> maybeHoliday = Optional.empty();
 

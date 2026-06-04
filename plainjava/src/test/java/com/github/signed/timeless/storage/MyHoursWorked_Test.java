@@ -4,8 +4,8 @@ import com.github.signed.timeless.balance.BalanceSheet;
 import com.github.signed.timeless.balance.BalanceSheetConsoleUi;
 import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.contract.ContractsOnRecord;
+import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.LocalDate;
-import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
 
 import java.io.PrintStream;

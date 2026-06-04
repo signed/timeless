@@ -2,8 +2,8 @@ package com.github.signed.timeless.balance;
 
 import com.github.signed.timeless.ConsecutiveTime;
 import com.github.signed.timeless.storage.DateTimeMother;
+import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.LocalDate;
-import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -18,7 +18,7 @@ class DailyWorkLog_Test {
     void if_there_are_no_hours_punched_there_was_no_work_done_for_this_day() {
         LocalDate day = DateTimeMother.AnyWorkday();
 
-        assertThat(new DailyWorkLog(day, frontendTimeZone(), Collections.<ConsecutiveTime>emptyList()).timeWorked(), is(Duration.ZERO));
+        assertThat(new DailyWorkLog(day, frontendTimeZone(), Collections.<ConsecutiveTime>emptyList()).timeWorked(), is(Duration.ZERO()));
     }
 
 }

@@ -6,9 +6,9 @@ import com.github.signed.timeless.contract.Contract;
 import com.github.signed.timeless.contract.ContractsOnRecord;
 import com.github.signed.timeless.storage.DateTimeBuilder;
 import com.github.signed.timeless.storage.WorkYear;
+import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
-import org.joda.time.Duration;
 
 import java.io.PrintStream;
 import java.util.List;

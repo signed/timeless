@@ -1,20 +1,20 @@
 package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.storage.DateTimeMother;
+import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
-import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import static com.github.signed.timeless.storage.DateTimeMother.AnySaturday;
 import static com.github.signed.timeless.storage.DateTimeMother.AnySunday;
+import static com.github.signed.timeless.time.Duration.ZERO;
+import static com.github.signed.timeless.time.Duration.standardHours;
+import static com.github.signed.timeless.time.Duration.standardMinutes;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.joda.time.Duration.ZERO;
-import static org.joda.time.Duration.standardHours;
-import static org.joda.time.Duration.standardMinutes;
 import static org.mockito.Mockito.mock;
 
 class WeeklyWorkHoursTest {
@@ -24,13 +24,13 @@ class WeeklyWorkHoursTest {
     @Test
     void saturdayIsWorkFree() {
         day = AnySaturday();
-        assertThat(hoursToWorkAt(day), is(ZERO));
+        assertThat(hoursToWorkAt(day), is(ZERO()));
     }
 
     @Test
     void sundayIsWorkFree() {
         day = AnySunday();
-        assertThat(hoursToWorkAt(day), is(ZERO));
+        assertThat(hoursToWorkAt(day), is(ZERO()));
     }
 
     @Test

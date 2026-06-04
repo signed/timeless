@@ -1,15 +1,14 @@
 package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.time.DayOfWeek;
+import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.workhours.WorkHoursPerDayAdjuster;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
-import org.joda.time.Duration;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.joda.time.Duration.ZERO;
 
 public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
 
@@ -44,8 +43,8 @@ public class WeeklyWorkHours implements WorkHoursPerDayAdjuster {
         internal.put(DayOfWeek.Wednesday, dailyWorkHours);
         internal.put(DayOfWeek.Thursday, dailyWorkHours);
         internal.put(DayOfWeek.Friday, dailyWorkHours);
-        internal.put(DayOfWeek.Saturday, ZERO);
-        internal.put(DayOfWeek.Sunday, ZERO);
+        internal.put(DayOfWeek.Saturday, Duration.ZERO());
+        internal.put(DayOfWeek.Sunday, Duration.ZERO());
         return new WeeklyWorkSchedule(internal);
     }
 

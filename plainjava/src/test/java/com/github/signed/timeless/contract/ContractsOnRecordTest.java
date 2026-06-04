@@ -1,11 +1,11 @@
 package com.github.signed.timeless.contract;
 
 import com.github.signed.timeless.Constants;
+import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.Interval;
 import com.github.signed.timeless.time.LocalDate;
 import com.github.signed.timeless.time.Month;
 import com.github.signed.timeless.workhours.WorkHoursPerDayBuilder;
-import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -21,7 +21,7 @@ class ContractsOnRecordTest {
     void copeWithNoContracts() {
         final var builder = new WorkHoursPerDayBuilder();
         new ContractsOnRecord(List.of()).adjustHoursToWorkFor(AnyLocalDate(), builder);
-        assertThat(builder.build().duration(), equalTo(Duration.ZERO));
+        assertThat(builder.build().duration(), equalTo(Duration.ZERO()));
     }
 
     @Test

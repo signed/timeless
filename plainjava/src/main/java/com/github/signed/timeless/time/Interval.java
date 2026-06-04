@@ -1,6 +1,5 @@
 package com.github.signed.timeless.time;
 
-import org.joda.time.Duration;
 import org.joda.time.ReadableInterval;
 
 public interface Interval {

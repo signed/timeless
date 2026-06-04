@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static com.github.signed.timeless.storage.DateTimeBuilder.AnyDateTime;
+import static com.github.signed.timeless.time.Duration.standardHours;
 import static com.github.signed.timeless.workhours.WorkHoursPerDay.unreducedWorkHours;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.joda.time.Duration.standardHours;
 import static org.mockito.Mockito.when;
 
 class BalanceCalculator_SingleDayTest {

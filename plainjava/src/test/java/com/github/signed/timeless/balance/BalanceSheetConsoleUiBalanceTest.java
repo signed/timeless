@@ -1,7 +1,7 @@
 package com.github.signed.timeless.balance;
 
+import com.github.signed.timeless.time.Duration;
 import org.hamcrest.Matchers;
-import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -13,7 +13,7 @@ class BalanceSheetConsoleUiBalanceTest {
 
     @Test
     void forZeroBalanceOnlyPrintMinutes() {
-        balance = Duration.ZERO;
+        balance = Duration.ZERO();
         assertThat(positiveBalanceString(), equalTo("      "));
     }
 

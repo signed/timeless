@@ -1,12 +1,12 @@
 package com.github.signed.timeless.workhours;
 
 
-import org.joda.time.Duration;
+import com.github.signed.timeless.time.Duration;
 
 public class WorkHoursPerDay {
 
     public static WorkHoursPerDay freeDay() {
-        return unreducedWorkHours(Duration.ZERO);
+        return unreducedWorkHours(Duration.ZERO());
     }
 
     public static WorkHoursPerDay unreducedWorkHours(Duration duration) {

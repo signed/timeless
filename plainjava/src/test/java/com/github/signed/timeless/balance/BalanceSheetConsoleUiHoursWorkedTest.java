@@ -1,6 +1,6 @@
 package com.github.signed.timeless.balance;
 
-import org.joda.time.Duration;
+import com.github.signed.timeless.time.Duration;
 import org.junit.jupiter.api.Test;
 
 import static com.github.signed.timeless.balance.BalanceSheetConsoleUi.hoursWorkedToString;
@@ -11,7 +11,7 @@ class BalanceSheetConsoleUiHoursWorkedTest {
 
     @Test
     void printPlaceholderMatchingLengthOfHoursWorkedInCaseNotWorkIsLoggedForThatDay() {
-        assertThat(hoursWorkedToString(Duration.ZERO), equalTo("     "));
+        assertThat(hoursWorkedToString(Duration.ZERO()), equalTo("     "));
     }
 
     @Test

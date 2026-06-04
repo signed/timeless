@@ -1,6 +1,6 @@
 package com.github.signed.timeless.balance;
 
-import org.joda.time.Duration;
+import com.github.signed.timeless.time.Duration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +16,7 @@ public class BalanceSheet implements Iterable<BalanceRow> {
     }
 
     public Duration requiredToWork() {
-        Duration requiredToWork = Duration.ZERO;
+        Duration requiredToWork = Duration.ZERO();
         for (BalanceRow balanceRow : balanceRows) {
             requiredToWork = requiredToWork.plus(balanceRow.requiredToWork());
         }
@@ -24,7 +24,7 @@ public class BalanceSheet implements Iterable<BalanceRow> {
     }
 
     public Duration timeWorked() {
-        Duration timeWorked = Duration.ZERO;
+        Duration timeWorked = Duration.ZERO();
         for (BalanceRow balanceRow : balanceRows) {
             timeWorked = timeWorked.plus(balanceRow.timeWorked());
         }
@@ -56,7 +56,7 @@ public class BalanceSheet implements Iterable<BalanceRow> {
     }
 
     public Duration balance() {
-        Duration balance = Duration.ZERO;
+        Duration balance = Duration.ZERO();
         for (BalanceRow balanceRow : balanceRows) {
             balance = balance.plus(balanceRow.balance());
         }

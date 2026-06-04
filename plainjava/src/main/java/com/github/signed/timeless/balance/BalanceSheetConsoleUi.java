@@ -1,10 +1,10 @@
 package com.github.signed.timeless.balance;
 
+import com.github.signed.timeless.time.Duration;
 import com.github.signed.timeless.time.Interval;
 import java6.util.function.Predicate;
 import java8.util.stream.StreamSupport;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Duration;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.PeriodFormatter;
@@ -32,14 +32,14 @@ public class BalanceSheetConsoleUi {
     public static String balanceToString(Duration balance) {
 
         final var absBalance = balance.abs();
-        if (Duration.ZERO.equals(absBalance)) {
+        if (Duration.ZERO().equals(absBalance)) {
             return "      ";
         }
 
         final var period = absBalance.toPeriod();
         final var hour = period.toString(HourFormatter);
         final var minute = period.toString(MinuteFormatter);
-        boolean isNegative = balance.isShorterThan(Duration.ZERO);
+        boolean isNegative = balance.isShorterThan(Duration.ZERO());
         final var sign = isNegative ? "-" : "+";
         final var collect = Stream.of(hour, minute)
                 .skip(hoursFor(absBalance))
@@ -56,7 +56,7 @@ public class BalanceSheetConsoleUi {
 
     public static String hoursWorkedToString(final Duration timeWorked) {
 
-        if (Duration.ZERO.equals(timeWorked)) {
+        if (Duration.ZERO().equals(timeWorked)) {
             return "     ";
         }
         final var period = timeWorked.toPeriod();
@@ -72,7 +72,7 @@ public class BalanceSheetConsoleUi {
     private Predicate<BalanceRow> printPredicate = balanceRows -> true;
 
     public void onlyDisplayWithNegativeBalance() {
-        this.printPredicate = balanceRows -> balanceRows.balance().compareTo(Duration.ZERO) < 0;
+        this.printPredicate = balanceRows -> balanceRows.balance().compareTo(Duration.ZERO()) < 0;
     }
 
     public void print(BalanceSheet balanceSheet) {
