@@ -38,4 +38,6 @@ public interface Duration extends Comparable<Duration> {
     String asHoursWorkedString();
 
     String asString();
+
+    long toMinutes();
 }

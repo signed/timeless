@@ -76,6 +76,11 @@ public class LocalDateJodaTime implements LocalDate {
     }
 
     @Override
+    public String asISOString() {
+        return day.toString("yyyy-MM-dd");
+    }
+
+    @Override
     public int getYear() {
         return day.getYear();
     }

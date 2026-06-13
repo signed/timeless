@@ -15,4 +15,13 @@ class DurationTest {
         assertThat(Duration.standardDays(2).asBalanceString(), equalTo("+48:00"));
         assertThat(Duration.standardHours(-1).asBalanceString(), equalTo("-01:00"));
     }
+
+    @Test
+    void toMinutes() {
+        assertThat(Duration.ZERO().toMinutes(), equalTo(0L));
+        assertThat(Duration.standardMinutes(1).toMinutes(), equalTo(1L));
+        assertThat(Duration.standardMinutes(-1).toMinutes(), equalTo(-1L));
+        assertThat(Duration.standardHours(1).toMinutes(), equalTo(60L));
+        assertThat(Duration.standardDays(1).toMinutes(), equalTo(1440L));
+    }
 }

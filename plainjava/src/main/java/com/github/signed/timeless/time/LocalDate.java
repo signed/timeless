@@ -40,4 +40,6 @@ public interface LocalDate extends Comparable<LocalDate> {
     int dayOfMonth();
 
     LocalDate plusMonths(int numberOfMonths);
+
+    String asISOString();
 }

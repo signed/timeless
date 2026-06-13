@@ -124,6 +124,11 @@ public class DurationJodaTime implements Duration {
     }
 
     @Override
+    public long toMinutes() {
+        return duration.getStandardMinutes();
+    }
+
+    @Override
     public String toString() {
         return duration.toString();
     }
